@@ -2,11 +2,11 @@ Rails.application.routes.draw do
 
   root 'static_pages#home'
 
-  get 'info'      => 'static_pages#info'
-  get 'declare'   => 'static_pages#declare'
-  get 'new'  => 'registers#new'
+  get 'info'     => 'static_pages#info'
+  get 'declare'  => 'static_pages#declare'
+  get 'register' => 'registers#new'
   get 'confirm'  => 'registers#confirm'
-  get 'create'  => 'registers#create'
+  resources :registers
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
