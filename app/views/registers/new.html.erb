@@ -3,27 +3,15 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
 
-    <%= ez_allpay_for @order, :setting => { :value => "付款", :css => "btn btn-lg btn-success" } do %>
-      <% attr_instead :MerchantTradeNo => :order_no %>
-      <% attr_instead :MerchantTradeDate => :created_at %>
-      <% attr_instead :PaymentType => "aio" %>
-      <% attr_instead :ChoosePayment => "SVC" %>
-      <% attr_instead :TotalAmount => :price %>
-      <% attr_instead :TradeDesc => :description %>
-      <% attr_instead :ItemName => :name %>
-    <% end %>
+    <%= form_for(@register) do |f| %>
+      <%= f.label :name,"真實姓名" %>
+      <%= f.text_field :name, class: 'form-control' %>
 
-    <!-- <form role="form">
-      <div class="form-group">
-        <label for="name">真實姓名</label>
-        <input type="name" class="form-control" id="exampleInputEmail1" placeholder="輸入姓名">
-      </div>
-      <div class="form-group">
-        <label for="email">電子郵件</label>
-        <input type="email" class="form-control" id="exampleInputPassword1" placeholder="輸入電子郵件">
-      </div>
-      <button type="submit" class="btn btn-lg btn-success">送出</button>
-    </form> -->
+      <%= f.label :email,"E-mail" %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.submit "送出", class: "btn btn-lg btn-success" %>
+    <% end %>
 
   </div>
 </div>

@@ -2,11 +2,15 @@ Rails.application.routes.draw do
 
   root 'static_pages#home'
 
-  get 'info'     => 'static_pages#info'
-  get 'declare'  => 'static_pages#declare'
-  get 'register' => 'registers#new'
-  get 'confirm'  => 'registers#confirm'
-  resources :registers
+  get  'info'      => 'static_pages#info'
+  get  'declare'   => 'static_pages#declare'
+  get  'search'    => 'registers#search'
+  post 'search'    => 'registers#searched'
+  get  'show'      => 'registers#show'
+  get  'registers' => 'registers#new'
+  post 'registers' => 'registers#create'
+  get  'confirm'   => 'registers#confirm'
+  post 'notify', to: 'registers#notify', as: 'notify'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
