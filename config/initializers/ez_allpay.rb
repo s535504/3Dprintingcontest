@@ -10,6 +10,6 @@ EzAllpay.setup do |allpay|
     allpay.hash_key    = ENV['HASH_KEY']
     allpay.hash_iv     = ENV['HASH_IV']
     allpay.choose_payment = 'Credit'
-    allpay.return_url = 'http://www.meetme.cc/notify'
+    allpay.return_url = 'http://tdpcontest.herokuapp.com/notify'
   end
 end
