@@ -1,5 +1,7 @@
 class RegistersController < ApplicationController
 
+  skip_before_action :verify_authenticity_token, only: [:notify]
+
   def index
     if params[:search] && params[:n]
       if Register.find_by(email: params[:search],name: params[:n]) == nil
