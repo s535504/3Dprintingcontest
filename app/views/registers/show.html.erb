@@ -1,4 +1,4 @@
-<h3 class="center">線上報名</h3>
+<h3 class="center">訂單編號<%= @register.merchant_trade_no %></h3>
 <hr class="hr">
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -16,15 +16,5 @@
       </table>
     </tbody>
 
-    <%= ez_allpay_for @register, :setting => { :value => "付款", :css => "btn btn-lg btn-success" } do %>
-      <% attr_instead :MerchantTradeNo => @register.merchant_trade_no %>
-      <% attr_instead :MerchantTradeDate => @register.created_at.strftime("%Y/%m/%d %T") %>
-      <% attr_instead :PaymentType => "aio" %>
-      <% attr_instead :ChoosePayment => "Credit" %>
-      <% attr_instead :TotalAmount => "300" %>
-      <% attr_instead :TradeDesc => "報名費300" %>
-      <% attr_instead :ItemName => "LINE 3D 3D列印競賽" %>
-    <% end %>
-    
   </div>
 </div>

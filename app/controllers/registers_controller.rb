@@ -1,25 +1,27 @@
 class RegistersController < ApplicationController
 
-  def search
-    @email = ""
-  end
-
-  def searched
-    @register = Register.find_by(email: @email)
-    if @register == nil
-      flash[:danger]="查無此筆報名"
+  def index
+    if params[:search] && params[:n]
+      if Register.find_by(email: params[:search],name: params[:n]) == nil
+        redirect_to root_url
+      else
+        @register = Register.find_by(email: params[:search],name: params[:n])
+      end
     else
-      render 'show'
+      flash[:danger]="查無此筆資料"
     end
   end
 
   def show
-    @register = Register.find(email: @email)
-    #@register = Register.find_by(email: @register)
+    @register=Register.find(params[:id])
   end
 
   def new
-    @register = Register.new
+    if params[:n] && params[:email]
+      @register = Register.new(name: params[:n],email: params[:email])
+    else
+      redirect_to form
+    end
   end
 
   def create

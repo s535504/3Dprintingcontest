@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160105050543) do
+ActiveRecord::Schema.define(version: 20160107054414) do
 
   create_table "orders", force: :cascade do |t|
     t.string   "name"
@@ -28,5 +28,7 @@ ActiveRecord::Schema.define(version: 20160105050543) do
     t.string   "merchant_trade_no"
     t.string   "choose_payment"
   end
+
+  add_index "registers", ["merchant_trade_no"], name: "index_registers_on_merchant_trade_no", unique: true
 
 end

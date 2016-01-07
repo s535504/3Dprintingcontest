@@ -1,0 +1,15 @@
+<h3 class="center">線上報名</h3>
+<hr class="hr">
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+    <%= form_tag new_register_path,method: :get do %>
+      <%= label :n,"報名者姓名" %>
+      <%= text_field_tag :n, params[:n], placeholder:"姓名", class: 'form-control' %>
+      <%= label :email,"E-mail" %>
+      <%= text_field_tag :email, params[:email], placeholder:"E-mail", class: 'form-control' %>
+      <%=submit_tag "送出", name: nil, class: "btn btn-lg btn-success" %>
+    <% end %>
+
+  </div>
+</div>

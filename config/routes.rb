@@ -4,12 +4,15 @@ Rails.application.routes.draw do
 
   get  'info'      => 'static_pages#info'
   get  'declare'   => 'static_pages#declare'
-  get  'search'    => 'registers#search'
-  post 'search'    => 'registers#searched'
-  get  'show'      => 'registers#show'
-  get  'registers' => 'registers#new'
-  post 'registers' => 'registers#create'
-  get  'confirm'   => 'registers#confirm'
+  get  'search'    => 'static_pages#search'
+  get  'form'      => 'static_pages#form'
+  # get  'search'    => 'registers#search'
+  # post 'search'    => 'registers#searched'
+  # get  'show'      => 'registers#show'
+  # get  'registers' => 'registers#new'
+  # post 'registers' => 'registers#create'
+  # get  'confirm'   => 'registers#confirm'
+  resources :registers
   post 'notify', to: 'registers#notify', as: 'notify'
 
   # The priority is based upon order of creation: first created -> highest priority.
