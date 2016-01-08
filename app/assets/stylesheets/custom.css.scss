@@ -10,7 +10,7 @@ body{
     background-size:cover;
     color:#FFF;
     div{
-      background-color:rgba(38,38,38,0.9);
+      background-color:rgba(38,38,38,0.8);
       font-family:DFKai-sb;
     }
     .hometitle1{
@@ -21,15 +21,17 @@ body{
     }
     .hometitle2{
       padding:5px 0px 0px 0px;
-      width:26vw;
+      width:27vw;
       height:7vw;
       font-size:5vw;
+      font-family:Helvetica;
     }
     .hometitle3{
       padding:0px 0px 20px 0px;
       width:50vw;
       height:7vw;
       font-size:5vw;
+      font-family:Helvetica;
     }
     .hometitle4{
       padding:25px 0px 0px 0px;
@@ -46,9 +48,9 @@ body{
       font-family:Microsoft JhengHei;
     }
     .signupbottom{
-      padding:0px 0px 300px 0px;
-      margin:30px 0px 0px 20px;
-      background-color:rgba(0,0,0,0);
+      margin:4vw 0vw 400px 0vw;
+      background-color:#73BF00;
+      font-family:Helvetica;
     }
   }
 }

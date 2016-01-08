@@ -1,4 +1,4 @@
-<h3 class="center">確認報名</h3>
+<h3 class="center">報名成功！</h3>
 <hr class="hr">
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -16,17 +16,19 @@
       </table>
     </tbody>
 
-    <%= ez_allpay_for @register, :setting => { :value => "付款", :css => "btn btn-lg btn-success" } do %>
-      <% attr_instead :MerchantTradeNo => @register.merchant_trade_no %>
-      <% attr_instead :MerchantTradeDate => @register.created_at.strftime("%Y/%m/%d %T") %>
-      <% attr_instead :PaymentType => "aio" %>
-      <% attr_instead :ChoosePayment => "Credit" %>
-      <% attr_instead :TotalAmount => "300" %>
-      <% attr_instead :TradeDesc => "報名費300" %>
-      <% attr_instead :ItemName => "LINE DDD 3D列印競賽" %>
-      <% attr_instead :ClientBackURL => "http://localhost:3000/registers/#{@register.id}" %>
-      <% attr_instead :ReturnURL => "http://tdpcontest.herokuapp.com/notify" %>
-    <% end %>
+    <div style="padding-left:41%">
+      <%= ez_allpay_for @register, :setting => { :value => "付款", :css => "btn btn-lg btn-success" } do %>
+        <% attr_instead :MerchantTradeNo => @register.merchant_trade_no %>
+        <% attr_instead :MerchantTradeDate => @register.created_at.strftime("%Y/%m/%d %T") %>
+        <% attr_instead :PaymentType => "aio" %>
+        <% attr_instead :ChoosePayment => "Credit" %>
+        <% attr_instead :TotalAmount => "300" %>
+        <% attr_instead :TradeDesc => "報名費300" %>
+        <% attr_instead :ItemName => "LINE DDD 3D列印競賽" %>
+        <% attr_instead :ClientBackURL => "http://tdpcontest.herokuapp.com/notify" %>
+        <% attr_instead :ReturnURL => "http://tdpcontest.herokuapp.com/notify" %>
+      <% end %>
+    </div>
 
   </div>
 </div>

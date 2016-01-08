@@ -3,14 +3,16 @@ class RegistersController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:notify]
 
   def index
-    if params[:search] && params[:n]
+    if params[:search] == "" || params[:n] == ""
+      redirect_to search_path
+      flash[:danger]="請輸入完整資料"
+    else
       if Register.find_by(email: params[:search],name: params[:n]) == nil
-        redirect_to root_url
+        redirect_to search_path
+        flash[:danger]="查無此筆資料"
       else
         @register = Register.find_by(email: params[:search],name: params[:n])
       end
-    else
-      flash[:danger]="查無此筆資料"
     end
   end
 
@@ -29,7 +31,6 @@ class RegistersController < ApplicationController
   def create
     @register = Register.new(register_params)
     if @register.save
-      #@register.delete
       render 'confirm'
     else
       render 'new'
@@ -40,10 +41,6 @@ class RegistersController < ApplicationController
     if @register==nil
       redirect_to root_url
     end
-  end
-
-  def notify
-    mail(to: 's5355049@gmail.com', subject: "付款成功")
   end
 
   private

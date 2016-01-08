@@ -1,7 +1,7 @@
-<h3 class="center">線上報名</h3>
+<h3 class="center">報名確認</h3>
 <hr class="hr">
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-4 col-md-offset-4">
 
     <tbody>
       <table class="table table-hover">
@@ -18,10 +18,11 @@
 
     <%= form_for(@register) do |f| %>
       <%= f.hidden_field :name, class: 'form-control' %>
-
       <%= f.hidden_field :email, class: 'form-control' %>
-
-      <%= f.submit "送出", class: "btn btn-lg btn-success" %>
+      <br>
+      <div style="padding-left:40%">
+        <%= f.submit "確認報名", class: "btn btn-lg btn-success" %>
+      </div>
     <% end %>
 
   </div>
