@@ -7,8 +7,8 @@ EzAllpay.setup do |allpay|
     allpay.return_url = 'http://localhost:3000/notify'
   else
     allpay.merchant_id = ENV['MERCHANT_ID']
-    allpay.hash_key    = 'ejCk326UnaZWKisg'
-    allpay.hash_iv     = 'q9jcZX8Ib9LM8wYk'
+    allpay.hash_key    = ENV['HASH_KEY']
+    allpay.hash_iv     = ENV['HASH_IV']
     allpay.choose_payment = 'Credit'
     allpay.return_url = 'http://tdpcontest.herokuapp.com/notify'
   end
