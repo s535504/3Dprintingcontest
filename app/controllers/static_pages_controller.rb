@@ -8,8 +8,8 @@ class StaticPagesController < ApplicationController
   def info
   end
 
-  def notify   
-    register = Register.new(name: params[:n],email: params[:email])
+  def notify
+    register = Register.new(name:"Van", email:"dark@gmail.com")
     register.save
   end
 end
