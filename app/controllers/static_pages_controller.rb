@@ -10,8 +10,9 @@ class StaticPagesController < ApplicationController
 
   def notify
     @register = Register.new(name:"Van", email:"dark@gmail.com")
-    
+    if mac_value_ok?
       @register.save
+    end
   end
 
   private
@@ -22,7 +23,7 @@ class StaticPagesController < ApplicationController
       params_to_go = params_copy.except(:CheckMacValue, :action, :controller)
 
       raw_data = params_to_go.sort.map do |x,y|
-        "#{x} = #{y}"
+        "#{x}=#{y}"
       end.join('&')
 
       hash_raw_data = "HashKey=#{EzAllpay.hash_key}&#{raw_data}&HashIV=#{EzAllpay.hash_iv}"
