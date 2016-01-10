@@ -10,9 +10,8 @@ class StaticPagesController < ApplicationController
 
   def notify
     @register = Register.new(name:"Van", email:"dark@gmail.com")
-    if mac_value_ok?
+    
       @register.save
-    end
   end
 
   private
