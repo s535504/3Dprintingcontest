@@ -43,11 +43,6 @@ class RegistersController < ApplicationController
     end
   end
 
-  def notify
-    @register = Register.new(name:"Van",email:"dark@gmail.com")
-    @register.save
-  end
-
   private
 
     def register_params
