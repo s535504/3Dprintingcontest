@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   # post 'registers' => 'registers#create'
   # get  'confirm'   => 'registers#confirm'
   resources :registers
-  post 'notify', to: 'static_pages#notify', as: 'notify'
+  post 'notify', to: 'registers#notify', as: 'notify'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
