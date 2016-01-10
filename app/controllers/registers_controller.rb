@@ -1,7 +1,5 @@
 class RegistersController < ApplicationController
 
-  skip_before_action :verify_authenticity_token, only: [:notify]
-
   def index
     if params[:search] == "" || params[:n] == ""
       redirect_to search_path
