@@ -1,6 +1,5 @@
 class CreateTransactions < ActiveRecord::Migration
   def change
-    execute "create extension hstore"
     create_table :transactions do |t|
       t.string :trade_number
       t.references :register, index: true, foreign_key: true
