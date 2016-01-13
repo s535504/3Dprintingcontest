@@ -12,6 +12,7 @@ class StaticPagesController < ApplicationController
     @register = Register.new(name:"Van", email:"dark@gmail.com")
     if mac_value_ok?
       @register.save
+      Transaction.find_by!(trade_number: params[:MerchantTradeNo]).update!(params: request.POST)
     end
   end
 

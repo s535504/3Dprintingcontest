@@ -1,4 +1,5 @@
 class Register < ActiveRecord::Base
+  has_many :transactions
   before_save { self.email = email.downcase }
   before_create :generate_no
   validates :name,  presence: true, length: { maximum: 50 }
@@ -9,8 +10,12 @@ class Register < ActiveRecord::Base
 
   def generate_no
     loop do
-      self.merchant_trade_no = "TDPC#{self.created_at.strftime("%Y%m%d")}#{SecureRandom.hex(3)}"
+      self.merchant_trade_no = "TDPC#{self.created_at.strftime("%Y%m%d")}#{SecureRandom.hex(3).upcase}"
       break unless Register.where(merchant_trade_no: self.merchant_trade_no).first
     end
+  end
+
+  def paid?
+    transactions.find_by("params -> 'RtnCode' = '1' OR params -> 'TradeStatus' = '1'").present?
   end
 end

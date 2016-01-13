@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'transactions/show'
+
   root 'static_pages#home'
 
   get  'info'      => 'static_pages#info'
@@ -12,6 +14,7 @@ Rails.application.routes.draw do
   # get  'registers' => 'registers#new'
   # post 'registers' => 'registers#create'
   # get  'confirm'   => 'registers#confirm'
+  resources :transactions, only: :show
   resources :registers
   post 'notify', to: 'static_pages#notify', as: 'notify'
 

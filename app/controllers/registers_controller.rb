@@ -29,6 +29,7 @@ class RegistersController < ApplicationController
   def create
     @register = Register.new(register_params)
     if @register.save
+      @register.transactions.create
       render 'confirm'
     else
       render 'new'
