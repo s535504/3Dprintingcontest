@@ -21,7 +21,7 @@
         </tr>
       </table>
     </tbody>
-    <% if @register.paid?! %>
+    <% if !@register.paid? %>
       <div style="padding-left:41%">
         <%= ez_allpay_for @register, :setting => { :value => "付款", :css => "btn btn-lg btn-success" } do %>
           <% attr_instead :MerchantTradeNo => @register.transactions.create!.trade_number %>
