@@ -21,20 +21,21 @@
         </tr>
       </table>
     </tbody>
-
-    <div style="padding-left:41%">
-      <%= ez_allpay_for @register, :setting => { :value => "付款", :css => "btn btn-lg btn-success" } do %>
-        <% attr_instead :MerchantTradeNo => @register.transactions.create!.trade_number %>
-        <% attr_instead :MerchantTradeDate => @register.transactions.last.created_at.strftime("%Y/%m/%d %T") %>
-        <% attr_instead :PaymentType => "aio" %>
-        <% attr_instead :ChoosePayment => "Credit" %>
-        <% attr_instead :TotalAmount => "1" %>
-        <% attr_instead :TradeDesc => "報名費1" %>
-        <% attr_instead :ItemName => "LINE DDD 3D列印競賽" %>
-        <% attr_instead :ClientBackURL => "http://tdpcontest.herokuapp.com/notify" %>
-        <% attr_instead :ReturnURL => "http://tdpcontest.herokuapp.com/notify" %>
-      <% end %>
-    </div>
+    <% if @register.paid?! %>
+      <div style="padding-left:41%">
+        <%= ez_allpay_for @register, :setting => { :value => "付款", :css => "btn btn-lg btn-success" } do %>
+          <% attr_instead :MerchantTradeNo => @register.transactions.create!.trade_number %>
+          <% attr_instead :MerchantTradeDate => @register.transactions.last.created_at.strftime("%Y/%m/%d %T") %>
+          <% attr_instead :PaymentType => "aio" %>
+          <% attr_instead :ChoosePayment => "Credit" %>
+          <% attr_instead :TotalAmount => "1" %>
+          <% attr_instead :TradeDesc => "報名費1" %>
+          <% attr_instead :ItemName => "LINE DDD 3D列印競賽" %>
+          <% attr_instead :ClientBackURL => "http://tdpcontest.herokuapp.com/notify" %>
+          <% attr_instead :ReturnURL => "http://tdpcontest.herokuapp.com/notify" %>
+        <% end %>
+      </div>
+    <% end %>
     
   </div>
 </div>
