@@ -10,6 +10,7 @@ class RegistersController < ApplicationController
         flash[:danger]="查無此筆資料"
       else
         @register = Register.find_by(email: params[:search],name: params[:n])
+        @transactions = @register.transactions.find_by("params -> 'RtnCode' = '1' OR params -> 'TradeStatus' = '1'")
       end
     end
   end
