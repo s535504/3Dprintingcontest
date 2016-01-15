@@ -13,6 +13,10 @@
 
 ActiveRecord::Schema.define(version: 20160113125518) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+  enable_extension "hstore"
+
   create_table "registers", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
@@ -25,11 +29,13 @@ ActiveRecord::Schema.define(version: 20160113125518) do
   create_table "transactions", force: :cascade do |t|
     t.string   "trade_number"
     t.integer  "register_id"
+    t.hstore   "params"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
 
-  add_index "transactions", ["register_id"], name: "index_transactions_on_register_id"
-  add_index "transactions", ["trade_number"], name: "index_transactions_on_trade_number", unique: true
+  add_index "transactions", ["register_id"], name: "index_transactions_on_register_id", using: :btree
+  add_index "transactions", ["trade_number"], name: "index_transactions_on_trade_number", unique: true, using: :btree
 
+  add_foreign_key "transactions", "registers"
 end
