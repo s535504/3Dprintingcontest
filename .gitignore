@@ -17,4 +17,4 @@
 /tmp
 
 # Ignore email.yml
-/config/email.yml
+#/config/email.yml
