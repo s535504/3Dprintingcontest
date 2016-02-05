@@ -103,6 +103,10 @@ textarea{
 
 .error{
   padding-top:6px;
+  color:red;
+  font-weight:bold;
+  .nameok{color:green;}
+  .emailok{color:green;}
 }
 
 .hidden{

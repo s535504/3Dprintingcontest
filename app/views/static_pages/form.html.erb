@@ -7,23 +7,23 @@
       <%= label :n, "報名者姓名" %>
       <div class="row">
         <div class="col-md-6">
-          <%= text_field_tag :n, params[:n], placeholder:"姓名", autocomplete:'on', class: 'form-control' %>
+          <%= text_field_tag :n, params[:n], placeholder:"姓名", class: 'form-control' %>
         </div>
         <div class="col-md-6">
           <div class="error">
-            <p class="namehide hidden nameok">&nbsp;dd</p>
-            <p class="namehide hidden nameblank">請輸入姓名</p>
+            <p class="namehide hidden nameok">&nbsp;&#10004</p>
+            <p class="namehide hidden nameblank"><strong>請輸入姓名</strong></p>
           </div>
         </div>
       </div>
       <%= label :email, "E-mail" %>
       <div class="row">
         <div class="col-md-6">
-          <%= text_field_tag :email, params[:email], placeholder:"E-mail", autocomplete:'on', class: 'form-control' %>
+          <%= text_field_tag :email, params[:email], placeholder:"E-mail", class: 'form-control' %>
         </div>
         <div class="col-md-6">
           <div class="error">
-            <p class="emailhide hidden emailok">&nbsp;dd</p>
+            <p class="emailhide hidden emailok">&nbsp;&#10004</p>
             <p class="emailhide hidden emailblank">請輸入E-mail</p>
             <p class="emailhide hidden emailmatch">請輸入一個有效的E-mail</p>
             <p class="emailhide hidden emailchecking">驗證中...</p>
