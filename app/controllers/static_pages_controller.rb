@@ -9,10 +9,18 @@ class StaticPagesController < ApplicationController
   end
 
   def notify
-    @register = Register.new(name:"Van", email:"dark@gmail.com")
+    # @register = Register.new(name:"Van", email:"dark@gmail.com")
     if mac_value_ok?
-      @register.save
+      # @register.save
       Transaction.find_by!(trade_number: params[:MerchantTradeNo]).update!(params: request.POST)
+    end
+  end
+
+  def check_email
+    @register = Register.find_by_email(params[:email])
+
+    respond_to do |format|
+      format.json { render :json => !@register }
     end
   end
 

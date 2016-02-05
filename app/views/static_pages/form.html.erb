@@ -1,34 +1,115 @@
-<script type="text/javascript">
-  function checkoutForm(form)
-  {
-    if(this.name.value == ""){
-      alert("請輸入您的姓名");
-      this.name.focus();
-      return false;
-    }
-    if(this.email.value == ""){
-      alert("請輸入電子郵件")
-      this.email.focus();
-      return false;
-    }
-    alert("成功");
-    return false;
-  }
-</script>
-
 <h3 class="center">線上報名</h3>
 <hr class="hr">
 <div class="row">
   <div class="col-md-4 col-md-offset-4">
 
-    <%= form_tag new_register_path,method: :get do %>
-      <%= label :n,"報名者姓名" %>
-      <%= text_field_tag :n, params[:n], placeholder:"姓名", class: 'form-control' %>
-      <%= label :email,"E-mail" %>
-      <%= text_field_tag :email, params[:email], placeholder:"E-mail", class: 'form-control' %>
+    <%= form_tag new_register_path,method: :get, :id => 'new_register' do %>
+      <%= label :n, "報名者姓名" %>
+      <div class="row">
+        <div class="col-md-6">
+          <%= text_field_tag :n, params[:n], placeholder:"姓名", autocomplete:'on', class: 'form-control' %>
+        </div>
+        <div class="col-md-6">
+          <div class="error">
+            <p class="namehide hidden nameok">&nbsp;dd</p>
+            <p class="namehide hidden nameblank">請輸入姓名</p>
+          </div>
+        </div>
+      </div>
+      <%= label :email, "E-mail" %>
+      <div class="row">
+        <div class="col-md-6">
+          <%= text_field_tag :email, params[:email], placeholder:"E-mail", autocomplete:'on', class: 'form-control' %>
+        </div>
+        <div class="col-md-6">
+          <div class="error">
+            <p class="emailhide hidden emailok">&nbsp;dd</p>
+            <p class="emailhide hidden emailblank">請輸入E-mail</p>
+            <p class="emailhide hidden emailmatch">請輸入一個有效的E-mail</p>
+            <p class="emailhide hidden emailchecking">驗證中...</p>
+            <p class="emailhide hidden emailused">此E-mail已報名</p>
+          </div>
+        </div>
+      </div>
       <br>
       <%=submit_tag "送出", name: nil, class: "btn btn-lg btn-success" %>
     <% end %>
 
   </div>
 </div>
+
+<script>
+  $(document).ready(function(){
+    if($('#n').val()!=""){checkName()}
+    if($('#email').val()!=""){usedEmail()}
+  })
+  $('#n').each(function(){
+    var elem = $(this)
+    var nowtime=0
+    var oldtime=0
+    elem.data('oldval',elem.val())
+    elem.bind("propertychange change click keyup input paste", function(event){
+      if(elem.data('oldval')!=elem.val()){
+        nowtime++
+        $('.namehide').addClass('hidden')
+        elem.data('oldval',elem.val())
+        setTimeout(function(){
+        oldtime++
+          if(nowtime==oldtime){checkName()}
+        },1000)
+      }
+    })
+  })
+  $('#email').each(function(){
+    var elem = $(this)
+    var nowtime=0
+    var oldtime=0
+    elem.data('oldval',elem.val())
+    elem.bind("propertychange change click keyup input paste", function(event){
+      if(elem.data('oldval')!=elem.val()){
+        nowemail=$('#email').val()
+        nowtime++
+        $('.emailhide').addClass('hidden')
+        elem.data('oldval',elem.val())
+        setTimeout(function(){
+          oldtime++
+          if(nowtime==oldtime){
+            if(checkEmail()==true){
+              $.getJSON("/static_pages/check_email?email="+nowemail,function(result){
+                if(result==false){$('.emailused').removeClass('hidden')}
+                else{$('.emailok').removeClass('hidden')}
+              })
+            }
+          }
+        },1000)
+      }
+    })
+  })
+  $('#new_register').submit(function(){
+    cn=checkName()
+    ce=checkEmail()
+    if(!$('.nameok').hasClass("hidden") && !$('.emailok').hasClass("hidden")){return true}
+    else{return false}
+  })
+  function checkName(){
+    if($('#n').val()==""){$('.nameblank').removeClass('hidden')}
+    else{$('.nameok').removeClass('hidden')}
+  }
+  function checkEmail(){
+    val=$('#email').val()
+    if(val==""){$('.emailblank').removeClass('hidden')}
+    else if(validEmail(val)==false){$('.emailmatch').removeClass('hidden')}
+    else{return true}
+  }
+  function usedEmail(){
+    $.getJSON("/static_pages/check_email?email="+$('#email').val(),function(result){
+      if(result!=false){
+        $('.emailok').removeClass("hidden")
+      }
+    })
+  }
+  function validEmail(value){
+    var rule = new RegExp(/^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{1,10}$/i)
+    return rule.test(value)
+  }
+</script>

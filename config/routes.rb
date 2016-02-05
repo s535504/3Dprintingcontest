@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   resources :registers
   post 'notify', to: 'static_pages#notify', as: 'notify'
 
+  get "static_pages/check_email", :controller => "static_pages", :action => "check_email"
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
