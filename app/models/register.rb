@@ -1,5 +1,5 @@
 class Register < ActiveRecord::Base
-  has_many :transactions
+  has_many :transactions, dependent: :destroy
   before_save { self.email = email.downcase }
   before_create :generate_no
   validates :name,  presence: { message: "請填寫姓名"}, length: { maximum: 50 }

@@ -86,8 +86,8 @@
     })
   })
   $('#new_register').submit(function(){
-    cn=checkName()
-    ce=checkEmail()
+    checkName()
+    checkEmail()
     if(!$('.nameok').hasClass("hidden") && !$('.emailok').hasClass("hidden")){return true}
     else{return false}
   })
