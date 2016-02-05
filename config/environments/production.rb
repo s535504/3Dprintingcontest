@@ -16,7 +16,7 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = {host:"http://localhost:3000"}
-  config.action_mailer.smtp_settings = config_for(:email).symbolize_keys
+  config.action_mailer.smtp_settings = config_for(:email)
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # Add `rack-cache` to your Gemfile before enabling this.
