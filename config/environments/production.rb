@@ -13,6 +13,20 @@ Rails.application.configure do
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
+  
+  require 'mail'
+
+  options = { 
+        :address              => "smtp.gmail.com",
+        :port                 => 587,
+        :domain               => 'localhost:3000',
+        :user_name            => 's5355049@gmail.com',
+        :password             => 'gundam00',
+        :authentication       => 'plain',
+        :enable_starttls_auto => true  }
+  Mail.defaults do
+    delivery_method :smtp, options
+  end
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # Add `rack-cache` to your Gemfile before enabling this.
