@@ -92,6 +92,7 @@
     else{return false}
   })
   function checkName(){
+    $('.namehide').addClass('hidden')
     if($('#n').val()==""){$('.nameblank').removeClass('hidden')}
     else{$('.nameok').removeClass('hidden')}
   }
@@ -102,6 +103,7 @@
     else{return true}
   }
   function usedEmail(){
+    $('.emailhide').addClass('hidden')
     $.getJSON("/static_pages/check_email?email="+$('#email').val(),function(result){
       if(result!=false){
         $('.emailok').removeClass("hidden")
