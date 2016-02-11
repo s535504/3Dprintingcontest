@@ -9,10 +9,10 @@ class StaticPagesController < ApplicationController
   end
 
   def notify
-    # @register = Register.new(name:"Van", email:"dark@gmail.com")
     if mac_value_ok?
-      # @register.save
       Transaction.find_by!(trade_number: params[:MerchantTradeNo]).update!(params: request.POST)
+      id=Transaction.find_by(trade_number: params[:MerchantTradeNo]).register_id
+      Mail.deliver(from:'LINE DDD',to:Register.find_by(id: id).email,subject:"3D列印競賽繳費成功通知",body:"您已於歐付寶成功支付LINE DDD主辦3D列印競賽報名費用")
     end
   end
 

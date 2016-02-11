@@ -1,7 +1,5 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+register=Register.create!(name:"羅那",
+                 email:"s5355049@gmail.com",
+                 merchant_trade_no: "TDPC20160210317402")
+
+register.transactions.create(params:{"CheckMacValue"=>"CCBD2EEF9C7D0F5E6C2AEDE2BAA1755C", "MerchantID"=>"1166567", "MerchantTradeNo"=>"B75614", "PaymentDate"=>"2016/02/11 10:20:18", "PaymentType"=>"Credit_CreditCard", "PaymentTypeChargeFee"=>"5", "RtnCode"=>"1", "RtnMsg"=>"paid", "SimulatePaid"=>"0", "TradeAmt"=>"1", "TradeDate"=>"2016/02/11 10:18:54", "TradeNo"=>"1602111018543683"})

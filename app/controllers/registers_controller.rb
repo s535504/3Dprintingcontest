@@ -2,7 +2,7 @@ class RegistersController < ApplicationController
 
   def index
     if params[:search] == "" || params[:n] == ""
-      redirect_to search_path
+      # redirect_to search_path
       flash[:danger]="請輸入完整資料"
     else
       if Register.find_by(email: params[:search],name: params[:n]) == nil
@@ -31,26 +31,7 @@ class RegistersController < ApplicationController
     @register = Register.new(register_params)
     if @register.save
       @register.transactions.create
-      # require 'mail'
-
-      # options = { :address              => "smtp.gmail.com",
-      #       :port                 => 587,
-      #       :domain               => 'localhost:3000',
-      #       :user_name            => 's5355049@gmail.com',
-      #       :password             => 'gundam00',
-      #       :authentication       => 'plain',
-      #       :enable_starttls_auto => true  }
-      # Mail.defaults do
-      #   delivery_method :smtp, options
-      # end
       Mail.deliver(from:'LINE DDD',to:@register.email,subject:"3D列印競賽報名成功通知",body:"您已成功報名LINE DDD主辦3D列印競賽")
-
-      # Mail.deliver do
-      #        to 's5355049@gmail.com'
-      #      from 's5355049@gmail.com'
-      #   subject 'testing sendmail'
-      #      body 'testing sendmail'
-      # end
       render 'confirm'
     else
       render 'new'
