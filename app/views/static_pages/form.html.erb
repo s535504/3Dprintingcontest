@@ -75,8 +75,8 @@
           oldtime++
           if(nowtime==oldtime){
             if(checkEmail()==true){
+              $('.emailchecking').removeClass('hidden')
               $.getJSON("/static_pages/check_email?email="+nowemail,function(result){
-                $('.emailchecking').removeClass('hidden')
                 if(nowtime==oldtime){
                   if(result==false){$('.emailused').removeClass('hidden')}
                   else{$('.emailok').removeClass('hidden')}
