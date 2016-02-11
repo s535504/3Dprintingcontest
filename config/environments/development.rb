@@ -20,7 +20,7 @@ Rails.application.configure do
         :port                 => 587,
         :domain               => 'localhost:3000',
         :user_name            => 's5355049@gmail.com',
-        :password             => 'gundam00',
+        :password             => '',
         :authentication       => 'plain',
         :enable_starttls_auto => true  }
   Mail.defaults do
