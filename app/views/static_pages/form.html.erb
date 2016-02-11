@@ -54,7 +54,7 @@
         $('.namehide').addClass('hidden')
         elem.data('oldval',elem.val())
         setTimeout(function(){
-        oldtime++
+          oldtime++
           if(nowtime==oldtime){checkName()}
         },1000)
       }
@@ -76,8 +76,11 @@
           if(nowtime==oldtime){
             if(checkEmail()==true){
               $.getJSON("/static_pages/check_email?email="+nowemail,function(result){
-                if(result==false){$('.emailused').removeClass('hidden')}
-                else{$('.emailok').removeClass('hidden')}
+                $('.emailchecking').removeClass('hidden')
+                if(nowtime==oldtime){
+                  if(result==false){$('.emailused').removeClass('hidden')}
+                  else{$('.emailok').removeClass('hidden')}
+                }
               })
             }
           }
