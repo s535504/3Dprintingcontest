@@ -15,8 +15,8 @@ class StaticPagesController < ApplicationController
       # sendEmail
       trans=Transaction.find_by!(trade_number: params[:MerchantTradeNo])
       trans.update!(params: request.POST)
-      id=Transaction.find_by!(trade_number: params[:MerchantTradeNo]).register_id
-      email=Register.find_by(id:id).email
+      ids=trans.register_id
+      email=Register.find_by(id:ids).email
       Mail.deliver(from:'LINE DDD',to:email,subject:"3D列印競賽繳費成功通知",body:"您已於歐付寶成功支付LINE DDD主辦3D列印競賽報名費用")
     end
   end
