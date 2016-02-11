@@ -31,7 +31,7 @@ class RegistersController < ApplicationController
     @register = Register.new(register_params)
     if @register.save
       @register.transactions.create
-      Mail.deliver(from:'LINE DDD',to:@register.email,subject:"3D列印競賽報名成功通知",body:"您已成功報名LINE DDD主辦3D列印競賽")
+      Mail.deliver(from:'LINE DDD',to:@register.email,subject:"報名成功-LINE DDD 3D列印競賽",body:"您已成功報名LINE DDD主辦3D列印競賽")
       render 'confirm'
     else
       render 'new'
