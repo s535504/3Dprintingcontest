@@ -13,7 +13,7 @@ class RegistersController < ApplicationController
         @transaction = @register.transactions.find_by("params -> 'RtnCode' = '1' OR params -> 'TradeStatus' = '1'")
         if @register.paystatus==3 && @transaction.params['PaymentType']=="Credit_CreditCard"
           @params = {}
-          @params['MerchantID']="2000132"
+          @params['MerchantID']=ENV['MERCHANT_ID']
           @params['MerchantTradeNo']=@transaction.params["MerchantTradeNo"]
           @params['TradeNo']=@transaction.params["TradeNo"]
           @params['Action']="R"
