@@ -18,7 +18,7 @@ class StaticPagesController < ApplicationController
         register.update_attributes(paystatus:3)
       else
         Mail.deliver(from:'LINE DDD',to:register.email,subject:"繳費金額有誤-LINE DDD 3D列印競賽",body:"您於歐付寶支付之金額與LINE DDD主辦3D列印競賽報名費有誤差，請與主辦方聯絡")
-        register.update_attributes(paystatus:1)
+        register.update_attributes(paystatus:3)
       end
     end
   end
