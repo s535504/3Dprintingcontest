@@ -1,0 +1,97 @@
+<h2 class="center">參賽者管理</h2>
+<br>
+<h5 class="center">報名總人數：<%= @registers.count %></h5>
+<h5 class="center">已繳費：<%= @paidamount %></h5>
+<h5 class="center">未繳費：<%= @unpaidamount %></h5>
+<h5 class="center">金額錯誤：<%= @erroramount %></h5>
+<hr>
+<table class="table">
+  <tr style="font-weight: bolder;">
+    <td>
+      <form action="registermanagement" method="get">
+        <% @nameorder = @nameorder || 2 %>
+        <input type="hidden" name="order" value="<%= @nameorder %>"/>
+        <input class="btn btn-default" type="submit" value="姓名"/>
+      <% if @nameorder==1 && @nametri==true %>
+        <span class="invertedtriangle"></span>
+      <% elsif @nameorder==2 && @nametri==true %>
+        <span class="triangle"></span>
+      <% end %>
+      </form>
+    </td>
+    <td>
+      <form action="registermanagement" method="get">
+        <% @emailorder = @emailorder || 4 %>
+        <input type="hidden" name="order" value="<%= @emailorder %>"/>
+        <input class="btn btn-default" type="submit" value="E-mail"/>
+      <% if @emailorder==3 && @emailtri==true %>
+        <span class="invertedtriangle"></span>
+      <% elsif @emailorder==4 && @emailtri==true %>
+        <span class="triangle"></span>
+      <% end %>
+      </form>
+    </td>
+    <td>報名編號</td>
+    <td>報名日期</td>
+    <td>
+      <form action="registermanagement" method="get">
+        <% @paidorder = @paidorder || 6 %>
+        <input type="hidden" name="order" value="<%= @paidorder %>"/>
+        <input class="btn btn-default" type="submit" value="繳費狀態"/>
+      <% if @paidorder==6 && @paidtri==true %>
+        <span class="invertedtriangle"></span>
+      <% elsif @paidorder==5 && @paidtri==true %>
+        <span class="triangle"></span>
+      <% end %>
+      </form>
+    </td>
+    <td><div class="center">繳費日期</div></td>
+    <td><div class="center">繳費金額</div></td>
+    <td><div class="center">繳費方式</div></td>
+  </tr>
+  <% @registers.each do |register| %>
+    <tr>
+      <td><%= register.name %></td>
+      <td><%= register.email %></td>
+      <td><%= register.merchant_trade_no %></td>
+      <td><%= register.created_at.strftime("%m/%d %T") %></td>
+      <% paid=register.paystatus %>
+      <td>
+        <div class="center" style="width:7vw; font-size:1vw; font-family:Helvetica;">
+          <% if paid==3 %>
+            <p class="bg-success">已付款</p>
+          <% elsif paid==1%>
+            <p class="bg-warning">金額錯誤</p>
+          <% else %>
+            <p class="bg-danger">尚未付款</p>
+          <% end %>
+        </div>
+      </td>
+      <% params=register.params %>
+      <% if(paid==1 || paid == 3)%>
+        <td>
+          <div class="center">
+            <%= params['PaymentDate'] %>
+          </div>
+        </td>
+        <td>
+          <div class="center">
+            <%= params['TradeAmt'] %>
+          </div>
+        </td>
+        <td>
+          <div class="center">
+            <%= params['PaymentType'] %>
+          </div>
+        </td>
+      <% else %>
+        <td><div class="center">-</div></td>
+        <td><div class="center">-</div></td>
+        <td><div class="center">-</div></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
+<script>
+</script>

@@ -99,6 +99,14 @@ textarea{
   width:80%;
 }
 
+.triangle{
+  width:0px; height:0px; border-width:8px 5px 8px 5px;border-style:solid; border-color:transparent transparent black transparent;
+}
+
+.invertedtriangle{
+  width:0px; height:0px; border-width:8px 5px 8px 5px;border-style:solid; border-color:black transparent transparent transparent;
+}
+
 /* error */
 
 .error{

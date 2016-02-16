@@ -15,16 +15,10 @@ class Register < ActiveRecord::Base
     end
   end
 
-  def paid
+  def params
     transaction = transactions.find_by("params -> 'RtnCode' = '1' OR params -> 'TradeStatus' = '1'")
     if transaction.present?
-      if transaction.params["TradeAmt"]=="300"
-        return 1
-      else
-        return 2
-      end
-    else
-      return 3
+      return transaction.params
     end
   end
 end

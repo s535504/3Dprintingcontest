@@ -26,7 +26,7 @@
             <p class="emailhide hidden emailok">&nbsp;&#10004</p>
             <p class="emailhide hidden emailblank">請輸入E-mail</p>
             <p class="emailhide hidden emailmatch">請輸入一個有效的E-mail</p>
-            <p class="emailhide hidden emailchecking">驗證中...</p>
+            <p class="emailhide hidden emailchecking"><img src="/assets/loader.gif" />驗證中...</p>
             <p class="emailhide hidden emailused">此E-mail已報名</p>
           </div>
         </div>
@@ -40,8 +40,8 @@
 
 <script>
   $(document).ready(function(){
+    if($('#email').val()!=""){$('#email').val("")}
     if($('#n').val()!=""){checkName()}
-    if($('#email').val()!=""){usedEmail()}
   })
   $('#n').each(function(){
     var elem = $(this)

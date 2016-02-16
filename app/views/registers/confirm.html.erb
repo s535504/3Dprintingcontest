@@ -16,7 +16,7 @@
       </table>
     </tbody>
 
-    <div style="padding-left:41%">
+    <div>
       <%= ez_allpay_for @register, :setting => { :value => "付款", :css => "btn btn-lg btn-success" } do %>
         <% attr_instead :MerchantTradeNo => @register.transactions.create!.trade_number %>
         <% attr_instead :MerchantTradeDate => @register.transactions.last.created_at.strftime("%Y/%m/%d %T") %>

@@ -10,7 +10,17 @@ class RegistersController < ApplicationController
         flash[:danger]="查無此筆資料"
       else
         @register = Register.find_by(email: params[:search],name: params[:n])
-        @transactions = @register.transactions.find_by("params -> 'RtnCode' = '1' OR params -> 'TradeStatus' = '1'")
+        @transaction = @register.transactions.find_by("params -> 'RtnCode' = '1' OR params -> 'TradeStatus' = '1'")
+        if @register.paystatus==3 && @transaction.params['PaymentType']=="Credit_CreditCard"
+          @params = {}
+          @params['MerchantID']="2000132"
+          @params['MerchantTradeNo']=@transaction.params["MerchantTradeNo"]
+          @params['TradeNo']=@transaction.params["TradeNo"]
+          @params['Action']="R"
+          @params['TotalAmount']=@transaction.params["TradeAmt"]
+          param=create_mac
+          @params['CheckMacValue']=param
+        end
       end
     end
   end
@@ -48,5 +58,19 @@ class RegistersController < ApplicationController
 
     def register_params
       params.require(:register).permit(:name, :email)
+    end
+
+    def create_mac
+      params_copy = @params.dup
+
+      raw_data = params_copy.sort.map do |x,y|
+        "#{x}=#{y}"
+      end.join('&')
+
+      hash_raw_data = "HashKey=#{EzAllpay.hash_key}&#{raw_data}&HashIV=#{EzAllpay.hash_iv}"
+
+      url_encode_data = (CGI::escape(hash_raw_data)).downcase
+
+      my_mac = Digest::MD5.hexdigest(url_encode_data).upcase
     end
 end

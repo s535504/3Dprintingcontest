@@ -3,9 +3,9 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <div class="center" style="width:20vw; font-size:2vw; margin-left:15vw; font-family:Helvetica;">
-      <% if @register.paid==1 %>
+      <% if @register.paystatus==3 %>
         <p class="bg-success">已付款</p>
-      <% elsif @register.paid==2 %>
+      <% elsif @register.paystatus==1 %>
         <p class="bg-danger">帳單金額錯誤</p>
       <% else %>
         <p class="bg-danger">尚未付款</p>
@@ -21,28 +21,29 @@
           <td>E-mail</td>
           <td><%= @register.email %></td>
         </tr>
-        <% if @register.paid==1 || @register.paid==2 %>
+        <% if @register.paystatus==1 || @register.paystatus==3 %>
           <tr>
-            <td>交易金額</td>
-            <td><%= @transactions.params["TradeAmt"] %></td>
+            <td>付款金額</td>
+            <td><%= @transaction.params["TradeAmt"] %></td>
           </tr>
           <tr>
-            <td>交易日期</td>
-            <td><%= @transactions.params["PaymentDate"] %></td>
+            <td>付款日期</td>
+            <td><%= @transaction.params["PaymentDate"] %></td>
           </tr>
           <tr>
             <td>付款方式</td>
-            <td><%= @transactions.params["PaymentType"] %></td>
+            <td><%= @transaction.params["PaymentType"] %></td>
           </tr>
           <tr>
             <td>歐付寶商品交易碼</td>
-            <td><%= @transactions.params["MerchantTradeNo"] %></td>
+            <td><%= @transaction.params["MerchantTradeNo"] %></td>
           </tr>
         <% end %>
       </table>
     </tbody>
-    <% if @register.paid==3 %>
-      <div style="padding-left:41%">
+
+    <% if @register.paystatus==2 %>
+      <div style="padding-left:40%">
         <%= ez_allpay_for @register, :setting => { :value => "付款", :css => "btn btn-lg btn-success" } do %>
           <% attr_instead :MerchantTradeNo => @register.transactions.create!.trade_number %>
           <% attr_instead :MerchantTradeDate => @register.transactions.last.created_at.strftime("%Y/%m/%d %T") %>
@@ -55,7 +56,19 @@
           <% attr_instead :ReturnURL => "http://tdpcontest.herokuapp.com/notify" %>
         <% end %>
       </div>
+    <% elsif @register.paystatus==3 %>
+      <% if @transaction.params["PaymentType"]=="Credit_CreditCard" %>
+      <div style="padding-left:40%">
+        <form action="https://payment.allpay.com.tw/CreditDetail/DoAction" method="post">
+          <% @params.each do |key,value| %>
+            <input type="text" name="<%= key %>" value="<%= value %>" style="display: none">
+            <% end %>
+          <input type="submit" value="退刷" class="btn btn-lg btn-success">
+        </form>
+      </div>
+      <% end %>
     <% end %>
+    <p><%= @param %></p>
     
   </div>
 </div>
