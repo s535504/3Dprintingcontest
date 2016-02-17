@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   get 'registermanagement' => 'admins#registermanagement'
 
   root 'static_pages#home'

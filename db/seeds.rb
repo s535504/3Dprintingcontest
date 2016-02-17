@@ -1,3 +1,6 @@
+User.create!(email:"tdpcontestadmin@gmail.com",
+             password:"tdpcontest1234")
+
 register=Register.create!(name:"羅那",
                  email:"s5355049@gmail.com",
                  merchant_trade_no: "TDPC20160210317402",

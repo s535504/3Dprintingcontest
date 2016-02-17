@@ -1,4 +1,7 @@
 class AdminsController < ApplicationController
+
+  before_action :authenticate_user!
+
   def registermanagement
     order=params[:order]
     if order=="1"
