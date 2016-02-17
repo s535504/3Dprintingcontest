@@ -52,7 +52,7 @@
           <% attr_instead :TotalAmount => "1" %>
           <% attr_instead :TradeDesc => "報名費1" %>
           <% attr_instead :ItemName => "LINE DDD 3D列印競賽" %>
-          <% attr_instead :ClientBackURL => "http://tdpcontest.herokuapp.com/notify" %>
+          <% attr_instead :ClientBackURL => "http://tdpcontest.herokuapp.com/registers?utf8=%E2%9C%93&search="+CGI::escape(@register.email)+"&n="+CGI::escape(@register.name) %>
           <% attr_instead :ReturnURL => "http://tdpcontest.herokuapp.com/notify" %>
         <% end %>
       </div>

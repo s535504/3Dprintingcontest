@@ -39,14 +39,23 @@ class AdminsController < ApplicationController
       @emailtri=false
     end
     @paidamount=0
+    @todayregister=0
+    @registers.all.each do |register|
+      if register.created_at.strftime("%d")
+        @todayregister+=1
+      end
+    end
     @unpaidamount=0
     @erroramount=0
+    @errprprofit=0
     @registers.each do |register|
       if register.paystatus==3
         @paidamount+=1
       elsif register.paystatus==1
         @paidamount+=1
         @erroramount+=1
+        transaction=register.transactions.find_by("params -> 'RtnCode' = '1' OR params -> 'TradeStatus' = '1'")
+        @errprprofit=@errprprofit+transaction.params['TradeAmt'].to_i
       else
         @unpaidamount+=1
       end

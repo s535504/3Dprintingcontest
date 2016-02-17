@@ -2,8 +2,6 @@ Rails.application.routes.draw do
 
   get 'registermanagement' => 'admins#registermanagement'
 
-  get 'transactions/show'
-
   root 'static_pages#home'
 
   get  'info'      => 'static_pages#info'
