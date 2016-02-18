@@ -20,21 +20,14 @@ class RegistersController < ApplicationController
           @params['TotalAmount']=@transaction.params["TradeAmt"]
           param=create_mac
           @params['CheckMacValue']=param
+          @tdmfile=@register.tdmfiles.build
         end
       end
     end
   end
 
-  def show
-    @register=Register.find(params[:id])
-  end
-
   def new
-    if params[:n] && params[:email]
-      @register = Register.new(name: params[:n],email: params[:email])
-    else
-      redirect_to form
-    end
+    @register = Register.new(name: params[:n],email: params[:email])
   end
 
   def create
@@ -55,6 +48,10 @@ class RegistersController < ApplicationController
   end
 
   private
+
+    def picture_params
+      params.require(:register).permit(:picture)
+    end
 
     def register_params
       params.require(:register).permit(:name, :email)

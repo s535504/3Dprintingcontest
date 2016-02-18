@@ -58,17 +58,26 @@
       </div>
     <% elsif @register.paystatus==3 %>
       <% if @transaction.params["PaymentType"]=="Credit_CreditCard" %>
-      <div style="padding-left:40%">
-        <form action="https://payment.allpay.com.tw/CreditDetail/DoAction" method="post">
-          <% @params.each do |key,value| %>
-            <input type="text" name="<%= key %>" value="<%= value %>" style="display: none">
-            <% end %>
-          <input type="submit" value="退刷" class="btn btn-lg btn-success">
-        </form>
-      </div>
+        <!-- <div style="padding-left:40%">
+          <form action="https://payment.allpay.com.tw/CreditDetail/DoAction" method="post">
+            <% @params.each do |key,value| %>
+              <input type="text" name="<%= key %>" value="<%= value %>" style="display: none">
+              <% end %>
+            <input type="submit" value="退刷" class="btn btn-lg btn-success">
+          </form>
+        </div> -->
+      <% end %>
+      <%= form_tag tdmfiles_path, method: :post do %>
+        <input type="hidden" name="tdmfile[email]" id="email" value="<%= @register.email %>" />
+        <input type="file" name="tdmfile[igs]" id="igs" />
+        <%= submit_tag "送出",class: "btn btn-primary" %>
       <% end %>
     <% end %>
-    <p><%= @param %></p>
+    <p>
+      <% if @register.tdmfiles.count!=0 %>
+        <%= @register.tdmfiles.first.igsfile %>
+      <% end %>
+    </p>
     
   </div>
 </div>

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   # get  'confirm'   => 'registers#confirm'
   resources :transactions, only: :show
   resources :registers
+  resources :tdmfiles,     only: [:create,:destroy]
   post 'notify', to: 'static_pages#notify', as: 'notify'
 
   get "static_pages/check_email", :controller => "static_pages", :action => "check_email"
