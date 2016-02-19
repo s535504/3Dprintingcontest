@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218074541) do
+ActiveRecord::Schema.define(version: 20160219105231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(version: 20160218074541) do
     t.string   "merchant_trade_no"
     t.string   "choose_payment"
     t.integer  "paystatus",         default: 2
-    t.string   "picture"
   end
 
   create_table "tdmfiles", force: :cascade do |t|
@@ -51,6 +50,9 @@ ActiveRecord::Schema.define(version: 20160218074541) do
     t.integer  "register_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "picture1"
+    t.string   "picture2"
+    t.string   "picture3"
   end
 
   add_index "tdmfiles", ["register_id"], name: "index_tdmfiles_on_register_id", using: :btree
