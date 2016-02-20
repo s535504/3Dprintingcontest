@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   get 'registermanagement' => 'admins#registermanagement'
+  get 'filemanagement' => 'admins#filemanagement'
 
   root 'static_pages#home'
 

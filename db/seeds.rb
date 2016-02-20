@@ -1,5 +1,4 @@
-User.create!(email:"tdpcontestadmin@gmail.com",
-             password:"tdpcontest1234")
+User.create!(email:"tdpcontestadmin@gmail.com",password:"tdpcontest1234")
 
 register=Register.create!(name:"羅那",
                  email:"s5355049@gmail.com",

@@ -1,0 +1,33 @@
+<h2 class="center">作品管理</h2>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h5 class="center">總件數：<%= @tdmfiles.count %></h5>
+    </div>
+  </div>
+</div>
+<hr>
+<table class="table">
+  <tr style="font-weight: bolder;">
+    <td>Igs</td>
+    <td>預覽圖</td>
+    <td>姓名</td>
+    <td>E-mail</td>
+    <td>報名編號</td>
+  </tr>
+  <% @tdmfiles.each do |tdmfile| %>
+    <% register=Register.find_by(:id=>tdmfile.register_id) %>
+    <tr>
+      <td><%= link_to tdmfile.igsfile.to_s.rpartition("/").last,tdmfile.igsfile.url %></td>
+      <td>
+        <%= link_to (image_tag tdmfile.picture1.url, size:"30x30"),tdmfile.picture1.url, :target =>"_blank" if tdmfile.picture1.url!=nil %>
+        <%= link_to (image_tag tdmfile.picture2.url, size:"30x30"),tdmfile.picture2.url, :target =>"_blank" if tdmfile.picture2.url!=nil %>
+        <%= link_to (image_tag tdmfile.picture3.url, size:"30x30"),tdmfile.picture3.url, :target =>"_blank" if tdmfile.picture3.url!=nil %>
+      </td>
+      <td><%= register.name %></td>
+      <td><%= register.email %></td>
+      <td><%= register.merchant_trade_no %></td>
+    </tr>
+  <% end %>
+</table>

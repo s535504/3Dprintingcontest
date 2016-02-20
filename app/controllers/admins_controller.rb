@@ -64,4 +64,8 @@ class AdminsController < ApplicationController
       end
     end
   end
+
+  def filemanagement
+    @tdmfiles=Tdmfile.all
+  end
 end

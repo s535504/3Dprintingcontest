@@ -1,22 +1,22 @@
 <h2 class="center">參賽者管理</h2>
 <br>
 <div class="container">
-<div class="row">
-  <div class="col-md-4">
-    <h5 class="center">總報名人數：<%= @registers.count %></h5>
-    <h5 class="center">今日報名人數：<%= @todayregister %></h5>
+  <div class="row">
+    <div class="col-md-4">
+      <h5 class="center">總報名人數：<%= @registers.count %></h5>
+      <h5 class="center">今日報名人數：<%= @todayregister %></h5>
+    </div>
+    <div class="col-md-4">
+      <h5 class="center">已繳費：<%= @paidamount %></h5>
+      <h5 class="center">未繳費：<%= @unpaidamount %></h5>
+      <h5 class="center">金額錯誤：<%= @erroramount %></h5>
+    </div>
+    <div class="col-md-4">
+      <h5 class="center">總獲利：<%= @paidamount*300+@errprprofit %></h5>
+      <h5 class="center">有效獲利：<%= @paidamount*300 %></h5>
+      <h5 class="center">錯誤金額：<%= @errprprofit %></h5>
+    </div>
   </div>
-  <div class="col-md-4">
-    <h5 class="center">已繳費：<%= @paidamount %></h5>
-    <h5 class="center">未繳費：<%= @unpaidamount %></h5>
-    <h5 class="center">金額錯誤：<%= @erroramount %></h5>
-  </div>
-  <div class="col-md-4">
-    <h5 class="center">總獲利：<%= @paidamount*300+@errprprofit %></h5>
-    <h5 class="center">有效獲利：<%= @paidamount*300 %></h5>
-    <h5 class="center">錯誤金額：<%= @errprprofit %></h5>
-  </div>
-</div>
 </div>
 <hr>
 <table class="table">
