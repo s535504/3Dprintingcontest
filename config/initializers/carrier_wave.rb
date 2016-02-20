@@ -6,7 +6,8 @@ if Rails.env.production?
       :aws_secret_access_key  =>ENV['S3_SECRET_KEY'],
       :region => ENV['S3_REGION']
     }
-  config.fog_directory        =ENV['S3_BUCKET']
+    config.fog_directory        =ENV['S3_BUCKET']
+  end
 else
   CarrierWave.configure do |config|
     config.fog_credentials={
@@ -15,5 +16,6 @@ else
       :aws_secret_access_key  =>'',
       :region => ''
     }
-  config.fog_directory        =''
+    config.fog_directory        =''
+  end
 end
