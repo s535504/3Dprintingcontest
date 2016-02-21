@@ -63,6 +63,12 @@ img.b{
   opacity: 0;
 }
 
+img.largeimage{
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
 section{
   overflow: auto;
 }

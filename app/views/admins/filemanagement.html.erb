@@ -10,20 +10,31 @@
 <hr>
 <table class="table">
   <tr style="font-weight: bolder;">
-    <td>Igs</td>
+    <td>作品名稱</td>
     <td>預覽圖</td>
     <td>姓名</td>
     <td>E-mail</td>
     <td>報名編號</td>
   </tr>
+  <% image=0 %>
   <% @tdmfiles.each do |tdmfile| %>
     <% register=Register.find_by(:id=>tdmfile.register_id) %>
     <tr>
       <td><%= link_to tdmfile.igsfile.to_s.rpartition("/").last,tdmfile.igsfile.url %></td>
       <td>
-        <%= link_to (image_tag tdmfile.picture1.url, size:"30x30"),tdmfile.picture1.url, :target =>"_blank" if tdmfile.picture1.url!=nil %>
-        <%= link_to (image_tag tdmfile.picture2.url, size:"30x30"),tdmfile.picture2.url, :target =>"_blank" if tdmfile.picture2.url!=nil %>
-        <%= link_to (image_tag tdmfile.picture3.url, size:"30x30"),tdmfile.picture3.url, :target =>"_blank" if tdmfile.picture3.url!=nil %>
+        <% image+=1 %>
+        <% if tdmfile.picture1.url!=nil %>
+          <%= link_to (image_tag tdmfile.picture1.url, size:"30x30"),tdmfile.picture1.url,:class => "listener", :id => "#{image}image1", :target =>"_blank" %>
+          <%= image_tag tdmfile.picture1.url,:class => "largeimage", :id => "#{image}image1large" %>
+        <% end %>
+        <% if tdmfile.picture2.url!=nil %>
+          <%= link_to (image_tag tdmfile.picture2.url, size:"30x30"),tdmfile.picture2.url,:class => "listener", :id => "#{image}image2", :target =>"_blank" %>
+          <%= image_tag tdmfile.picture2.url, :class => "largeimage", :id => "#{image}image2large" %>
+        <% end %>
+        <% if tdmfile.picture3.url!=nil %>
+          <%= link_to (image_tag tdmfile.picture3.url, size:"30x30"),tdmfile.picture3.url,:class => "listener", :id => "#{image}image3", :target =>"_blank" %>
+          <%= image_tag tdmfile.picture3.url, :class => "largeimage", :id => "#{image}image3large" %>
+        <% end %>
       </td>
       <td><%= register.name %></td>
       <td><%= register.email %></td>
@@ -31,3 +42,19 @@
     </tr>
   <% end %>
 </table>
+<p class="sef"></p>
+
+<script>
+  $('.listener').hover(
+    function(){
+      var n=$(this).attr('id')
+      $('#'+n+"large").stop().animate({"opacity":"1"},"fast");
+      $('#'+n+"large").css('zIndex','1')
+    },
+    function(){
+      var n=$(this).attr('id')
+      $('#'+n+"large").stop().animate({"opacity":"0"},"fast");
+      $('#'+n+"large").css('zIndex','-1')
+    }
+  )
+</script>
