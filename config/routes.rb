@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   resources :transactions, only: :show
   resources :registers
   resources :tdmfiles,     only: [:create,:destroy]
+
+  get 'allpayform' => 'static_pages#allpayform'
+
   post 'notify', to: 'static_pages#notify', as: 'notify'
 
   get "static_pages/check_email", :controller => "static_pages", :action => "check_email"
