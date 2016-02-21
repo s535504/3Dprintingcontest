@@ -13,8 +13,8 @@ class TdmfilesController < ApplicationController
         @tdmfile.save
       end
     end
-    redirect_to "http://localhost:3000/registers?utf8=%E2%9C%93&search="+CGI::escape(@register.email)+"&n="+CGI::escape(@register.name)
-    # redirect_to "http://tdpcontest.herokuapp.com/registers?utf8=%E2%9C%93&search="+CGI::escape(@register.email)+"&n="+CGI::escape(@register.name)
+    # redirect_to "http://localhost:3000/registers?utf8=%E2%9C%93&search="+CGI::escape(@register.email)+"&n="+CGI::escape(@register.name)
+    redirect_to "http://tdpcontest.herokuapp.com/registers?utf8=%E2%9C%93&search="+CGI::escape(@register.email)+"&n="+CGI::escape(@register.name)
   end
 
   def destroy
