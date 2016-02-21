@@ -6,6 +6,6 @@ class CreateTdmfiles < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_index :tdmfiles, [:register_id]
+    # add_index :tdmfiles, [:register_id]
   end
 end
