@@ -13,12 +13,14 @@ class StaticPagesController < ApplicationController
       trans=Transaction.find_by!(trade_number: params[:MerchantTradeNo])
       trans.update!(params: request.POST)
       register=Register.find_by(id:trans.register_id)
-      if trans.params['RtnCode']==300
-        Mail.deliver(from:'LINE DDD',to:register.email,subject:"繳費成功-LINE DDD 3D列印競賽",body:"您已於歐付寶成功支付LINE DDD主辦3D列印競賽報名費用")
-        register.update_attributes(paystatus:3)
-      else
-        Mail.deliver(from:'LINE DDD',to:register.email,subject:"繳費金額有誤-LINE DDD 3D列印競賽",body:"您於歐付寶支付之金額與LINE DDD主辦3D列印競賽報名費有誤差，請與主辦方聯絡#{trans.params}")
-        register.update_attributes(paystatus:1)
+      if trans.params['RtnCode']==1
+        if trans.params['TradeAmt']==300
+          Mail.deliver(from:'LINE DDD',to:register.email,subject:"繳費成功-LINE DDD 3D列印競賽",body:"您已於歐付寶成功支付LINE DDD主辦3D列印競賽報名費用")
+          register.update_attributes(paystatus:3)
+        else
+          Mail.deliver(from:'LINE DDD',to:register.email,subject:"繳費金額有誤-LINE DDD 3D列印競賽",body:"您於歐付寶支付之金額與LINE DDD主辦3D列印競賽報名費有誤差，請與主辦方聯絡#{trans.params}")
+          register.update_attributes(paystatus:1)
+        end
       end
     end
   end
