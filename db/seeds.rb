@@ -15,7 +15,7 @@ register.transactions.create(params:{"CheckMacValue"=>"CCBD2EEF9C7D0F5E6C2AEDE2B
 register=Register.create!(name:"Billy",
                  email:"pants@gmail.com",
                  merchant_trade_no: "TDPC20160210317400",
-                 paystatus:1)
+                 paystatus:2)
 register.transactions.create(params:{"CheckMacValue"=>"4556D627173E46ADD8CCF6992B74B11B", "MerchantID"=>"1166567", "MerchantTradeNo"=>"A7559C", "PaymentDate"=>"0001/01/01 00:00:00", "PaymentType"=>"Credit_CreditCard", "PaymentTypeChargeFee"=>"5", "RtnCode"=>"10100248", "RtnMsg"=>"拒絕交易", "SimulatePaid"=>"0", "TradeAmt"=>"1", "TradeDate"=>"2016/02/21 22:44:11", "TradeNo"=>"1602212244119643"})
 
 99.times do |n|
