@@ -36,16 +36,16 @@ class StaticPagesController < ApplicationController
   def allpayform
     register=Register.find_by(email:params[:register])
     @params={}
+    @params['ChoosePayment']="Credit"
+    @params['ClientBackURL']="http://tdpcontest.herokuapp.com/registers?utf8=%E2%9C%93&search="+CGI::escape(register.email)+"&n="+CGI::escape(register.name)
+    @params['ItemName']="LINE DDD 3D列印創新競賽"
     @params['MerchantID']=ENV['MERCHANT_ID']
     @params['MerchantTradeNo']=register.transactions.create!.trade_number
     @params['MerchantTradeDate']=register.transactions.last.created_at.strftime("%Y/%m/%d %T")
     @params['PaymentType']="aio"
-    @params['ChoosePayment']="Credit"
+    @params['ReturnURL']="http://tdpcontest.herokuapp.com/notify"
     @params['TotalAmount']="1"
     @params['TradeDesc']="報名費300"
-    @params['ItemName']="LINE DDD 3D列印創新競賽"
-    @params['ClientBackURL']="http://tdpcontest.herokuapp.com/registers?utf8=%E2%9C%93&search="+CGI::escape(register.email)+"&n="+CGI::escape(register.name)
-    @params['ReturnURL']="http://tdpcontest.herokuapp.com/notify"
     param=create_mac
     @params['CheckMacValue']=param
   end
