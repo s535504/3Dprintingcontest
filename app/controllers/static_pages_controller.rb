@@ -39,7 +39,7 @@ class StaticPagesController < ApplicationController
     @params['ChoosePayment']="Credit"
     @params['ClientBackURL']="http://tdpcontest.herokuapp.com/registers?utf8=%E2%9C%93&search="+CGI::escape(register.email)+"&n="+CGI::escape(register.name)
     @params['ItemName']="LINE DDD 3D列印創新競賽"
-    @params['MerchantID']=2000132
+    @params['MerchantID']="2000132"
     # ENV['MERCHANT_ID']
     @params['MerchantTradeDate']=register.transactions.last.created_at.strftime("%Y/%m/%d %T")
     @params['MerchantTradeNo']=register.transactions.create!.trade_number
@@ -84,7 +84,7 @@ class StaticPagesController < ApplicationController
         "#{x}=#{y}"
       end.join('&')
 
-      hash_raw_data = "HashKey=#{EzAllpay.hash_key}&#{raw_data}&HashIV=#{EzAllpay.hash_iv}"
+      hash_raw_data = "HashKey=5294y06JbISpM5x9&#{raw_data}&HashIV=v77hoKGq4kWxNNIS"
 
       url_encode_data = (CGI::escape(hash_raw_data)).downcase
 
