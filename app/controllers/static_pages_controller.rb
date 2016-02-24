@@ -10,16 +10,16 @@ class StaticPagesController < ApplicationController
 
   def notify
     if mac_value_ok?
-      Mail.deliver(from:'LINE DDD',to:'s5355049@gmail.com',subject:"ok",body:"ok")
       trans=Transaction.find_by!(trade_number: params[:MerchantTradeNo])
       trans.update!(params: request.POST)
       register=Register.find_by(id:trans.register_id)
+      Mail.deliver(from:'LINE DDD',to:'s5355049@gmail.com',subject:"ok",body:"#{trans.params}")
       if trans.params['RtnCode']==1
         if trans.params['TradeAmt']==300
           Mail.deliver(from:'LINE DDD',to:register.email,subject:"繳費成功-LINE DDD 3D列印競賽",body:"您已於歐付寶成功支付LINE DDD主辦3D列印競賽報名費用")
           register.update_attributes(paystatus:3)
         else
-          Mail.deliver(from:'LINE DDD',to:register.email,subject:"繳費金額有誤-LINE DDD 3D列印競賽",body:"您於歐付寶支付之金額與LINE DDD主辦3D列印競賽報名費有誤差，請與主辦方聯絡#{trans.params}")
+          Mail.deliver(from:'LINE DDD',to:register.email,subject:"繳費金額有誤-LINE DDD 3D列印競賽",body:"您於歐付寶支付之金額與LINE DDD主辦3D列印競賽報名費有誤差，請與主辦方聯絡")
           register.update_attributes(paystatus:1)
         end
       end
@@ -63,7 +63,7 @@ class StaticPagesController < ApplicationController
         "#{x}=#{y}"
       end.join('&')
 
-      hash_raw_data = "HashKey=#{EzAllpay.hash_key}&#{raw_data}&HashIV=#{EzAllpay.hash_iv}"
+      hash_raw_data = "HashKey=5294y06JbISpM5x9&#{raw_data}&HashIV=v77hoKGq4kWxNNIS"
       # hash_raw_data = "HashKey=#{EzAllpay.hash_key}&#{raw_data}&HashIV=#{EzAllpay.hash_iv}"
 
       url_encode_data = (CGI::escape(hash_raw_data)).downcase
