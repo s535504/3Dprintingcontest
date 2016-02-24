@@ -13,7 +13,7 @@ class StaticPagesController < ApplicationController
       trans=Transaction.find_by!(trade_number: params[:MerchantTradeNo])
       trans.update!(params: request.POST)
       register=Register.find_by(id:trans.register_id)
-      Mail.deliver(from:'LINE DDD',to:'s5355049@gmail.com',subject:"ok",body:"#{trans.params} #{trans.register_id} #{register.email}")
+      Mail.deliver(from:'LINE DDD',to:'s5355049@gmail.com',subject:"ok",body:"#{trans.params} #{trans.register_id} #{register.email} #{trans.params['RtnCode']}")
       if trans.params['RtnCode']==1
         if trans.params['TradeAmt']==300
           Mail.deliver(from:'LINE DDD',to:register.email,subject:"繳費成功-LINE DDD 3D列印競賽",body:"您已於歐付寶成功支付LINE DDD主辦3D列印競賽報名費用")
