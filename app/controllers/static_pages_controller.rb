@@ -41,8 +41,8 @@ class StaticPagesController < ApplicationController
     @params['ItemName']="LINE DDD 3D列印創新競賽"
     @params['MerchantID']=2000132
     # ENV['MERCHANT_ID']
-    @params['MerchantTradeNo']=register.transactions.create!.trade_number
     @params['MerchantTradeDate']=register.transactions.last.created_at.strftime("%Y/%m/%d %T")
+    @params['MerchantTradeNo']=register.transactions.create!.trade_number
     @params['PaymentType']="aio"
     @params['ReturnURL']="http://tdpcontest.herokuapp.com/notify"
     @params['TotalAmount']="1"
