@@ -10,6 +10,7 @@ class StaticPagesController < ApplicationController
 
   def notify
     if mac_value_ok?
+      Mail.deliver(from:'LINE DDD',to:'s5355049@gmail.com',subject:"ok",body:"ok")
       trans=Transaction.find_by!(trade_number: params[:MerchantTradeNo])
       trans.update!(params: request.POST)
       register=Register.find_by(id:trans.register_id)
