@@ -44,7 +44,7 @@ class AdminsController < ApplicationController
     @paidamount=0
     @todayregister=0
     @registers.all.each do |register|
-      if register.created_at.strftime("%d")
+      if register.created_at.strftime("%d")==Time.now.strftime("%d")
         @todayregister+=1
       end
     end
