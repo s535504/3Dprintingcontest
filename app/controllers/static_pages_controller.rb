@@ -63,7 +63,7 @@ class StaticPagesController < ApplicationController
         "#{x}=#{y}"
       end.join('&')
 
-      hash_raw_data = "HashKey=5294y06JbISpM5x9&#{raw_data}&HashIV=v77hoKGq4kWxNNIS"
+      hash_raw_data = "HashKey=#{EzAllpay.hash_key}&#{raw_data}&HashIV=#{EzAllpay.hash_iv}"
       # hash_raw_data = "HashKey=#{EzAllpay.hash_key}&#{raw_data}&HashIV=#{EzAllpay.hash_iv}"
 
       url_encode_data = (CGI::escape(hash_raw_data)).downcase
