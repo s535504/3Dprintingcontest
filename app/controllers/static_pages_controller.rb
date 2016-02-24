@@ -39,7 +39,8 @@ class StaticPagesController < ApplicationController
     @params['ChoosePayment']="Credit"
     @params['ClientBackURL']="http://tdpcontest.herokuapp.com/registers?utf8=%E2%9C%93&search="+CGI::escape(register.email)+"&n="+CGI::escape(register.name)
     @params['ItemName']="LINE DDD 3D列印創新競賽"
-    @params['MerchantID']=ENV['MERCHANT_ID']
+    @params['MerchantID']=2000132
+    # ENV['MERCHANT_ID']
     @params['MerchantTradeDate']=register.transactions.last.created_at.strftime("%Y/%m/%d %T")
     @params['MerchantTradeNo']=register.transactions.create!.trade_number
     @params['PaymentType']="aio"
