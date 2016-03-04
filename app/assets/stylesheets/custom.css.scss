@@ -3,8 +3,6 @@
 
 /* universal */
 
-@media(min-width:768px){}
-
 body{
   padding-top: 80px;
   #add_image{
@@ -117,161 +115,518 @@ html{
 
 /* works */
 
+@media(max-width:11400px){
+  .item.w1{width:16vw;}
+  .item.h1{height:16vw;}
+  .item.w2{width:32vw;}
+  .item.h2{height:32vw;}
+  .item.w3{width:48vw;}
+  .item.h3{height:48vw;}
+}
+@media(max-width:992px){
+  .item.w1{width:25vw;}
+  .item.h1{height:25vw;}
+  .item.w2{width:50vw;}
+  .item.h2{height:50vw;}
+  .item.w3{width:75vw;}
+  .item.h3{height:75vw;}
+}
+@media(max-width:768px){
+  .item.w1{width:50vw;}
+  .item.h1{height:50vw;}
+  .item.w2{width:100vw;}
+  .item.h2{height:100vw;}
+  .item.w3{width:150vw;}
+  .item.h3{height:150vw;}
+}
 .works{
   position: relative;
-  padding: 200px 0 1000px 0;
-  margin:0 0 100px 0;
-  .image_holder{
-    width:32vw;
-    height:16vw;
+  @media(max-width:11400px){
+    padding: 200px 0 80vw 0;
   }
-  .work1{
+  @media(max-width:992px){
+    padding: 200px 0 175vw 0;
+  }
+  margin:0 0 100px 0;
+  .bg_holder{
+    transition: .5s;
+  }
+  .image_border{
+    position: absolute;
+    overflow: hidden;
+  }
+  .image_holder{
+    position: absolute;
+    transition: .5s;
+  }
+  .text_holder{
+    position: relative;
+    transition: .5s;
+    opacity:0;
+    background:rgba(0,0,0,.6);
+    font-family:Microsoft JhengHei;
+    color:white;
+    display:table-cell;
+    vertical-align: middle;
+    line-height:110%;
+    letter-spacing:.2em;
+    h1{
+      font-size:3vw;
+    }
+    h4{
+      font-size:2vw;
+    }
+    .icon{
+      font-size:2vw;
+    }
+  }
+  .work_holder:hover{
+    cursor:pointer;
+    .image_holder{
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+    .text_holder{
+      opacity:1;
+    }
+  }
+  .workbg1{
     position: absolute;
     background: #333;
-    top:0;
-    height:16vw;
+    @media(max-width:11400px){
+      top:0;
+    }
     color: white;
-    .image_holder{
+    .bg_holder{
       display:table-cell;
       vertical-align: middle;
+      @media(max-width:11400px){
+        width:32vw;
+        height:16vw;
+      }
+      @media(max-width:992px){
+        width:48vw;
+        height:24vw;
+      }
       h1{
-        font-size:2.5vw;
+        @media(max-width:11400px){
+          font-size:2.5vw;
+        }
+        @media(max-width:992px){
+          font-size:4vw;
+        }
         font-family:Microsoft JhengHei;
       }
     }
   }
-  .work2{
-    position: absolute;
-    top:0;
-    left:32vw;
-    .image_holder{
-      background: url('http://www.sharingame.org/media/original.jpg') no-repeat 50% 50%;
-      background-size: cover;
-      height:32vw;
-      transition: 0.5s;
-      -webkit-filter: opacity(1);
-    }
-    .image_holder:hover{
-      opacity:0;
-    }
-  }
-  .work3{
+  .workbg2{
     position: absolute;
     background: #FF2D2D;
-    top:0;
-    left:64vw;
-    height:16vw;
-    .image_holder{
+    @media(max-width:11400px){
+      top:0;
+      left:64vw;
+    }
+    @media(max-width:992px){
+      top:0;
+      left:48vw;
+    }
+    .bg_holder{
       display:table-cell;
       vertical-align: middle;
+      @media(max-width:11400px){
+        width:16vw;
+        height:16vw;
+      }
+      @media(max-width:992px){
+        width:24vw;
+        height:24vw;
+      }
       h3{
         color:white;
-        font-size:2vw;
+        @media(max-width:11400px){
+          font-size:2vw;
+        }
+        @media(max-width:992px){
+          font-size:3vw;
+        }
         font: sans-serif;
         font-weight:300;
         letter-spacing:.025em;
         line-height:170%;
       }
-      width:16vw;
     }
     .triangle{
-      width:0px; height:0px; border-width:10px 9px 10px 9px;border-style:solid; border-color:transparent transparent transparent #FF2D2D; left:16vw; top:-6vw;position:relative;z-index:2;
+      width:0px; height:0px; border-width:10px 9px 10px 9px;border-style:solid; border-color:transparent transparent transparent #FF2D2D;position:relative;z-index:2;
+      @media(max-width:11400px){
+        left:16vw;
+        top:-6vw;
+      }
+      @media(max-width:992px){
+        left:24vw;
+        top:-9vw;
+      }
+    }
+  }
+  .workbg3{
+    position: absolute;
+    @media(max-width:11400px){
+      top:0;
+      left:80vw;
+    }
+    @media(max-width:992px){
+      top:0;
+      left:72vw;
+    }
+    background: #46A3FF;
+    .bg_holder{
+      background: url('linedddlogo.png') no-repeat 50% 50%;
+      background-size: 70% auto;
+      @media(max-width:11400px){
+        width:16vw;
+        height:16vw;
+      }
+      @media(max-width:992px){
+        width:24vw;
+        height:24vw;
+      }
+    }
+  }
+  .workbg4{
+    position: absolute;
+    @media(max-width:11400px){
+      top:16vw;
+    }
+    @media(max-width:992px){
+      top:72vw;
+    }
+    .bg_holder{
+      background: url('work5bg.jpg') no-repeat 50% 50%;
+      background-size: cover;
+      @media(max-width:11400px){
+        width:16vw;
+        height:16vw;
+      }
+      @media(max-width:992px){
+        width:24vw;
+        height:24vw;
+      }
+    }
+  }
+  .workbg5{
+      position: absolute;
+      background: white;
+      @media(max-width:11400px){
+        top:32vw;
+        left:32vw;
+      }
+      @media(max-width:992px){
+        top:96vw;
+        left:48vw;
+      }
+      z-index:2;
+      .bg_holder{
+        display:table-cell;
+        vertical-align:middle;
+        @media(max-width:11400px){
+          width:32vw;
+          height:32vw;
+        }
+        @media(max-width:992px){
+          width:48vw;
+          height:48vw;
+        }
+        h1{
+          color:black;
+          @media(max-width:11400px){
+            font: normal 3.1vw/3.5vw 'rainbow';
+          }
+          @media(max-width:992px){
+            font: normal 5vw/5.5vw 'rainbow';
+          }
+          font-weight:800;
+          line-height:130%;
+          text-transform: uppercase;
+          letter-spacing:2px;
+        }
+      }
+  }
+  @media(min-width:992px){
+    .workbg6{
+      position: absolute;
+      @media(max-width:11400px){
+        top:64vw;
+        left:32vw;
+      }
+      .bg_holder{
+        background: url('work11bg.jpg') no-repeat 50% 50%;
+        background-size: cover;
+        @media(max-width:11400px){
+          width:32vw;
+          height:16vw;
+        }
+        @media(max-width:992px){
+          width:50vw;
+          height:25vw;
+        }
+      }
+    }
+  }
+  .work1{
+    position: absolute;
+    @media(max-width:11400px){
+      top:16vw;
+      left:16vw;
+    }
+    @media(max-width:992px){
+      top:72vw;
+      left:24vw;
+    }
+    .image_border{
+      @media(max-width:11400px){
+        width:16vw;
+        height:16vw;
+      }
+      @media(max-width:992px){
+        width:24vw;
+        height:24vw;
+      }
+    }
+    .image_holder{
+      background: url('http://3dprint.com/wp-content/uploads/2014/12/3d2.jpg') no-repeat 50% 50%;
+      background-size: cover;
+      @media(max-width:11400px){
+        width:16vw;
+        height:16vw;
+      }
+      @media(max-width:992px){
+        width:24vw;
+        height:24vw;
+      }
+    }
+    .text_holder{
+      @media(max-width:11400px){
+        width:16vw;
+        height:16vw;
+      }
+      @media(max-width:992px){
+        width:24vw;
+        height:24vw;
+      }
+    }
+  }
+  .work2{
+    position: absolute;
+    @media(max-width:11400px){
+      top:0;
+      left:32vw;
+    }
+    @media(max-width:992px){
+      top:24vw;
+      left:0vw;
+    }
+    .image_border{
+      @media(max-width:11400px){
+        width:32vw;
+        height:32vw;
+      }
+      @media(max-width:992px){
+        width:48vw;
+        height:48vw;
+      }
+    }
+    .image_holder{
+      background: url('http://www.sharingame.org/media/original.jpg') no-repeat 50% 50%;
+      background-size: cover;
+      @media(max-width:11400px){
+        width:32vw;
+        height:32vw;
+      }
+      @media(max-width:992px){
+        width:48vw;
+        height:48vw;
+      }
+    }
+    .text_holder{
+      @media(max-width:11400px){
+        width:32vw;
+        height:32vw;
+      }
+      @media(max-width:992px){
+        width:48vw;
+        height:48vw;
+      }
+    }
+  }
+  .work3{
+    position: absolute;
+    @media(max-width:11400px){
+      top:32vw;
+    }
+    @media(max-width:992px){
+      top:96vw;
+      left:0vw;
+    }
+    .image_border{
+      @media(max-width:11400px){
+        width:32vw;
+        height:32vw;
+      }
+      @media(max-width:992px){
+        width:48vw;
+        height:48vw;
+      }
+    }
+    .image_holder{
+      background: url('http://assets.inhabitat.com/wp-content/blogs.dir/1/files/2013/02/3doodler-3d-printing-pen.jpg') no-repeat 50% 50%;
+      background-size: cover;
+      @media(max-width:11400px){
+        width:32vw;
+        height:32vw;
+      }
+      @media(max-width:992px){
+        width:48vw;
+        height:48vw;
+      }
+    }
+    .text_holder{
+      @media(max-width:11400px){
+        width:32vw;
+        height:32vw;
+      }
+      @media(max-width:992px){
+        width:48vw;
+        height:48vw;
+      }
     }
   }
   .work4{
     position: absolute;
-    top:0;
-    left:80vw;
-    height:16vw;
-    background: #46A3FF;
+    @media(max-width:11400px){
+      top:16vw;
+      left:64vw;
+    }
+    @media(max-width:992px){
+      top:24vw;
+      left:48vw;
+    }
+    .image_border{
+      background:#79FF79;
+      @media(max-width:11400px){
+        width:32vw;
+        height:48vw;
+        padding:1.5vw;
+      }
+      @media(max-width:992px){
+        width:48vw;
+        height:72vw;
+        padding:2vw;
+      }
+    }
     .image_holder{
-      background: url('linedddlogo.png') no-repeat 50% 50%;
-      width:16vw;
+      background: url('http://www.odd.org.nz/spiderlpblackred-bodybig.jpg') no-repeat 50% 50%;
+      background-size: cover;
+      @media(max-width:11400px){
+        width:29vw;
+        height:45vw;
+      }
+      @media(max-width:992px){
+        width:44vw;
+        height:68vw;
+      }
+    }
+    .text_holder{
+      @media(max-width:11400px){
+        width:32vw;
+        height:48vw;
+      }
+      @media(max-width:992px){
+        width:48vw;
+        height:72vw;
+      }
     }
   }
   .work5{
     position: absolute;
-    top:16vw;
+    @media(max-width:11400px){
+      top:64vw;
+    }
+    @media(max-width:992px){
+      top:144vw;
+    }
+    .image_border{
+      @media(max-width:11400px){
+        width:32vw;
+        height:16vw;
+      }
+      @media(max-width:992px){
+        width:48vw;
+        height:24vw;
+      }
+    }
     .image_holder{
-      background: url('work5bg.jpg') no-repeat 50% 50%;
+      background: url('http://tudelft.gingerresearch.net/image/2015/10/23/3d_rex_3d_printed_tyrannosaurus_1.png') no-repeat 50% 50%;
       background-size: cover;
-      width:16vw;
+      @media(max-width:11400px){
+        width:32vw;
+        height:16vw;
+      }
+      @media(max-width:992px){
+        width:48vw;
+        height:24vw;
+      }
+    }
+    .text_holder{
+      @media(max-width:11400px){
+        width:32vw;
+        height:16vw;
+      }
+      @media(max-width:992px){
+        width:48vw;
+        height:24vw;
+      }
     }
   }
   .work6{
     position: absolute;
-    top:16vw;
-    left:16vw;
-    .image_holder{
-      background: url('http://3dprint.com/wp-content/uploads/2014/12/3d2.jpg') no-repeat 50% 50%;
-      background-size: cover;
-      width:16vw;
+    @media(max-width:11400px){
+      top:64vw;
+      left:64vw;
     }
-  }
-  .work7{
-    position: absolute;
-    top:32vw;
-    .image_holder{
-      background: url('http://assets.inhabitat.com/wp-content/blogs.dir/1/files/2013/02/3doodler-3d-printing-pen.jpg') no-repeat 50% 50%;
-      background-size: cover;
-      height:32vw;
+    @media(max-width:992px){
+      top:144vw;
+      left:48vw;
     }
-  }
-  .work8{
-    position: absolute;
-    background: white;
-    top:32vw;
-    left:32vw;
-    height:32vw;
-    width:32vw;
-    .image_holder{
-      display:table-cell;
-      vertical-align:middle;
-      height:32vw;
-      h1{
-        color:black;
-        font: normal 3.1vw/3.5vw 'rainbow';
-        font-weight:800;
-        line-height:130%;
-        text-transform: uppercase;
-        letter-spacing:2px;
+    .image_border{
+      @media(max-width:11400px){
+        width:32vw;
+        height:16vw;
+      }
+      @media(max-width:992px){
+        width:48vw;
+        height:24vw;
       }
     }
-  }
-  .work9{
-    position: absolute;
-    top:16vw;
-    left:64vw;
-    .image_holder{
-      background: url('http://www.odd.org.nz/spiderlpblackred-bodybig.jpg') no-repeat 50% 50%;
-      background-size: cover;
-      height:48vw;
-    }
-  }
-  .work10{
-    position: absolute;
-    top:64vw;
-    .image_holder{
-      background: url('http://tudelft.gingerresearch.net/image/2015/10/23/3d_rex_3d_printed_tyrannosaurus_1.png') no-repeat 50% 50%;
-      background-size: cover;
-    }
-  }
-  .work11{
-    position: absolute;
-    top:64vw;
-    left:32vw;
-    .image_holder{
-      background: url('work11bg.jpg') no-repeat 50% 50%;
-      background-size: cover;
-    }
-  }
-  .work12{
-    position: absolute;
-    top:64vw;
-    left:64vw;
     .image_holder{
       background: url('https://static.dezeen.com/uploads/2015/06/Sofa-So-Good-by-Janne-Kyttanen_dezeen_bn01.jpg') no-repeat 50% 50%;
       background-size: cover;
+      @media(max-width:11400px){
+        width:32vw;
+        height:16vw;
+      }
+      @media(max-width:992px){
+        width:48vw;
+        height:24vw;
+      }
+    }
+    .text_holder{
+      @media(max-width:11400px){
+        width:32vw;
+        height:16vw;
+      }
+      @media(max-width:992px){
+        width:48vw;
+        height:24vw;
+      }
     }
   }
   .works:hover{
@@ -360,6 +715,39 @@ html{
     -webkit-transform: scale(1.03);
     transform: scale(1.03);
   }
+  .btn-default{
+    font-family: Microsoft JhengHei;
+    font-size: 15px;
+    padding: 13px 40px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-right: 5px;
+    background: transparent;
+    color: #fff;
+    position: relative;
+    margin-top: 20px;
+    border-radius: 0px;
+  }
+  .btn-default,.btn-default.featured{
+    -webkit-transition: all .3s linear 0s;
+    -o-transition: all .3s linear 0s;
+    /* transition: all .3s linear 0s; */
+  }
+  .btn-default:hover ,.btn-main:hover{
+    background: #00AEFF;
+    border-color:#00AEFF ;
+    color: #fff;
+  }
+  .btn-default.featured{
+    background: #00AEFF;
+    border-color:#00AEFF ;
+    color: #fff;
+
+  }
+  .btn-default.featured:hover{
+    background: transparent;
+    color: #222 ;
+  }
 }
 .contactTrigger:hover{
   background-size: 110% auto;
@@ -432,52 +820,4 @@ footer{
   overflow:scroll;
   height:300px;
   width:60%;
-}
-
-/* button style */
-
-.btn-default{
-  font-family: Microsoft JhengHei;
-  font-size: 15px;
-  padding: 13px 40px;
-  text-transform: uppercase;
-  font-weight: 700;
-  margin-right: 5px;
-  background: transparent;
-  color: #fff;
-  position: relative;
-  margin-top: 20px;
-  border-radius: 0px;
-}
-.btn-default,.btn-default.featured{
-  -webkit-transition: all .3s linear 0s;
-  -o-transition: all .3s linear 0s;
-  /* transition: all .3s linear 0s; */
-}
-.btn-default:hover ,.btn-main:hover{
-  background: #00AEFF;
-  border-color:#00AEFF ;
-  color: #fff;
-}
-.btn-default.featured{
-  background: #00AEFF;
-  border-color:#00AEFF ;
-  color: #fff;
-
-}
-.btn-default.featured:hover{
-  background: transparent;
-  color: #222 ;
-}
-
-.btn-main{
-  padding: 13px 40px;
-  text-transform: uppercase;
-  font-weight: 500;
-  margin-right: 5px;
-  background: #2a2a2a;
-  color: #fff;
-  border-color: #2a2a2a;
-  position: relative;
-  border-radius: 25px;
 }

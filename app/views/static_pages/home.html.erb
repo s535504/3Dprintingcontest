@@ -68,34 +68,14 @@
   </div> -->
 
   <div class="works center">
-    <div class="work1">
-      <div class="image_holder"><h1>作品</h1></div>
-      <div class="text_holder">
-        <span class="text_outer">
-          <span class="text_inner">
-            <h2 class="work_title">
-              <span></span>
-            </h2>
-          </span>
-        </span>
+    <div class="workbg1">
+      <div class="bg_holder">
+        <h1>作品</h1>
       </div>
     </div>
 
-    <div class="work2">
-      <div class="image_holder"></div>
-      <div class="text_holder">
-        <span class="text_outer">
-          <span class="text_inner">
-            <h2 class="work_title">
-              <span></span>
-            </h2>
-          </span>
-        </span>
-      </div>
-    </div>
-
-    <div class="work3">
-      <div class="image_holder">
+    <div class="workbg2">
+      <div class="bg_holder">
         <h3>
           design.
           <br>
@@ -105,139 +85,45 @@
         </h3>
         <div class="triangle"></div>
       </div>
-      <div class="text_holder">
-        <span class="text_outer">
-          <span class="text_inner">
-            <h2 class="work_title">
-              <span></span>
-            </h2>
-          </span>
-        </span>
-      </div>
     </div>
 
-    <div class="work4">
-      <div class="image_holder"></div>
-      <div class="text_holder">
-        <span class="text_outer">
-          <span class="text_inner">
-            <h2 class="work_title">
-              <span></span>
-            </h2>
-          </span>
-        </span>
-      </div>
+    <div class="workbg3">
+      <div class="bg_holder"></div>
     </div>
 
-    <div class="work5">
-      <div class="image_holder"></div>
-      <div class="text_holder">
-        <span class="text_outer">
-          <span class="text_inner">
-            <h2 class="work_title">
-              <span></span>
-            </h2>
-          </span>
-        </span>
-      </div>
+    <div class="workbg4">
+      <div class="bg_holder"></div>
     </div>
 
-    <div class="work6">
-      <div class="image_holder"></div>
-      <div class="text_holder">
-        <span class="text_outer">
-          <span class="text_inner">
-            <h2 class="work_title">
-              <span></span>
-            </h2>
-          </span>
-        </span>
-      </div>
-    </div>
-
-    <div class="work7">
-      <div class="image_holder"></div>
-      <div class="text_holder">
-        <span class="text_outer">
-          <span class="text_inner">
-            <h2 class="work_title">
-              <span></span>
-            </h2>
-          </span>
-        </span>
-      </div>
-    </div>
-
-    <div class="work8">
-      <div class="image_holder">
+    <div class="workbg5">
+      <div class="bg_holder">
         <h1>
           your design
           <br>
           your dream
         </h1>
-      </div>
-      <div class="text_holder">
-        <span class="text_outer">
-          <span class="text_inner">
-            <h2 class="work_title">
-              <span></span>
-            </h2>
-          </span>
-        </span>
-      </div>
+      </div>    </div>
+
+    <div class="workbg6">
+      <div class="bg_holder"></div>
     </div>
 
-    <div class="work9">
-      <div class="image_holder"></div>
-      <div class="text_holder">
-        <span class="text_outer">
-          <span class="text_inner">
-            <h2 class="work_title">
-              <span></span>
-            </h2>
-          </span>
-        </span>
+    <% 6.times do |i| %>
+      <% i+=1 %>
+      <div class="work<%=i%>">
+        <div class="work_holder">
+          <div class="image_border">
+            <div class="image_holder"></div>
+          </div>
+          <div class="text_holder">
+            <h1>羅那</h1>
+            <h4>鞋子</h4>
+            <br>
+            <span class="glyphicon glyphicon-circle-arrow-right icon"></span>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <div class="work10">
-      <div class="image_holder"></div>
-      <div class="text_holder">
-        <span class="text_outer">
-          <span class="text_inner">
-            <h2 class="work_title">
-              <span></span>
-            </h2>
-          </span>
-        </span>
-      </div>
-    </div>
-
-    <div class="work11">
-      <div class="image_holder"></div>
-      <div class="text_holder">
-        <span class="text_outer">
-          <span class="text_inner">
-            <h2 class="work_title">
-              <span></span>
-            </h2>
-          </span>
-        </span>
-      </div>
-    </div>
-
-    <div class="work12">
-      <div class="image_holder"></div>
-      <div class="text_holder">
-        <span class="text_outer">
-          <span class="text_inner">
-            <h2 class="work_title">
-              <span></span>
-            </h2>
-          </span>
-        </span>
-      </div>
-    </div>
+    <% end %>
   </div>
 
   <div class="contactus contactTrigger panel-default">
