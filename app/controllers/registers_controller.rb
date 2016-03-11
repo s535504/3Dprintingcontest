@@ -1,5 +1,7 @@
 class RegistersController < ApplicationController
 
+  before_action :authenticate_user!, only:[:prohibit]
+
   def index
     if params[:search] == "" || params[:n] == ""
       # redirect_to search_path
@@ -39,6 +41,16 @@ class RegistersController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def prohibit
+    register=Register.find_by(email:params[:email])
+    if register.prohibit==true
+      register.update_attributes(prohibit:false)
+    else
+      register.update_attributes(prohibit:true)
+    end
+    redirect_to registermanagement_path
   end
 
   def confirm

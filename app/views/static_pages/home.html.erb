@@ -1,73 +1,73 @@
-<div class="container-fluid">
+<div class="jumbotron" style="margin-top: -80px;" id="add_image">
+  <div class="container-fluid">
+    <div style="width:20vw; height:91vh;"></div>
+  </div>
+</div>
 
-  <div class="jumbotron" style="margin-top: -30px;" id="add_image">
-    <div class="center hometitle1">
-    2016 03 01
-    </div>
-    <div class="center hometitle2">
-    LINE DDD
-    </div>
-    <div class="center hometitle3">
-    3D列印競賽開放報名
-    </div>
-    <div class="center hometitle4">
-    激發你的創意
-    </div>
-    <div class="center hometitle5">
-    讓平面設計在三維空間浴火重生
-    </div>
-
-    <div class="signupbottom" style="width:20vw; height:5vw;">
-      <a href="declare" style="text-decoration:none;">
-        <p class="signupbottom" style="padding:1.1vw 0 0 5.5vw; font-size:2vw; color:#FFF;"><strong>立刻報名！</strong></p>
-      </a>
+<div class="intro center">
+  <div class="container-fluid">
+    <div class="intro_holder">
+      <div class="text_holder slideright">
+        <p class="bgtext">lineddd</p>
+      </div>
+      <div class="text_holder slideleft">
+        <p class="bgtext">3dprinting</p>
+      </div>
+      <div class="text_holder slideup">
+        <div class="vertical_text">
+          <p class="bgtext">2016</p>
+        </div>
+      </div>
+      <div class="introtext">
+        <h1><span style="border-bottom: 1.5px solid;">LINE DDD</span></h1><h1><span style="border-bottom: 1.5px solid;">邀請您參加3D列印創新大賽</span></h1><br><h4>發揮想像力，讓創意不再只侷限於腦海<br>對自己的設計有信心卻苦無門路發揮嗎？<br>報名並上傳設計圖<br>我們尋找的人就是你！</h4>
+      </div>
     </div>
   </div>
-  <div class="center intro">
-    <h1>
-      <b>三月一日</b><br>將你的想像化成實體
-    </h1>
-    <div>
-      LINE DDD將舉辦創意3D列印造型大賽，發揮想像力，讓創意不再只侷限於腦海<br>活動將邀請國際選手參與，藉此互相交流技術，專業裁判將對你的設計結晶進行評估，敬請各方好手蒞臨參與！
-    </div>
-    <%= image_tag("logo.jpg", :alt => "rss feed", style:"width:40vw") %>
-  </div>
-  <!-- <div class="center sponsor">
-    <h3>活動贊助</h3>
-    <hr style="height:1px; background-color:#BEBEBE; width:80%">
-    <div class="row">
-      <div class="col-md-12">
-        <a href="declare">
-          <img src="/assets/bugatti.png" class="a" />
-          <img src="/assets/ferrari.jpg" class="b" />
-        </a>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-1 col-md-4">
-        <%= image_tag("astonmartin.png", width:300) %>
-      </div>
-      <div class="col-md-1 col-md-4">
-        <%= image_tag("porsche.png", width:170) %>
-      </div>
-      <div class="col-md-1 col-md-4">
-        <%= image_tag("pagani.png", width:210) %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-1 col-md-4">
-        <%= image_tag("maserati.jpg", width:200) %>
-      </div>
-      <div class="col-md-1 col-md-4">
-        <%= image_tag("lamborghini.png", width:160) %>
-      </div>
-      <div class="col-md-1 col-md-4">
-        <%= image_tag("ferrari.jpg", width:100) %>
-      </div>
-    </div>
-  </div> -->
+</div>
 
-  <div class="works center">
+<div class="process center">
+  <div class="process_panel">
+    <div class="process_Holder thinking">
+      <div class="process_gray">
+        <div class="process_text">
+          <h1>想法 <span class="glyphicon glyphicon-hand-up"></span></h1>
+          <h3>腦力激盪，將創意彙整</h3>
+        </div>
+      </div>
+    </div>
+    <div class="process_Holder register">
+      <div class="process_gray">
+        <div class="process_text">
+          <h1>設計 <i class="fa fa-laptop"></i></h1>
+          <h3>製作設計圖，想法具現化</h3>
+        </div>
+      </div>
+    </div>
+    <div class="process_Holder upload">
+      <div class="process_gray">
+        <div class="process_text">
+          <h1>上傳 <span class="glyphicon glyphicon-upload"></span></h1>
+          <h3>將你的設計上傳至LINE DDD</h3>
+        </div>
+      </div>
+    </div>
+    <div class="process_Holder actualize">
+      <div class="process_gray">
+        <div class="process_text">
+          <h1>實現 <span class="glyphicon glyphicon-star-empty"></span></h1>
+          <h3>讓更多人看見你的才華！</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="purpose center">
+  
+</div>
+
+<div class="works center">
+  <div class="container-fluid">
     <div class="workbg1">
       <div class="bg_holder">
         <h1>作品</h1>
@@ -102,31 +102,116 @@
           <br>
           your dream
         </h1>
-      </div>    </div>
+      </div>
+    </div>
 
     <div class="workbg6">
       <div class="bg_holder"></div>
     </div>
 
-    <% 6.times do |i| %>
-      <% i+=1 %>
-      <div class="work<%=i%>">
+    <% @works.each do |work| %>
+      <% number=1 if @displayingwork.col1==work.id %>
+      <% number=2 if @displayingwork.col2==work.id %>
+      <% number=3 if @displayingwork.col3==work.id %>
+      <% number=4 if @displayingwork.col4==work.id %>
+      <% number=5 if @displayingwork.col5==work.id %>
+      <% number=6 if @displayingwork.col6==work.id %>
+      <div class="work<%=number%>">
         <div class="work_holder">
           <div class="image_border">
-            <div class="image_holder"></div>
+            <div class="image_holder" style="background: url('<%= work.picture %>') no-repeat 50% 50%;background-size: cover;"></div>
           </div>
-          <div class="text_holder">
-            <h1>羅那</h1>
-            <h4>鞋子</h4>
-            <br>
-            <span class="glyphicon glyphicon-circle-arrow-right icon"></span>
-          </div>
+          <a href="#" onClick="window.open('<%= work_path(work.id) %>','test','width=780,height=600,directories=no,location=no,menubar=no,scrollbars=yes,status=no,toolbar=no,resizable=yes,left=50%,top=50%,screenX=50%,screenY=50%');return false">
+            <div class="text_holder">
+              <h1><%= work.workname %></h1>
+              <h4>by <%= work.name %></h4>
+              <span class="glyphicon glyphicon-circle-arrow-right icon"></span>
+            </div>
+          </a>
         </div>
       </div>
     <% end %>
   </div>
+</div>
 
-  <div class="contactus contactTrigger panel-default">
+<div class="sponsors center">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-12 title">
+        <img src="assets/laurelleft.png"/>
+        贊助
+        <img src="assets/laurelright.png"/>
+      </div>
+    </div>
+      <div class="row">
+        <div class="col-xs-6 col-md-3">
+          <div class="thumbnail">
+            <div class="sponsorbg sponsorbg1"></div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+          <div class="thumbnail ">
+            <div class="sponsorbg sponsorbg2"></div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+          <div class="thumbnail">
+            <div class="sponsorbg sponsorbg3"></div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+          <div class="thumbnail">
+            <div class="sponsorbg sponsorbg4"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 col-md-3">
+          <div class="thumbnail">
+            <div class="sponsorbg sponsorbg5"></div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+          <div class="thumbnail">
+            <div class="sponsorbg sponsorbg6"></div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+          <div class="thumbnail">
+            <div class="sponsorbg sponsorbg7"></div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="text-align: right;padding:20px;">
+  <a href="#header" class="page-scroll">
+    <i class="fa fa-chevron-up" style="font-size:50px;border:7px solid;border-radius: 90px;padding: 5px;"></i>
+  </a>
+</div>
+
+<div class="banner">
+  <div class="banner_holder">
+    <% number=1 %>
+    <% @banners.each do |banner| %>
+      <% if banner.url!="" && banner.url!=nil %>
+        <a href="<%= banner.url %>" target="_blank">
+      <% end %>
+        <div class="image_holder banner<%= number %>" style="background:url('<%= banner.picture.url %>') no-repeat 50% 50%;background-size:cover;"></div>
+      <% if banner.url!="" && banner.url!=nil %>
+        </a>
+      <% end %>
+      <% number+=1 %>
+    <% end %>
+  </div>
+</div>
+
+<div class="contactus contactTrigger panel-default">
+  <div class="container-fluid">
     <div class="bg-overlay pattern"></div>
     <div data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" role="tab" id="headingOne">
       <div class="default-text">
@@ -178,20 +263,26 @@
       </div>
     </div>
   </div>
-
 </div>
 
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.5";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<div class="fb-share-button" data-href="http://tdpcontest.herokuapp.com/" data-layout="button_count"></div>
-
 <script>
+  $(window).bind('scroll',function(){
+    var navheight=$(window).height()-70;
+    var introtop=$(window).height()-200;
+    var introbottom=$(window).height()+600;
+    if ($(window).scrollTop()>navheight){
+      $('.navbar-default').addClass('on');
+    }
+    else{
+      $('.navbar-default').removeClass('on');
+    }
+    if ($(window).scrollTop()>introtop && $(window).scrollTop()<introbottom){
+      $('.intro_holder').addClass('active');
+    }
+    else{
+      $('.intro_holder').removeClass('active');
+    }
+  })
   $('.contactTrigger').click(function(){
     $('.contactus').css({
       "background-attachment": "fixed",
@@ -203,14 +294,4 @@
       $('#collapseOne').removeAttr("id");
     }
   })
-  $('img.a').hover(
-    function(){
-      $(this).stop().animate({"opacity":"0"},"fast"),
-      $('img.b').stop().animate({"opacity":"1"},"fast")
-    },
-    function(){
-      $(this).stop().animate({"opacity":"1"},"fast"),
-      $('img.b').stop().animate({"opacity":"0"},"fast")
-    }
-  )
 </script>

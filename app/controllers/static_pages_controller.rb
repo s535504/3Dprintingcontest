@@ -3,6 +3,15 @@ class StaticPagesController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:notify]
   
   def home
+    @works=Displayingwork.first.works.all
+    @displayingwork=Displayingwork.first
+    @work1=Work.find_by(id:@displayingwork.col1)
+    @work2=Work.find_by(id:@displayingwork.col2)
+    @work3=Work.find_by(id:@displayingwork.col3)
+    @work4=Work.find_by(id:@displayingwork.col4)
+    @work5=Work.find_by(id:@displayingwork.col5)
+    @work6=Work.find_by(id:@displayingwork.col6)
+    @banners=Banner.all.order(:id)
   end
 
   def info

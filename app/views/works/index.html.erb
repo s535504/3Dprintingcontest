@@ -1,0 +1,87 @@
+<h2 class="center">作品上架</h2>
+<br>
+<img src="assets/workdemo<768.png">
+<img src="assets/workdemo>768<992.png">
+<img src="assets/workdemo>992.png">
+<div class="container worksindex">
+  <div class="row">
+    <div class="col-md-3">
+      <%= form_for @displayingwork, method: :patch do |f|%>
+        <%= f.label :col1, "欄位1 作品編號" %>
+        <%= f.text_field :col1, class: 'form-control' %>
+        <%= f.label :col2, "欄位2 作品編號" %>
+        <%= f.text_field :col2, class: 'form-control' %>
+        <%= f.label :col3, "欄位3 作品編號" %>
+        <%= f.text_field :col3, class: 'form-control' %>
+        <%= f.label :col4, "欄位4 作品編號" %>
+        <%= f.text_field :col4, class: 'form-control' %>
+        <%= f.label :col5, "欄位5 作品編號" %>
+        <%= f.text_field :col5, class: 'form-control' %>
+        <%= f.label :col6, "欄位6 作品編號" %>
+        <%= f.text_field :col6, class: 'form-control' %>
+        <%= f.submit "上架", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <div class="col-md-3"></div>
+    <div class="col-md-3">
+      <%= form_for(@work, html:{multipart: true}) do |f| %>
+        <%= f.file_field :picture %>
+        <%= f.text_field :workname, placeholder: "作品名稱", class: 'form-control' %>
+        <%= f.text_field :name, placeholder: "姓名", class: 'form-control' %>
+        <%= f.submit "新增待上架作品", class: "btn btn-default" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table" style="max-width: 1000px">
+        <tr style="font-weight: bolder;">
+          <td>作品編號</td>
+          <td>作品圖片</td>
+          <td>作品名稱</td>
+          <td>姓名</td>
+        </tr>
+        <% image=0 %>
+        <% @works.each do |work| %>
+          <% image+=1 %>
+          <tr>
+            <td><%= work.id %></td>
+            <td>
+              <%= link_to (image_tag work.picture.url, size:"30x30"),work.picture.url,:class => "listener", :id => "#{image}image1", :target =>"_blank" %>
+              <%= image_tag work.picture.url,:class => "largeimage", :id => "#{image}image1large" %>
+            </td>
+            <td><%= link_to work.workname, work_path(work.id) %></td>
+            <td><%= work.name %></td>
+            <td>
+              <% if @displayingwork.works.find_by(id:work.id) %>
+                <% number||=1 if @displayingwork.col1==work.id %>
+                <% number||=2 if @displayingwork.col2==work.id %>
+                <% number||=3 if @displayingwork.col3==work.id %>
+                <% number||=4 if @displayingwork.col4==work.id %>
+                <% number||=5 if @displayingwork.col5==work.id %>
+                <% number||=6 if @displayingwork.col6==work.id %>
+                上架中欄位<%= number %>
+              <% else %>
+                <%= link_to "刪除", work, method: :delete, data:{confirm:"確定刪除？"} %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+<script>
+  $('.listener').hover(
+    function(){
+      var n=$(this).attr('id')
+      $('#'+n+"large").stop().animate({"opacity":"1"},"fast");
+      $('#'+n+"large").css('zIndex','1')
+    },
+    function(){
+      var n=$(this).attr('id')
+      $('#'+n+"large").stop().animate({"opacity":"0"},"fast");
+      $('#'+n+"large").css('zIndex','-1')
+    }
+  )
+</script>

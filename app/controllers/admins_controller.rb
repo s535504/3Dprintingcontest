@@ -67,5 +67,11 @@ class AdminsController < ApplicationController
 
   def filemanagement
     @tdmfiles=Tdmfile.all
+    @tdmfilecount=0;
+    @tdmfiles.each do |tdmfile|
+      if Register.find_by(id:tdmfile.register_id)==false
+        @tdmfiles+=1;
+      end
+    end
   end
 end

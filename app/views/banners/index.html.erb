@@ -1,0 +1,31 @@
+<h2 class="center">廣告上架</h2>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <% @banners.each do |banner| %>
+          <tr>
+            <td>
+              <% if banner.picture!=nil %>
+                <% if banner.url==nil || banner.url=="" %>
+                  <%= image_tag banner.picture.url, height:"100px" %>
+                <% else %>
+                  <%= link_to (image_tag banner.picture.url, height:"100px"),banner.url,:target => "_blank" %>
+                <% end %>
+              <% end %>
+            </td>
+            <td>
+              <%= form_for(banner, html:{multipart: true}) do |f| %>
+                <input type="hidden" name="id" id="id" value="<%= banner.id %>" />
+                <%= f.file_field :picture %>
+                <%= f.text_field :url, placeholder: "網址", class: 'form-control' %>
+                <%= f.submit "上架", class: "btn btn-primary" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

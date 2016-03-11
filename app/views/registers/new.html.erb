@@ -1,29 +1,31 @@
-<h3 class="center">報名確認</h3>
-<hr class="hr">
-<div class="row">
-  <div class="col-md-4 col-md-offset-4">
+<div class="container new">
+  <h3 class="center">報名確認</h3>
+  <hr class="hr">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
 
-    <tbody>
-      <table class="table table-hover">
-        <tr>
-          <td>報名者姓名</td>
-          <td><%= @register.name %></td>
-        </tr>
-        <tr>
-          <td>E-mail</td>
-          <td><%= @register.email %></td>
-        </tr>
-      </table>
-    </tbody>
+      <tbody>
+        <table class="table table-hover">
+          <tr>
+            <td>報名者姓名</td>
+            <td><%= @register.name %></td>
+          </tr>
+          <tr>
+            <td>E-mail</td>
+            <td><%= @register.email %></td>
+          </tr>
+        </table>
+      </tbody>
 
-    <%= form_for(@register) do |f| %>
-      <%= f.hidden_field :name, class: 'form-control' %>
-      <%= f.hidden_field :email, class: 'form-control' %>
-      <br>
-      <div style="padding-left:40%">
-        <%= f.submit "確認報名", class: "btn btn-lg btn-success" %>
-      </div>
-    <% end %>
+      <%= form_for(@register) do |f| %>
+        <%= f.hidden_field :name, class: 'form-control' %>
+        <%= f.hidden_field :email, class: 'form-control' %>
+        <br>
+        <div style="padding-left:40%">
+          <%= f.submit "確認報名", class: "btn btn-lg btn-success" %>
+        </div>
+      <% end %>
 
+    </div>
   </div>
 </div>

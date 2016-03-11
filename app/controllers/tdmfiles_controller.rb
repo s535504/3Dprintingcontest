@@ -6,7 +6,7 @@ class TdmfilesController < ApplicationController
     else
       redirect_to root_url
     end
-    if @register.paystatus==3 && params[:tdmfile]!=nil && !@register.tdmfiles.any?
+    if @register.paystatus==3 && params[:tdmfile]!=nil && !@register.tdmfiles.any? && @register.prohibit==false
       tdm=params[:tdmfile]
       if tdm['picture1']!=nil || tdm['picture2']!=nil || tdm['picture3']!=nil
         @tdmfile = @register.tdmfiles.build(tdmfile_params)
@@ -18,6 +18,8 @@ class TdmfilesController < ApplicationController
   end
 
   def destroy
+    Tdmfile.find(params[:id]).destroy
+    redirect_to filemanagement_path
   end
 
   private

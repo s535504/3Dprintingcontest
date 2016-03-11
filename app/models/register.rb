@@ -1,6 +1,7 @@
 class Register < ActiveRecord::Base
   has_many :transactions, dependent: :destroy
   has_many :tdmfiles, dependent: :destroy
+  default_scope -> {order(updated_at: :desc)}
   before_save { self.email = email.downcase }
   before_create :generate_no
   validates :name,  presence: { message: "請填寫姓名" }, length: { maximum: 50 }

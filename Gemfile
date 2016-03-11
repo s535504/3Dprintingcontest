@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 
+gem 'font-awesome-sass'
+
 gem "animate-rails"
 
 gem 'carrierwave',             '0.10.0'

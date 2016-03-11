@@ -3,46 +3,51 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h5 class="center">總件數：<%= @tdmfiles.count %></h5>
+      <h5 class="center">總件數：<%= @tdmfilecount %></h5>
     </div>
   </div>
 </div>
 <hr>
-<table class="table">
-  <tr style="font-weight: bolder;">
-    <td>作品名稱</td>
-    <td>預覽圖</td>
-    <td>姓名</td>
-    <td>E-mail</td>
-    <td>報名編號</td>
-  </tr>
-  <% image=0 %>
-  <% @tdmfiles.each do |tdmfile| %>
-    <% register=Register.find_by(:id=>tdmfile.register_id) %>
-    <tr>
-      <td><%= link_to tdmfile.igsfile.to_s.rpartition("/").last,tdmfile.igsfile.url %></td>
-      <td>
-        <% image+=1 %>
-        <% if tdmfile.picture1.url!=nil %>
-          <%= link_to (image_tag tdmfile.picture1.url, size:"30x30"),tdmfile.picture1.url,:class => "listener", :id => "#{image}image1", :target =>"_blank" %>
-          <%= image_tag tdmfile.picture1.url,:class => "largeimage", :id => "#{image}image1large" %>
-        <% end %>
-        <% if tdmfile.picture2.url!=nil %>
-          <%= link_to (image_tag tdmfile.picture2.url, size:"30x30"),tdmfile.picture2.url,:class => "listener", :id => "#{image}image2", :target =>"_blank" %>
-          <%= image_tag tdmfile.picture2.url, :class => "largeimage", :id => "#{image}image2large" %>
-        <% end %>
-        <% if tdmfile.picture3.url!=nil %>
-          <%= link_to (image_tag tdmfile.picture3.url, size:"30x30"),tdmfile.picture3.url,:class => "listener", :id => "#{image}image3", :target =>"_blank" %>
-          <%= image_tag tdmfile.picture3.url, :class => "largeimage", :id => "#{image}image3large" %>
-        <% end %>
-      </td>
-      <td><%= register.name %></td>
-      <td><%= register.email %></td>
-      <td><%= register.merchant_trade_no %></td>
+<div class="filetable">
+  <table class="table">
+    <tr style="font-weight: bolder;">
+      <td></td>
+      <td>作品名稱</td>
+      <td>預覽圖</td>
+      <td>姓名</td>
+      <td>E-mail</td>
+      <td>報名編號</td>
     </tr>
-  <% end %>
-</table>
-<p class="sef"></p>
+    <% image=0 %>
+    <% @tdmfiles.each do |tdmfile| %>
+      <% register=Register.find_by(:id=>tdmfile.register_id) %>
+      <% if register.prohibit==false %>
+        <tr>
+          <td><%= link_to "刪除", tdmfile, class:"btn btn-danger btn-xs", method: :delete, data:{confirm:"確定刪除？"} %></td>
+          <td><%= link_to tdmfile.igsfile.to_s.rpartition("/").last,tdmfile.igsfile.url %></td>
+          <td>
+            <% image+=1 %>
+            <% if tdmfile.picture1.url!=nil %>
+              <%= link_to (image_tag tdmfile.picture1.url, size:"30x30"),tdmfile.picture1.url,:class => "listener", :id => "#{image}image1", :target =>"_blank" %>
+              <%= image_tag tdmfile.picture1.url,:class => "largeimage", :id => "#{image}image1large" %>
+            <% end %>
+            <% if tdmfile.picture2.url!=nil %>
+              <%= link_to (image_tag tdmfile.picture2.url, size:"30x30"),tdmfile.picture2.url,:class => "listener", :id => "#{image}image2", :target =>"_blank" %>
+              <%= image_tag tdmfile.picture2.url, :class => "largeimage", :id => "#{image}image2large" %>
+            <% end %>
+            <% if tdmfile.picture3.url!=nil %>
+              <%= link_to (image_tag tdmfile.picture3.url, size:"30x30"),tdmfile.picture3.url,:class => "listener", :id => "#{image}image3", :target =>"_blank" %>
+              <%= image_tag tdmfile.picture3.url, :class => "largeimage", :id => "#{image}image3large" %>
+            <% end %>
+          </td>
+          <td><%= register.name %></td>
+          <td><%= register.email %></td>
+          <td><%= register.merchant_trade_no %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>
 
 <script>
   $('.listener').hover(

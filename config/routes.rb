@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   devise_for :users
   get 'registermanagement' => 'admins#registermanagement'
   get 'filemanagement' => 'admins#filemanagement'
@@ -16,9 +17,14 @@ Rails.application.routes.draw do
   # get  'registers' => 'registers#new'
   # post 'registers' => 'registers#create'
   # get  'confirm'   => 'registers#confirm'
-  resources :transactions, only: :show
+  resources :transactions, only: :index
   resources :registers
   resources :tdmfiles,     only: [:create,:destroy]
+  resources :works
+  resources :displayingwork, only: :update
+  resources :banners, only: [:index,:update]
+
+  get 'prohibit' => 'registers#prohibit'
 
   get 'allpayform' => 'static_pages#allpayform'
 
