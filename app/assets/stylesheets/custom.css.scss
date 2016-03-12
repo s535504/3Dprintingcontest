@@ -163,14 +163,24 @@ html{
     padding: 60px;
     background-color:#272727;
     .footer_text{
-      position: absolute;
+      @media(min-width:768px){
+        position: absolute;
+      }
+      @media(max-width:768px){
+        display:inline-block;
+      }
       text-align:left;
       color:white;
       font-weight:700;
     }
     .footer_img{
+      background:url('Untitled-1.png') no-repeat 50% 50%;
       text-align: center;
-      padding: 70px 0 100px 0;
+      padding: 100px 0 150px 0;
+      @media(max-width:768px){
+        width:80vw;
+        background-size:contain;
+      }
     }
     .footer_img > img{
       content:url('Untitled-1.png');
@@ -182,7 +192,14 @@ html{
       color:white;
     }
     .footer_socialicon{
-      text-align: right;
+      @media(min-width:768px){
+        text-align: right;
+      }
+      @media(max-width:768px){
+        display:inline-block;
+        padding-top:40px;
+        width:120%;
+      }
     }
     .footer_socialicon > a{
       text-decoration:none;
