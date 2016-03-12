@@ -87,6 +87,7 @@ html{
     background: rgba(0,0,0,.5);
   }
   img{
+    position:absolute;
     transition: .5s;
     content:url('logo.png');
     width:250px;height:auto;
@@ -159,9 +160,16 @@ html{
 
 .footer{
   .footer_holder{
+    overflow:hidden;
     line-height:70%;
     padding: 60px;
     background-color:#272727;
+    @media(max-width:768px){
+      padding: 20px;
+    }
+    .footer_upcontainer{
+      padding-top:30px;
+    }
     .footer_text{
       @media(min-width:768px){
         position: absolute;
@@ -178,8 +186,7 @@ html{
       text-align: center;
       padding: 100px 0 150px 0;
       @media(max-width:768px){
-        width:80vw;
-        background-size:contain;
+        width:90vw;
       }
     }
     .footer_img > img{
