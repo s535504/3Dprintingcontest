@@ -112,6 +112,12 @@ html{
         background:white;
       }
     }
+    .navbar-toggle:hover{
+      background:rgba(0,0,0,0);
+    }
+    .navbar-toggle:focus{
+      background:rgba(0,0,0,0);
+    }
   }
 }
 
@@ -168,7 +174,10 @@ html{
       padding: 20px;
     }
     .footer_upcontainer{
-      padding-top:30px;
+      @media(max-width:768px){
+        text-align:center;
+        padding-top:30px;
+      }
     }
     .footer_text{
       @media(min-width:768px){
@@ -202,7 +211,6 @@ html{
       @media(max-width:768px){
         display:inline-block;
         padding-top:40px;
-        width:120%;
       }
     }
     .footer_socialicon > a{
@@ -1244,6 +1252,7 @@ html{
 /* error */
 
 .error{
+  position:absolute;
   padding-top:6px;
   color:red;
   font-weight:bold;
@@ -1261,10 +1270,14 @@ html{
 .declare{
   margin-bottom:200px;
   .declare_declare{
-    margin:0px 0px 50px 20vw;
+    position:relative;
+    margin:0px 0px 50px 0;
     overflow:scroll;
     height:300px;
-    width:60%;
+    @media(min-width:768px){
+      width:60%;
+      left:20%;
+    }
   }
 }
 
