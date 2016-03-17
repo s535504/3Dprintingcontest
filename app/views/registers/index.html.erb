@@ -1,21 +1,21 @@
-<div class="container searchindex">
-  <h3 class="center">報名編號<%= @register.merchant_trade_no %></h3>
+<div class="container searchindex center">
+  <h3>報名編號<%= @register.merchant_trade_no %></h3>
   <hr class="hr">
+  <div class="register_holder">
+    <% if @register.prohibit==true %>
+      <p class="bg-danger">已封鎖</p>
+    <% else %>
+      <% if @register.paystatus==3 %>
+        <p class="bg-success">已付款</p>
+      <% elsif @register.paystatus==1 %>
+        <p class="bg-danger">帳單金額錯誤</p>
+      <% else %>
+        <p class="bg-danger">尚未付款</p>
+      <% end %>
+    <% end %>
+  </div>
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <div class="center" style="width:20vw; font-size:2vw; margin-left:15vw; font-family:Helvetica;">
-        <% if @register.prohibit==true %>
-          <p class="bg-danger">已封鎖</p>
-        <% else %>
-          <% if @register.paystatus==3 %>
-            <p class="bg-success">已付款</p>
-          <% elsif @register.paystatus==1 %>
-            <p class="bg-danger">帳單金額錯誤</p>
-          <% else %>
-            <p class="bg-danger">尚未付款</p>
-          <% end %>
-        <% end %>
-      </div>
       <tbody>
         <table class="table table-hover">
           <tr>
@@ -46,83 +46,184 @@
           <% end %>
         </table>
       </tbody>
-
-      <% if @register.prohibit==false %>
-        <% if @register.paystatus==2 %>
-          <div style="padding-left:40%">
-            <%= form_tag allpayform_path, method: :get do %>
-              <%= hidden_field_tag :register, params[:register],value: @register.email %>
-              <%=submit_tag "付款", name: nil, class: "btn btn-lg btn-success" %>
-            <% end %>
-          </div>
-        <% elsif @register.paystatus==3 %>
-          <% if @transaction.params["PaymentType"]=="Credit_CreditCard" %>
-            <!-- <div style="padding-left:40%">
-              <form action="https://payment.allpay.com.tw/CreditDetail/DoAction" method="post">
-                <% @params.each do |key,value| %>
-                  <input type="text" name="<%= key %>" value="<%= value %>" style="display: none">
-                  <% end %>
-                <input type="submit" value="退刷" class="btn btn-lg btn-success">
-              </form>
-            </div> -->
-          <% end %>
-          <% if @register.tdmfiles.count==0 %>
-            <%= form_for(@tdmfile, html: { multipart: true }) do |f| %>
-              <input type="hidden" name="email" id="email" value="<%= @register.email %>" />
-              <%= f.file_field :igsfile, accept: '.igs' %>
-              <%= f.file_field :picture1, accept: 'image/jpeg,image/png' %>
-              <%= f.file_field :picture2, accept: 'image/jpeg,image/png' %>
-              <%= f.file_field :picture3, accept: 'image/jpeg,image/png' %>
-              <%= f.submit "送出", class: "btn btn-primary", id: "filesubmit" %>
-            <% end %>
-            <script>
-              checkFileSize($('#tdmfile_igsfile'))
-              checkFileSize($('#tdmfile_picture1'))
-              checkFileSize($('#tdmfile_picture2'))
-              checkFileSize($('#tdmfile_picture3'))
-              $('#new_tdmfile').submit(function(){
-                if($('#tdmfile_igsfile').val()!=""){
-                  if(($('#tdmfile_picture1').val()!="") || ($('#tdmfile_picture2').val()!="") || ($('#tdmfile_picture3').val()!="")){return true}
-                }
-                alert('上傳的檔案不完整');
-                return false
-              })
-              function checkFileSize(file){
-                file.bind('change', function(){
-                  var size_in_megabytes = this.files[0].size/1024/1024;
-                  if(file.is('#tdmfile_igsfile')){
-                    if (size_in_megabytes>5){
-                      alert('檔案大小超過5MB，請選擇更小的檔案');
-                      resetFormElement($(this))
-                    }
-                  }
-                  else if(size_in_megabytes>0.8){
-                    alert('圖片超過800KB，請選擇更小的圖片');
-                    resetFormElement($(this))
-                  }
-                })
-              }
-              function resetFormElement(e){
-                e.wrap('<form>').closest('form').get(0).reset();
-                e.unwrap();
-                e.stopPropagation();
-                e.preventDefault();
-              }
-            </script>
-          <% else %>
-            <p>
-              <% if @register.tdmfiles.count!=0 %>
-                <% tdmfile=@register.tdmfiles.first %>
-                <%= tdmfile.igsfile.to_s.rpartition("/").last %>
-                <%= image_tag tdmfile.picture1.url %>
-                <%= image_tag tdmfile.picture2.url %>
-                <%= image_tag tdmfile.picture3.url %>
-              <% end %>
-            </p>
-          <% end %>
-        <% end %>
-      <% end %>
       
     </div>
   </div>
+
+  <% if @register.prohibit==false %>
+    <% if @register.paystatus==2 %>
+      <div>
+        <%= form_tag allpayform_path, method: :get do %>
+          <%= hidden_field_tag :register, params[:register],value: @register.email %>
+          <%=submit_tag "付款", name: nil, class: "btn btn-lg btn-success" %>
+        <% end %>
+      </div>
+    <% elsif @register.paystatus==3 %>
+      <% if @transaction.params["PaymentType"]=="Credit_CreditCard" %>
+        <!-- <div style="padding-left:40%">
+          <form action="https://payment.allpay.com.tw/CreditDetail/DoAction" method="post">
+            <% @params.each do |key,value| %>
+              <input type="text" name="<%= key %>" value="<%= value %>" style="display: none">
+              <% end %>
+            <input type="submit" value="退刷" class="btn btn-lg btn-success">
+          </form>
+        </div> -->
+      <% end %>
+      <% if @register.tdmfiles.count==0 %>
+        <%= form_for(@tdmfile, html: { multipart: true }) do |f| %>
+          <input type="hidden" name="email" id="email" value="<%= @register.email %>" />
+          <input type="hidden" name="name" id="name" value="<%= @register.name %>" />
+          <div class="row igs_holder">
+            <div class="col-xs-12 col-md-12">
+              <%= f.file_field :igsfile, "data-buttonText":'選擇檔案', class:'filestyle', style:"display:inline-block", accept: '.igs' %>
+            </div>
+            <div class="error_holder">
+              <p class="igserror hidden igstype">檔案格式錯誤</p>
+              <p class="igserror hidden igssize">檔案大小超過5MB，請選擇更小的檔案</p>
+            </div>
+          </div>
+          <div class="row picture_holder">
+            <% 3.times do |n| %>
+              <div class="col-xs-4 col-md-4">
+                <div id="picture<%= n+1 %>Preview" class="picturePreview">
+                  <div class="delete_holder">
+                    <div id="picture<%= n+1 %>" class="deleteButton">x</div>
+                  </div>
+                </div>
+                <div style="display: inline-block;">
+                  <%= f.file_field :picture1, id:"picture#{n+1}file", class:"filestyle uploadFile", name:"tdmfile[picture#{n+1}]", "data-input":false, "data-badge":false, "data-buttonText":'選擇圖片', "data-iconName":'glyphicon glyphicon-camera' %>
+                </div>
+                <!-- , accept: 'image/jpeg,image/png' -->
+                <div style="position: absolute;right:30%;">
+                  <p class="pictureerror hidden picture<%= n+1 %>type">檔案格式錯誤</p>
+                </div>
+                <div style="position: absolute;">
+                  <p class="pictureerror hidden picture<%= n+1 %>size">檔案大小超過5MB，請選擇更小的檔案</p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <div>
+            <%= f.submit "確定並上傳", class: "btn btn-primary btn-lg", id: "filesubmit" %>
+          </div>
+        <% end %>
+        
+        <script>
+          function pictureDelete(id){
+            $('#'+id+'Preview').css("background-image","url()");
+            $('#'+id+"file").filestyle('clear');
+            $('#'+id).css('display','none');
+          }
+          $('.deleteButton').click(function(){
+            var id=$(this).attr('id')
+            pictureDelete(id)
+          })
+          $('#tdmfile_igsfile').on("change",function(){
+            if($(this).val()==""){
+              $(this).filestyle('clear');
+            }
+          })
+          $('.uploadFile').on("change",function(){
+            var size_in_megabytes = this.files[0].size/1024/1024;
+            var n;
+            if ($(this).is("#picture1file")){n="picture1"}
+            if ($(this).is("#picture2file")){n="picture2"}
+            if ($(this).is("#picture3file")){n="picture3"}
+            if($('#'+n+'file').val()==""){
+              pictureDelete(n)
+            }
+            else{
+              if(size_in_megabytes>0.8){
+                pictureDelete(n)
+                $('.'+n+'type').addClass('hidden');
+                $('.'+n+'size').removeClass('hidden');
+              }
+            }
+          })
+          checkFileSize($('#tdmfile_igsfile'))
+          checkFileSize($('#picture1file'))
+          checkFileSize($('#picture2file'))
+          checkFileSize($('#picture3file'))
+          $('#new_tdmfile').submit(function(){
+            if($('#tdmfile_igsfile').val()!=""){
+              if(($('#picture1file').val()!="") || ($('#picture2file').val()!="") || ($('#picture3file').val()!="")){return true}
+            }
+            alert('上傳的檔案不完整');
+            return false
+          })
+          function checkFileSize(file){
+            file.bind('change', function(){
+              var size_in_megabytes = this.files[0].size/1024/1024;
+              var ext=file.val().split('.').pop().toLowerCase();
+              if(file.is('#tdmfile_igsfile')){
+                if($.inArray(ext,['igs'])==-1){
+                  $('.igstype').removeClass('hidden');
+                  $('#tdmfile_igsfile').filestyle('clear');
+                  resetFormElement($(this))
+                }
+                else{
+                  if (size_in_megabytes>5){
+                    $('.igssize').removeClass('hidden');
+                    $('#tdmfile_igsfile').filestyle('clear');
+                    resetFormElement($(this))
+                  }
+                  else{
+                    $('.igstype').addClass('hidden');
+                    $('.igssize').addClass('hidden');
+                  }
+                }
+              }
+              else{
+                var n;
+                if (file.is("#picture1file")){n="picture1"}
+                if (file.is("#picture2file")){n="picture2"}
+                if (file.is("#picture3file")){n="picture3"}
+                if($.inArray(ext,['png','jpg','jpeg'])==-1){
+                  $('.'+n+'type').removeClass('hidden');
+                  $('.'+n+'size').addClass('hidden');
+                  pictureDelete(n)
+                  resetFormElement($(this))
+                }
+                else{
+                  if(size_in_megabytes>0.8){
+                    resetFormElement($(this))
+                  }
+                  else{
+                    $('.'+n+'type').addClass('hidden');
+                    $('.'+n+'size').addClass('hidden');
+                    $('#'+n).css('display','inline-block');
+                    var files = !!this.files ? this.files : [];
+                    if (!files.length || !window.FileReader) return;
+                    if (/^image/.test( files[0].type)){
+                      var reader = new FileReader();
+                      reader.readAsDataURL(files[0]);
+                      reader.onloadend = function(){
+                        $("#"+n+"Preview").css("background-image", "url("+this.result+")");
+                      }
+                    }
+                  }
+                }
+              }
+            })
+          }
+          function resetFormElement(e){
+            e.wrap('<form>').closest('form').get(0).reset();
+            e.unwrap();
+            e.stopPropagation();
+            e.preventDefault();
+          }
+        </script>
+      <% else %>
+        <p>
+          <% if @register.tdmfiles.count!=0 %>
+            <% tdmfile=@register.tdmfiles.first %>
+            <%= tdmfile.igsfile.to_s.rpartition("/").last %>
+            <%= image_tag tdmfile.picture1.url %>
+            <%= image_tag tdmfile.picture2.url %>
+            <%= image_tag tdmfile.picture3.url %>
+          <% end %>
+        </p>
+      <% end %>
+    <% end %>
+  <% end %>
 </div>

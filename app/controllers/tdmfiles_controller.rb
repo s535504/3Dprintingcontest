@@ -1,14 +1,14 @@
 class TdmfilesController < ApplicationController
 
   def create
-    if params[:email]!=nil
-      @register=Register.find_by(email:params[:email])
+    if params[:email]!=nil && params[:name]!=nil
+      @register=Register.find_by(email:params[:email],name:params[:name])
     else
       redirect_to root_url
     end
     if @register.paystatus==3 && params[:tdmfile]!=nil && !@register.tdmfiles.any? && @register.prohibit==false
       tdm=params[:tdmfile]
-      if tdm['picture1']!=nil || tdm['picture2']!=nil || tdm['picture3']!=nil
+      if tdm['igsfile']!=nil && (tdm['picture1']!=nil || tdm['picture2']!=nil || tdm['picture3']!=nil)
         @tdmfile = @register.tdmfiles.build(tdmfile_params)
         @tdmfile.save
       end

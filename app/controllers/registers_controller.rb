@@ -4,7 +4,7 @@ class RegistersController < ApplicationController
 
   def index
     if params[:search] == "" || params[:n] == ""
-      # redirect_to search_path
+      redirect_to search_path
       flash[:danger]="請輸入完整資料"
     else
       if Register.find_by(email: params[:search],name: params[:n]) == nil
@@ -36,7 +36,7 @@ class RegistersController < ApplicationController
     @register = Register.new(register_params)
     if @register.save
       @register.transactions.create
-      Mail.deliver(from:'LINE DDD',to:@register.email,subject:"報名成功-LINE DDD 3D列印競賽",body:"您已成功報名LINE DDD主辦3D列印競賽")
+      # Mail.deliver(from:'LINE DDD',to:@register.email,subject:"報名成功-LINE DDD 3D列印競賽",body:"您已成功報名LINE DDD主辦3D列印競賽")
       render 'confirm'
     else
       render 'new'

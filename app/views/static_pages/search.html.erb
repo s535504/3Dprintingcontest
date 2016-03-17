@@ -10,7 +10,9 @@
         <%= label :n,"請輸入姓名" %>
         <%= text_field_tag :n, params[:n], placeholder:"姓名", class: 'form-control' %>
         <br>
-        <%=submit_tag "查詢", name: nil, class: "btn btn-lg btn-success" %>
+        <div class="center">
+          <%=submit_tag "查詢", name: nil, class: "btn btn-lg btn-success" %>
+        </div>
       <% end %>
     </div>
   </div>

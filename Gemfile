@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 
+gem 'bootstrap-filestyle-rails'
+
 gem 'font-awesome-sass'
 
 gem "animate-rails"
