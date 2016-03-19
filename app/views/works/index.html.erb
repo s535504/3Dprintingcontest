@@ -2,8 +2,8 @@
 <br>
 <p>前台在不同視窗寬度下的排列方式</p>
 <p>白底為可上架之區域</p>
-<p>若要上架作品</p>
-<p>請先新增待上架作品</p>
+<p>分別為欄位1~6</p>
+<p>若要上架作品，請先新增待上架作品</p>
 <p>再於欄位中輸入欲上架作品之作品編號</p>
 <img src="assets/workdemo<768.png">
 <img src="assets/workdemo>768<992.png">
@@ -28,6 +28,9 @@
       <% end %>
     </div>
     <div class="col-md-3"></div>
+    <br>
+    <br>
+    <br>
     <div class="col-md-3">
       <%= form_for(@work, html:{multipart: true}) do |f| %>
         <%= f.file_field :picture %>

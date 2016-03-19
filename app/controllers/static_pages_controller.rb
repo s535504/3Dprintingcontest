@@ -23,7 +23,7 @@ class StaticPagesController < ApplicationController
       trans.update!(params: request.POST)
       register=Register.find_by(id:trans.register_id)
       if trans.params['RtnCode']=="1"
-        if trans.params['TradeAmt']=="300"
+        if trans.params['TradeAmt']=="500"
           Mail.deliver(from:'LINE DDD',to:register.email,subject:"繳費成功-LINE DDD 3D列印競賽",body:"您已於歐付寶成功支付LINE DDD主辦3D列印競賽報名費用")
           register.update_attributes(paystatus:3)
         else
@@ -54,8 +54,8 @@ class StaticPagesController < ApplicationController
     @params['MerchantTradeNo']=register.transactions.create!.trade_number
     @params['PaymentType']="aio"
     @params['ReturnURL']="http://tdpcontest.herokuapp.com/notify"
-    @params['TotalAmount']="1"
-    @params['TradeDesc']="報名費300"
+    @params['TotalAmount']="500"
+    @params['TradeDesc']="報名費500"
     param=create_mac
     @params['CheckMacValue']=param
   end
