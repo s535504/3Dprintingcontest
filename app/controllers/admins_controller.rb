@@ -51,9 +51,15 @@ class AdminsController < ApplicationController
     @unpaidamount=0
     @erroramount=0
     @errprprofit=0
+    @effectiveamount=0
+    @prohibitamount=0
     @registers.each do |register|
+      if register.prohibit==true
+        @prohibitamount+=1
+      end
       if register.paystatus==3
         @paidamount+=1
+        @effectiveamount+=1
       elsif register.paystatus==1
         @paidamount+=1
         @erroramount+=1
@@ -69,8 +75,8 @@ class AdminsController < ApplicationController
     @tdmfiles=Tdmfile.all
     @tdmfilecount=0;
     @tdmfiles.each do |tdmfile|
-      if Register.find_by(id:tdmfile.register_id)==false
-        @tdmfiles+=1;
+      if Register.find_by(id:tdmfile.register_id).prohibit==false
+        @tdmfilecount+=1;
       end
     end
   end

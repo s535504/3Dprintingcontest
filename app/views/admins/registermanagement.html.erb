@@ -5,6 +5,7 @@
     <div class="col-md-4">
       <h5 class="center">總報名人數：<%= @registers.count %></h5>
       <h5 class="center">今日報名人數：<%= @todayregister %></h5>
+      <h5 class="center">封鎖人數：<%= @prohibitamount %></h5>
     </div>
     <div class="col-md-4">
       <h5 class="center">已繳費：<%= @paidamount %></h5>
@@ -12,8 +13,8 @@
       <h5 class="center">金額錯誤：<%= @erroramount %></h5>
     </div>
     <div class="col-md-4">
-      <h5 class="center">總獲利：<%= @paidamount*300+@errprprofit %></h5>
-      <h5 class="center">有效獲利：<%= @paidamount*300 %></h5>
+      <h5 class="center">總獲利：<%= @effectiveamount*300+@errprprofit %></h5>
+      <h5 class="center">有效獲利：<%= @effectiveamount*300 %></h5>
       <h5 class="center">錯誤金額：<%= @errprprofit %></h5>
     </div>
   </div>

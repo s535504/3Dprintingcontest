@@ -69,13 +69,20 @@
           </form>
         </div> -->
       <% end %>
-      <% if @register.tdmfiles.count==0 %>
+      <% if hasTdmfile?(@register) %>
+        <div style="padding: 50px 0;">
+          <h3>檔案上傳說明<i class="fa fa-file"></i></h3>
+          <br>
+          <h4>3D列印設計圖上傳限IGS檔</h4>
+          <h4>請以作品名稱命名欲上傳之3D列印設計圖檔  <small>例：”恐龍骨架模型.igs“</small></h4>
+          <h4>並至少上傳最少一張，最多三張之該模型照片</h4>
+        </div>
         <%= form_for(@tdmfile, html: { multipart: true }) do |f| %>
           <input type="hidden" name="email" id="email" value="<%= @register.email %>" />
           <input type="hidden" name="name" id="name" value="<%= @register.name %>" />
           <div class="row igs_holder">
             <div class="col-xs-12 col-md-12">
-              <%= f.file_field :igsfile, "data-buttonText":'選擇檔案', class:'filestyle', style:"display:inline-block", accept: '.igs' %>
+              <%= f.file_field :igsfile, "data-buttonText":'選擇檔案', "data-placeholder":'IGS', class:'filestyle', style:"display:inline-block", accept: '.igs' %>
             </div>
             <div class="error_holder">
               <p class="igserror hidden igstype">檔案格式錯誤</p>
@@ -87,13 +94,12 @@
               <div class="col-xs-4 col-md-4">
                 <div id="picture<%= n+1 %>Preview" class="picturePreview">
                   <div class="delete_holder">
-                    <div id="picture<%= n+1 %>" class="deleteButton">x</div>
+                    <div id="picture<%= n+1 %>" class="deleteButton">×</div>
                   </div>
                 </div>
                 <div style="display: inline-block;">
-                  <%= f.file_field :picture1, id:"picture#{n+1}file", class:"filestyle uploadFile", name:"tdmfile[picture#{n+1}]", "data-input":false, "data-badge":false, "data-buttonText":'選擇圖片', "data-iconName":'glyphicon glyphicon-camera' %>
+                  <%= f.file_field :picture1, id:"picture#{n+1}file", class:"filestyle uploadFile", name:"tdmfile[picture#{n+1}]", "data-input":false, "data-badge":false, "data-buttonText":'選擇圖片', "data-iconName":'glyphicon glyphicon-camera', accept: 'image/jpeg,image/png' %>
                 </div>
-                <!-- , accept: 'image/jpeg,image/png' -->
                 <div style="position: absolute;right:30%;">
                   <p class="pictureerror hidden picture<%= n+1 %>type">檔案格式錯誤</p>
                 </div>
@@ -214,15 +220,20 @@
           }
         </script>
       <% else %>
-        <p>
-          <% if @register.tdmfiles.count!=0 %>
-            <% tdmfile=@register.tdmfiles.first %>
-            <%= tdmfile.igsfile.to_s.rpartition("/").last %>
-            <%= image_tag tdmfile.picture1.url %>
-            <%= image_tag tdmfile.picture2.url %>
-            <%= image_tag tdmfile.picture3.url %>
-          <% end %>
-        </p>
+        <div style="padding: 20px 0;">
+          <h3>上傳完成</h3>
+          <% tdmfile=@register.tdmfiles.first %>
+          <%= tdmfile.igsfile.to_s.rpartition("/").last %>
+        </div>
+        <% if tdmfile.picture1.url!=nil %>
+          <div class="picturePreview" style="background-image: url('<%= @register.tdmfiles.first.picture1.url %>');"></div>
+        <% end %>
+        <% if tdmfile.picture2.url!=nil %>
+          <div class="picturePreview" style="background-image: url('<%= @register.tdmfiles.first.picture2.url %>');"></div>
+        <% end %>
+        <% if tdmfile.picture3.url!=nil %>
+          <div class="picturePreview" style="background-image: url('<%= @register.tdmfiles.first.picture3.url %>');"></div>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>
