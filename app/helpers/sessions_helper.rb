@@ -5,7 +5,7 @@ module SessionsHelper
   end
 
   def seletedlanguage(la)
-    session[:language]=la
+    cookies.permanent[:language]=la
   end
 
   def language
