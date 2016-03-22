@@ -1,7 +1,7 @@
 module SessionsHelper
 
   def have_language?
-    !session[:language].nil?
+    !cookies[:language].nil?
   end
 
   def seletedlanguage(la)
@@ -9,7 +9,7 @@ module SessionsHelper
   end
 
   def language
-    session[:language]
+    cookies[:language]
   end
 
   def redirect_back_to(default)
