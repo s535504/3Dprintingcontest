@@ -43,14 +43,28 @@
       <i class="fa fa-cc-mastercard"></i>
       <i class="fa fa-cc-jcb"></i>
     </div>
+    <div style="padding:50px;right:0;px;color:white;position:relative;">
+      <%= form_for(:session,url:language_path) do |f| %>
+        <%= f.hidden_field :language, value:"en" %>
+        <%= f.submit "English", id:"enbutton", style:"background:none; border:0;outline:0;right:140px;position:absolute;" %>
+      <% end %>
+      <%= form_for(:session,url:language_path) do |f| %>
+        <%= f.hidden_field :language, value:"sc" %>
+        <%= f.submit "简体中文", id:"scbutton",style:"background:none; border:0;outline:0;right:70px;position:absolute;" %>
+      <% end %>
+      <%= form_for(:session,url:language_path) do |f| %>
+        <%= f.hidden_field :language, value:"tc" %>
+        <%= f.submit "繁體中文", id:"tcbutton",style:"background:none; border:0;outline:0;right:0;position:absolute;" %>
+      <% end %>
+    </div>
   </div>
     
 </footer>
-<!-- 
+
 <script type="text/javascript">
   <%if !isHome? %>
     $(window).bind('scroll',function(){
       $('.navbar-default').addClass('on');
     })
   <% end %>
-</script> -->
+</script>

@@ -4,8 +4,16 @@
       <div class="thumbnail">
         <img src="<%= @work.picture %>" data-src="holder.js/100%x180"/>
         <div class="center">
-          <h3>作品名稱 ： <%= @work.workname %></h3>
-          <p>參賽者 ： <%= @work.name %></p>
+          <% if language=='en' %>
+            <h3>Title ： <%= @work.workname %></h3>
+            <p>Contestants ： <%= @work.name %></p>
+          <% elsif language=='sc' %>
+            <h3>作品名称 ： <%= @work.workname %></h3>
+            <p>参赛者 ： <%= @work.name %></p>
+          <% else %>
+            <h3>作品名稱 ： <%= @work.workname %></h3>
+            <p>參賽者 ： <%= @work.name %></p>
+          <% end %>
           <br>
           <div id="fb-root"></div>
           <script>(function(d, s, id) {

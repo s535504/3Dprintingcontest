@@ -1,17 +1,45 @@
 <div class="container search">
-  <h3 class="center">報名查詢</h3>
+  <h3 class="center">
+    <% if language=='en' %>
+      Checking Registration
+    <% elsif language=='sc' %>
+      报名查询
+    <% else %>
+      報名查詢
+    <% end %>
+  </h3>
   <hr class="hr">
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
 
       <%= form_tag registers_path,method: :get do %>
-        <%= label :search,"請輸入E-mail" %>
+        <% if language=='en' %>
+          <%= label :search,"Please enter E-mail" %>
+        <% elsif language=='sc' %>
+          <%= label :search,"请输入E-mail" %>
+        <% else %>
+          <%= label :search,"請輸入E-mail" %>
+        <% end %>
         <%= text_field_tag :search, params[:search], placeholder:"E-mail", class: 'form-control' %>
-        <%= label :n,"請輸入姓名" %>
-        <%= text_field_tag :n, params[:n], placeholder:"姓名", class: 'form-control' %>
+        <% if language=='en' %>
+          <%= label :search,"Please enter Name" %>
+          <%= text_field_tag :n, params[:n], placeholder:"Name", class: 'form-control' %>
+        <% elsif language=='sc' %>
+          <%= label :n,"请输入姓名" %>
+          <%= text_field_tag :n, params[:n], placeholder:"姓名", class: 'form-control' %>
+        <% else %>
+          <%= label :n,"請輸入姓名" %>
+          <%= text_field_tag :n, params[:n], placeholder:"姓名", class: 'form-control' %>
+        <% end %>
         <br>
         <div class="center">
-          <%=submit_tag "查詢", name: nil, class: "btn btn-lg btn-success" %>
+          <% if language=='en' %>
+            <%=submit_tag "CHECK", name: nil, class: "btn btn-lg btn-success" %>
+          <% elsif language=='sc' %>
+            <%=submit_tag "查询", name: nil, class: "btn btn-lg btn-success" %>
+          <% else %>
+            <%=submit_tag "查詢", name: nil, class: "btn btn-lg btn-success" %>
+          <% end %>
         </div>
       <% end %>
     </div>

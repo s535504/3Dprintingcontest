@@ -1,6 +1,7 @@
 class RegistersController < ApplicationController
 
   before_action :authenticate_user!, only:[:prohibit]
+  before_action :check_language
 
   def index
     if params[:search] == "" || params[:n] == ""

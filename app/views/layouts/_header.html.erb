@@ -21,8 +21,24 @@
 
       <div class="collapse navbar-collapse clearfix navMenu" id="bs-example-navbar-collapse-1" role="navigation" aria-expanded="true">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="declare">現在報名！</a></li>
-          <li><a href="search">報名查詢</a></li>
+          <li><a href="/declare">
+            <% if language=='en' %>
+              Register Now
+            <% elsif language=='sc' %>
+              现在报名！
+            <% else %>
+              現在報名！
+            <% end %>
+          </a></li>
+          <li><a href="/search">
+            <% if language=='en' %>
+              Checking Registration
+            <% elsif language=='sc' %>
+              报名查询
+            <% else %>
+              報名查詢
+            <% end %>
+          </a></li>
           <% if current_user %>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">

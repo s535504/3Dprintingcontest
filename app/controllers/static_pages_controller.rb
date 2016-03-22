@@ -1,6 +1,7 @@
 class StaticPagesController < ApplicationController
 
   skip_before_action :verify_authenticity_token, only: [:notify]
+  before_action :check_language
   
   def home
     @works=Displayingwork.first.works.all

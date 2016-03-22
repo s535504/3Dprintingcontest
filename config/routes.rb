@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
 
+  get   'language' => 'sessions#new'
+  post  'language' => 'sessions#create'
+
   devise_for :users
   get 'registermanagement' => 'admins#registermanagement'
   get 'filemanagement' => 'admins#filemanagement'
@@ -11,6 +14,14 @@ Rails.application.routes.draw do
   get  'declare'   => 'static_pages#declare'
   get  'search'    => 'static_pages#search'
   get  'form'      => 'static_pages#form'
+
+  get 'prohibit' => 'registers#prohibit'
+
+  get 'allpayform' => 'static_pages#allpayform'
+
+  post 'notify', to: 'static_pages#notify', as: 'notify'
+
+  get "static_pages/check_email", :controller => "static_pages", :action => "check_email"
   # get  'search'    => 'registers#search'
   # post 'search'    => 'registers#searched'
   # get  'show'      => 'registers#show'
@@ -20,17 +31,9 @@ Rails.application.routes.draw do
   resources :transactions, only: :index
   resources :registers
   resources :tdmfiles,     only: [:create,:destroy]
-  resources :works
+  resources :works,        only: [:index,:show,:create,:destroy]
   resources :displayingwork, only: :update
   resources :banners, only: [:index,:update]
-
-  get 'prohibit' => 'registers#prohibit'
-
-  get 'allpayform' => 'static_pages#allpayform'
-
-  post 'notify', to: 'static_pages#notify', as: 'notify'
-
-  get "static_pages/check_email", :controller => "static_pages", :action => "check_email"
 
 
   # The priority is based upon order of creation: first created -> highest priority.
