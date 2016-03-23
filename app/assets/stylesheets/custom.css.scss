@@ -72,6 +72,27 @@ html{
   -webkit-font-smoothing: antialiased;
 }
 
+/* language */
+
+.language{
+  background: url('IMAG01.jpg') no-repeat fixed 50% 50%;
+  background-size:cover;
+  color: white;
+  margin-top: -100px;
+  overflow: hidden;
+  .language_holder{
+    top:250px;
+    position: relative;
+    height:700px;
+    width: 100vw;
+    .languagebutton{
+      font-size:30px;
+      text-decoration:none;
+      color:white;
+    }
+  }
+}
+
 /* header */
 
 .navbar-default{
@@ -393,38 +414,53 @@ html{
   position: relative;
   color:red;
   .d1{
-    position: absolute;
+    position: relative;
     transition: .5s;
-    top:300px;
-    left:100px;
   }
   .d2{
-    position: absolute;
+    position: relative;
     transition: .5s;
-    top:300px;
-    left:500px;
   }
   .d3{
-    position: absolute;
+    position: relative;
     transition: .5s;
-    left:300px;
   }
+  .d1:hover::after{
+    content:"esign";
+    left:-20px;
+    position:absolute;
+  }
+  a{
+    position: absolute;
+    display: inline-block;
+    outline: none;
+    text-decoration: none;
+    color: #000;
+    font-size: 32px;
+    padding: 5px 10px;
+  }
+  a:before { position: absolute;content: "\5B";opacity:0;left:0; transition: .5s;}
+  a:after { position: absolute;content: "\5D";opacity:0;right:0; transition: .5s;}
+  a:hover::before { content: "\5B"; left: -20px;opacity:1; }
+  a:hover::after { content: "\5D"; right: -20px;opacity:1; }
 }
 
 .purpose:hover{
   .d1{
-    top:200px;
-    left:200px;
-    -webkit-transform:matrix(1.0,0.5,0.0,1.0,10,-30);
+    position:absolute;
+    -webkit-transform:matrix(1.1,0.6,-0.9,0.4,5,10);
   }
   .d2{
+    position:absolute;
     top:200px;
     left:400px;
-    -webkit-transform:matrix(1.0,-0.5,0.0,1.0,0,0);
+    -webkit-transform:matrix(1.0,0.5,0.0,1.0,10,-30);
   }
   .d3{
-    left:300px;
-    -webkit-transform:matrix(1.1,0.6,-0.9,0.4,5,10);
+    position:absolute;
+    top:200px;
+    left:200px;
+    -webkit-transform:matrix(1.0,-0.5,0.0,1.0,0,0);
   }
 }
 
