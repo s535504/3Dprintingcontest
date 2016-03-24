@@ -1,6 +1,6 @@
 <div class="jumbotron" style="margin-top: -80px;" id="add_image">
   <div class="container-fluid">
-    <div style="width:20vw; height:91vh;"></div>
+    <div style="width:20vw; height:91vh;"><%= @lan %></div>
   </div>
 </div>
 
@@ -421,6 +421,9 @@
 </div>
 
 <script>
+  $(document).ready(function(){
+  if(Locale.getDefault().getLanguage().contentEquals("en")){alert('english')}
+  else{alert('chinese')}})
   $(window).bind('scroll',function(){
     var navheight=$(window).height()-70;
     var introtop=$(window).height()-200;

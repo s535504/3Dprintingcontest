@@ -124,6 +124,9 @@ html{
     padding-top:60px;
     padding-right:20px;
   }
+  .open .dropdown-menu{
+    background-color:white;
+  }
   @media(max-width:768px){
     .navbar-toggle{
       transition: .5s;
