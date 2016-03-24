@@ -25,5 +25,6 @@ module TDPContest
     config.active_record.raise_in_transactional_callbacks = true
     config.assets.paths << Rails.root.join("app","assets","fonts")
     I18n.config.available_locales = :zh
+    I18n.config.available_locales = :en
   end
 end
