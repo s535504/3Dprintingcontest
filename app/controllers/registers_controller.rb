@@ -15,14 +15,14 @@ class RegistersController < ApplicationController
         @register = Register.find_by(email: params[:search],name: params[:n])
         @transaction = @register.transactions.find_by("params -> 'RtnCode' = '1' OR params -> 'TradeStatus' = '1'")
         if @register.paystatus==3 && @transaction.params['PaymentType']=="Credit_CreditCard"
-          @params = {}
-          @params['MerchantID']=ENV['MERCHANT_ID']
-          @params['MerchantTradeNo']=@transaction.params["MerchantTradeNo"]
-          @params['TradeNo']=@transaction.params["TradeNo"]
-          @params['Action']="R"
-          @params['TotalAmount']=@transaction.params["TradeAmt"]
-          param=create_mac
-          @params['CheckMacValue']=param
+          # @params = {}
+          # @params['MerchantID']=ENV['MERCHANT_ID']
+          # @params['MerchantTradeNo']=@transaction.params["MerchantTradeNo"]
+          # @params['TradeNo']=@transaction.params["TradeNo"]
+          # @params['Action']="R"
+          # @params['TotalAmount']=@transaction.params["TradeAmt"]
+          # param=create_mac
+          # @params['CheckMacValue']=param
           @tdmfile=@register.tdmfiles.build
         end
       end
