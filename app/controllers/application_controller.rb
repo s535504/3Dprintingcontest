@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     if cookies[:language]=='zh-TW' || cookies[:language]=='zh-CN' || cookies[:language]=='en' 
-      I18n.locale = cookies[:language]extract_locale_from_accept_language_header
+      I18n.locale = cookies[:language]
     else
       I18n.locale = extract_locale_from_accept_language_header
     end
