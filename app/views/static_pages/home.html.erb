@@ -89,15 +89,7 @@
   <div class="container-fluid">
     <div class="workbg1">
       <div class="bg_holder">
-        <h1>
-          <% if language=='en' %>
-            WORKS
-          <% elsif language=='sc' %>
-            作品
-          <% else %>
-            作品
-          <% end %>
-        </h1>
+        <h1><%= t("作品") %></h1>
       </div>
     </div>
 
@@ -166,13 +158,7 @@
     <div class="row">
       <div class="col-xs-12 col-md-12 title">
         <img src="assets/laurelleft.png"/>
-          <% if language=='en' %>
-            SPONSORS
-          <% elsif language=='sc' %>
-            赞助
-          <% else %>
-            贊助
-          <% end %>
+          <%= t("贊助") %>
         <img src="assets/laurelright.png"/>
       </div>
     </div>
@@ -248,27 +234,10 @@
     <div class="bg-overlay pattern"></div>
     <div data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" role="tab" id="headingOne">
       <div class="default-text">
-        <h1 class="center">
-          <% if language=='en' %>
-            HAVE ANY QUESTIONS?
-          <% elsif language=='sc' %>
-            有任何疑问吗?
-          <% else %>
-            有任何疑問嗎？
-          <% end %>
-        </h1>
+        <h1 class="center"><%= t("有任何疑問嗎？") %></h1>
       </div>
       <div class="hover-text" id="hover-text-trigger">
-        <h1 class="center">
-          <% if language=='en' %>
-            CONTACT US 
-          <% elsif language=='sc' %>
-            联系我们 
-          <% else %>
-            聯絡我們 
-          <% end %>
-          <span class="glyphicon glyphicon-envelope"></span>
-        </h1>
+        <h1 class="center"><%= t("聯絡我們") %> <span class="glyphicon glyphicon-envelope"></span></h1>
       </div>
     </div>
     <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
@@ -279,13 +248,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <%= label :name, "姓名", class: "control-label sr-only" %>
-                  <% if language=='en' %>
-                    <%= text_field_tag :name, params[:name], placeholder:"Name", class: "form-control input-lg" %>
-                  <% elsif language=='sc' %>
-                    <%= text_field_tag :name, params[:name], placeholder:"名称", class: "form-control input-lg" %>
-                  <% else %>
-                    <%= text_field_tag :name, params[:name], placeholder:"姓名", class: "form-control input-lg" %>
-                  <% end %>
+                  <%= text_field_tag :name, params[:name], placeholder: t("姓名"), class: "form-control input-lg" %>
                 </div>
               </div>
               <div class="col-md-6">
@@ -299,32 +262,14 @@
               <div class="col-md-12" style="text-align: center;">
                 <div class="form-group">
                   <%= label :name, "主旨", class: "control-label sr-only" %>
-                  <% if language=='en' %>
-                    <%= text_field_tag :name, params[:name], placeholder:"Subject", class: "form-control input-lg" %>
-                  <% elsif language=='sc' %>
-                    <%= text_field_tag :name, params[:name], placeholder:"主旨", class: "form-control input-lg" %>
-                  <% else %>
-                    <%= text_field_tag :name, params[:name], placeholder:"主旨", class: "form-control input-lg" %>
-                  <% end %>
+                  <%= text_field_tag :name, params[:name], placeholder: t("主旨"), class: "form-control input-lg" %>
                 </div>
                  <div class="form-group">
                   <%= label :name, "訊息", class: "control-label sr-only" %>
-                  <% if language=='en' %>
-                    <%= text_area_tag :name, params[:name], placeholder:"Message", class: "form-control input-lg", rows:7 %>
-                  <% elsif language=='sc' %>
-                    <%= text_area_tag :name, params[:name], placeholder:"讯息", class: "form-control input-lg", rows:7 %>
-                  <% else %>
-                    <%= text_area_tag :name, params[:name], placeholder:"訊息", class: "form-control input-lg", rows:7 %>
-                  <% end %>
+                  <%= text_area_tag :name, params[:name], placeholder: t("訊息"), class: "form-control input-lg", rows:7 %>
                 </div>
                 <div class="form-group">
-                  <% if language=='en' %>
-                    <%= button_tag "Submit", class: "btn btn-lg btn-default", id: "emailsubmit", style:"" %>
-                  <% elsif language=='sc' %>
-                    <%= button_tag "提交", class: "btn btn-lg btn-default", id: "emailsubmit", style:"" %>
-                  <% else %>
-                    <%= button_tag "送出", class: "btn btn-lg btn-default", id: "emailsubmit", style:"" %>
-                  <% end %>
+                  <%= button_tag t("送出"), class: "btn btn-lg btn-default", id: "emailsubmit", style:"" %>
                 </div>
               </div>
             </div>
@@ -336,9 +281,6 @@
 </div>
 
 <script>
-  $(document).ready(function(){
-  if(Locale.getDefault().getLanguage().contentEquals("en")){alert('english')}
-  else{alert('chinese')}})
   $(window).bind('scroll',function(){
     var navheight=$(window).height()-70;
     var introtop=$(window).height()-200;

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale, except: :notify
 
   def set_locale
-    I18n.locale = extract_locale_from_accept_language_header
+    I18n.locale = cookies[:language] || extract_locale_from_accept_language_header
     @lan=I18n.locale
   end
 
@@ -21,13 +21,6 @@ class ApplicationController < ActionController::Base
         else
           return 'en'
         end
-      end
-    end
-
-    def check_language
-      unless have_language?
-        store_location
-        redirect_to language_url
       end
     end
 end

@@ -1,98 +1,32 @@
 <div class="container form">
-  <h3 class="center">
-    <% if language=='en' %>
-      Registeration
-    <% elsif language=='sc' %>
-      线上报名
-    <% else %>
-      線上報名
-    <% end %>
-  </h3>
+  <h3 class="center"><%= t("線上報名") %></h3>
   <hr class="hr">
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
 
       <%= form_tag new_register_path,method: :get, :id => 'new_register' do %>
         <div style="display:inline-block;">
-          <% if language=='en' %>
-            <%= label :n, "Full Name" %>
-          <% elsif language=='sc' %>
-            <%= label :n, "报名者姓名" %>
-          <% else %>
-            <%= label :n, "報名者姓名" %>
-          <% end %>
+          <%= label :n, t("報名者姓名") %>
         </div>
         <div class="error">
           <p class="namehide hidden nameok">&nbsp;&nbsp;<i class="fa fa-check"></i></p>
-          <p class="namehide hidden nameblank"><strong>&nbsp;&nbsp;
-            <% if language=='en' %>
-              Please enter name
-            <% elsif language=='sc' %>
-              请输入姓名
-            <% else %>
-              請輸入姓名
-            <% end %>
-          </strong></p>
+          <p class="namehide hidden nameblank"><strong>&nbsp;&nbsp;<%= t("請輸入姓名") %></strong></p>
         </div>
-        <% if language=='en' %>
-          <%= text_field_tag :n, params[:n], placeholder:"Name", class: 'form-control' %>
-        <% elsif language=='sc' %>
-          <%= text_field_tag :n, params[:n], placeholder:"名称", class: 'form-control' %>
-        <% else %>
-          <%= text_field_tag :n, params[:n], placeholder:"姓名", class: 'form-control' %>
-        <% end %>
+        <%= text_field_tag :n, params[:n], placeholder: t("姓名"), class: 'form-control' %>
         <div style="display:inline-block;">
           <%= label :email, "E-mail" %>
         </div>
         <div class="error">
           <p class="emailhide hidden emailok">&nbsp;&nbsp;<i class="fa fa-check"></i></p>
-          <p class="emailhide hidden emailblank">&nbsp;&nbsp;
-            <% if language=='en' %>
-              Please enter a E-mail
-            <% elsif language=='sc' %>
-              请输入E-mail
-            <% else %>
-              請輸入E-mail
-            <% end %>
-          </p>
-          <p class="emailhide hidden emailmatch">&nbsp;&nbsp;
-            <% if language=='en' %>
-              Please enter a valid E-mail
-            <% elsif language=='sc' %>
-              请输入一个有效的E-mail
-            <% else %>
-              請輸入一個有效的E-mail
-            <% end %>
-          </p>
-          <p class="emailhide hidden emailchecking">&nbsp;&nbsp;<img src="/assets/loader.gif" />
-            <% if language=='en' %>
-              Validating...
-            <% elsif language=='sc' %>
-              验证中...
-            <% else %>
-              驗證中...
-            <% end %>
-          </p>
-          <p class="emailhide hidden emailused">&nbsp;&nbsp;
-            <% if language=='en' %>
-              This email is already registered
-            <% elsif language=='sc' %>
-              此E-mail已报名
-            <% else %>
-              此E-mail已報名
-            <% end %>
-          </p>
+          <p class="emailhide hidden emailblank">&nbsp;&nbsp;<%= t("請輸入E-mail") %></p>
+          <p class="emailhide hidden emailmatch">&nbsp;&nbsp;<%= t("請輸入一個有效的E-mail") %></p>
+          <p class="emailhide hidden emailchecking">&nbsp;&nbsp;<img src="/assets/loader.gif" /><%= t("驗證中") %>...</p>
+          <p class="emailhide hidden emailused">&nbsp;&nbsp;<%= t("此E-mail已報名") %></p>
         </div>
         <%= text_field_tag :email, params[:email], placeholder:"E-mail", class: 'form-control' %>
         <br>
         <div class="center">
-          <% if language=='en' %>
-            <%=submit_tag "SUBMIT", name: nil, class: "btn btn-lg btn-success" %>
-          <% elsif language=='sc' %>
-            <%=submit_tag "提交", name: nil, class: "btn btn-lg btn-success" %>
-          <% else %>
-            <%=submit_tag "送出", name: nil, class: "btn btn-lg btn-success" %>
-          <% end %>
+          <%=submit_tag t("送出"), name: nil, class: "btn btn-lg btn-success" %>
         </div>
       <% end %>
 

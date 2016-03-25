@@ -1,13 +1,5 @@
 <div class="container confirm center">
-  <h3>
-    <% if language=='en' %>
-      Registration Successful!
-    <% elsif language=='sc' %>
-      报名成功！
-    <% else %>
-      報名成功！
-    <% end %>
-  </h3>
+  <h3><%= t("報名成功！") %></h3>
   <hr class="hr">
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
@@ -15,13 +7,7 @@
       <tbody>
         <table class="table table-hover">
           <tr>
-            <% if language=='en' %>
-              <td>Full Name</td>
-            <% elsif language=='sc' %>
-              <td>报名者姓名</td>
-            <% else %>
-              <td>報名者姓名</td>
-            <% end %>
+            <td><%= t("報名者姓名") %></td>
             <td><%= @register.name %></td>
           </tr>
           <tr>
@@ -34,13 +20,7 @@
       <div>
         <%= form_tag allpayform_path, method: :get do %>
           <%= hidden_field_tag :register, params[:register],value: @register.email %>
-          <% if language=='en' %>
-            <%=submit_tag "PAY", name: nil, class: "btn btn-lg btn-success" %>
-          <% elsif language=='sc' %>
-            <%=submit_tag "付款", name: nil, class: "btn btn-lg btn-success" %>
-          <% else %>
-            <%=submit_tag "付款", name: nil, class: "btn btn-lg btn-success" %>
-          <% end %>
+          <%=submit_tag t("付款"), name: nil, class: "btn btn-lg btn-success" %>
         <% end %>
       </div>
 

@@ -1,56 +1,16 @@
 <div class="container searchindex center">
-  <h3>
-    <% if language=='en' %>
-      Registration Number
-    <% elsif language=='sc' %>
-      报名编号
-    <% else %>
-      報名編號
-    <% end %>
-  <%= @register.merchant_trade_no %></h3>
+  <h3><%= t("報名編號") %><%= @register.merchant_trade_no %></h3>
   <hr class="hr">
   <div class="register_holder">
     <% if @register.prohibit==true %>
-      <p class="bg-danger">
-        <% if language=='en' %>
-          Blocked
-        <% elsif language=='sc' %>
-          已封锁
-        <% else %>
-          已封鎖
-        <% end %>
-      </p>
+      <p class="bg-danger"><%= t("已封鎖") %></p>
     <% else %>
       <% if @register.paystatus==3 %>
-        <p class="bg-success">
-          <% if language=='en' %>
-            Paid
-          <% elsif language=='sc' %>
-            已付款
-          <% else %>
-            已付款
-          <% end %>
-        </p>
+        <p class="bg-success"><%= t("已付款") %></p>
       <% elsif @register.paystatus==1 %>
-        <p class="bg-danger">
-          <% if language=='en' %>
-            Billing Amount Error
-          <% elsif language=='sc' %>
-            帐单金额错误
-          <% else %>
-            帳單金額錯誤
-          <% end %>
-        </p>
+        <p class="bg-danger"><%= t("帳單金額錯誤") %></p>
       <% else %>
-        <p class="bg-danger">
-          <% if language=='en' %>
-            Unpaid
-          <% elsif language=='sc' %>
-            尚未付款
-          <% else %>
-            尚未付款
-          <% end %>
-        </p>
+        <p class="bg-danger"><%= t("尚未付款") %></p>
       <% end %>
     <% end %>
   </div>
@@ -59,13 +19,7 @@
       <tbody>
         <table class="table table-hover">
           <tr>
-            <% if language=='en' %>
-              <td>Full Name</td>
-            <% elsif language=='sc' %>
-              <td>报名者姓名</td>
-            <% else %>
-              <td>報名者姓名</td>
-            <% end %>
+            <td><%= t("報名者姓名") %></td>
             <td><%= @register.name %></td>
           </tr>
           <tr>
@@ -74,33 +28,15 @@
           </tr>
           <% if @register.paystatus==1 || @register.paystatus==3 %>
             <tr>
-              <% if language=='en' %>
-                <td>Payment Amount</td>
-              <% elsif language=='sc' %>
-                <td>付款金额</td>
-              <% else %>
-                <td>付款金額</td>
-              <% end %>
+              <td><%= t("付款金額") %></td>
               <td><%= @transaction.params["TradeAmt"] %></td>
             </tr>
             <tr>
-              <% if language=='en' %>
-                <td>Payment Date</td>
-              <% elsif language=='sc' %>
-                <td>付款日期</td>
-              <% else %>
-                <td>付款日期</td>
-              <% end %>
+              <td><%= t("付款日期") %></td>
               <td><%= @transaction.params["PaymentDate"] %></td>
             </tr>
             <tr>
-              <% if language=='en' %>
-                <td>Payment Method</td>
-              <% elsif language=='sc' %>
-                <td>付款方式</td>
-              <% else %>
-                <td>付款方式</td>
-              <% end %>
+              <td><%= t("付款方式") %></td>
               <td><%= @transaction.params["PaymentType"] %></td>
             </tr>
           <% end %>
@@ -115,57 +51,28 @@
       <div>
         <%= form_tag allpayform_path, method: :get do %>
           <%= hidden_field_tag :register, params[:register],value: @register.email %>
-          <% if language=='en' %>
-            <%=submit_tag "PAY", name: nil, class: "btn btn-lg btn-success" %>
-          <% elsif language=='sc' %>
-            <%=submit_tag "付款", name: nil, class: "btn btn-lg btn-success" %>
-          <% else %>
-            <%=submit_tag "付款", name: nil, class: "btn btn-lg btn-success" %>
-          <% end %>
+          <%=submit_tag t("付款"), name: nil, class: "btn btn-lg btn-success" %>
         <% end %>
       </div>
     <% elsif @register.paystatus==3 %>
       <% if hasTdmfile?(@register) %>
         <div style="padding: 50px 0;">
-          <% if language=='en' %>
-          <% elsif language=='sc' %>
-            <h3>档案上传说明<i class="fa fa-file"></i></h3>
-            <br>
-            <h4>3D列印设计图上传限IGS档</h4>
-            <h4>请以作品名称命名欲上传之3D列印设计图档  <small>例：”恐龙骨架模型.igs“</small></h4>
-            <h4>并至少上传最少一张，最多三张之该模型照片</h4>
-          <% else %>
-            <h3>檔案上傳說明<i class="fa fa-file"></i></h3>
-            <br>
-            <h4>3D列印設計圖上傳限IGS檔</h4>
-            <h4>請以作品名稱命名欲上傳之3D列印設計圖檔  <small>例：”恐龍骨架模型.igs“</small></h4>
-            <h4>並至少上傳最少一張，最多三張之該模型照片</h4>
-          <% end %>
+          <h3><%= t("檔案上傳說明") %><i class="fa fa-file"></i></h3>
+          <br>
+          <h4><%= t("3D列印設計圖上傳限IGS檔") %></h4>
+          <h4><%= t("請以作品名稱命名欲上傳之3D列印設計圖檔") %>  <small><%= t("例") %>：”<%= t("恐龍骨架模型") %>.igs“</small></h4>
+          <h4><%= t("並至少上傳最少一張，最多三張之該模型照片") %></h4>
         </div>
         <%= form_for(@tdmfile, html: { multipart: true }) do |f| %>
           <input type="hidden" name="email" id="email" value="<%= @register.email %>" />
           <input type="hidden" name="name" id="name" value="<%= @register.name %>" />
           <div class="row igs_holder">
             <div class="col-xs-12 col-md-12">
-              <% if language=='en' %>
-                <%= f.file_field :igsfile, "data-buttonText":'Choose File', "data-placeholder":'IGS', class:'filestyle', style:"display:inline-block", accept: '.igs' %>
-              <% elsif language=='sc' %>
-                <%= f.file_field :igsfile, "data-buttonText":'选择档案', "data-placeholder":'IGS', class:'filestyle', style:"display:inline-block", accept: '.igs' %>
-              <% else %>
-                <%= f.file_field :igsfile, "data-buttonText":'選擇檔案', "data-placeholder":'IGS', class:'filestyle', style:"display:inline-block", accept: '.igs' %>
-              <% end %>
+              <%= f.file_field :igsfile, "data-buttonText":t("選擇檔案"), "data-placeholder":'IGS', class:'filestyle', style:"display:inline-block", accept: '.igs' %>
             </div>
             <div class="error_holder">
-              <% if language=='en' %>
-                <p class="igserror hidden igstype">File format error</p>
-                <p class="igserror hidden igssize">File size exceeds 5MB, please choose a smaller file</p>
-              <% elsif language=='sc' %>
-                <p class="igserror hidden igstype">档案格式错误</p>
-                <p class="igserror hidden igssize">档案大小超过5MB，请选择更小的档案</p>
-              <% else %>
-                <p class="igserror hidden igstype">檔案格式錯誤</p>
-                <p class="igserror hidden igssize">檔案大小超過5MB，請選擇更小的檔案</p>
-              <% end %>
+              <p class="igserror hidden igstype"><%= t("檔案格式錯誤") %></p>
+              <p class="igserror hidden igssize"><%= t("檔案大小超過5MB，請選擇更小的檔案") %></p>
             </div>
           </div>
           <div class="row picture_holder">
@@ -177,43 +84,19 @@
                   </div>
                 </div>
                 <div style="display: inline-block;">
-                  <% if language=='en' %>
-                    <%= f.file_field :picture1, id:"picture#{n+1}file", class:"filestyle uploadFile", name:"tdmfile[picture#{n+1}]", "data-input":false, "data-badge":false, "data-buttonText":'Select Image', "data-iconName":'glyphicon glyphicon-camera', accept: 'image/jpeg,image/png' %>
-                  <% elsif language=='sc' %>
-                    <%= f.file_field :picture1, id:"picture#{n+1}file", class:"filestyle uploadFile", name:"tdmfile[picture#{n+1}]", "data-input":false, "data-badge":false, "data-buttonText":'选择图片', "data-iconName":'glyphicon glyphicon-camera', accept: 'image/jpeg,image/png' %>
-                  <% else %>
-                    <%= f.file_field :picture1, id:"picture#{n+1}file", class:"filestyle uploadFile", name:"tdmfile[picture#{n+1}]", "data-input":false, "data-badge":false, "data-buttonText":'選擇圖片', "data-iconName":'glyphicon glyphicon-camera', accept: 'image/jpeg,image/png' %>
-                  <% end %>
+                  <%= f.file_field :picture1, id:"picture#{n+1}file", class:"filestyle uploadFile", name:"tdmfile[picture#{n+1}]", "data-input":false, "data-badge":false, "data-buttonText":t("選擇圖片"), "data-iconName":'glyphicon glyphicon-camera', accept: 'image/jpeg,image/png' %>
                 </div>
                 <div style="position: absolute;right:30%;">
-                  <% if language=='en' %>
-                    <p class="pictureerror hidden picture<%= n+1 %>type">File format error</p>
-                  <% elsif language=='sc' %>
-                    <p class="pictureerror hidden picture<%= n+1 %>type">档案格式错误</p>
-                  <% else %>
-                    <p class="pictureerror hidden picture<%= n+1 %>type">檔案格式錯誤</p>
-                  <% end %>
+                  <p class="pictureerror hidden picture<%= n+1 %>type"><%= t("檔案格式錯誤") %></p>
                 </div>
                 <div style="position: absolute;">
-                  <% if language=='en' %>
-                    <p class="pictureerror hidden picture<%= n+1 %>size">File size exceeds 800KB, please choose a smaller file</p>
-                  <% elsif language=='sc' %>
-                    <p class="pictureerror hidden picture<%= n+1 %>size">档案大小超过800KB，请选择更小的档案</p>
-                  <% else %>
-                    <p class="pictureerror hidden picture<%= n+1 %>size">檔案大小超過800KB，請選擇更小的檔案</p>
-                  <% end %>
+                  <p class="pictureerror hidden picture<%= n+1 %>size"><%= t("檔案大小超過800KB，請選擇更小的檔案") %></p>
                 </div>
               </div>
             <% end %>
           </div>
           <div>
-            <% if language=='en' %>
-              <%= f.submit "UPLOAD", class: "btn btn-primary btn-lg", id: "filesubmit" %>
-            <% elsif language=='sc' %>
-              <%= f.submit "确定并上传", class: "btn btn-primary btn-lg", id: "filesubmit" %>
-            <% else %>
-              <%= f.submit "確定並上傳", class: "btn btn-primary btn-lg", id: "filesubmit" %>
-            <% end %>
+            <%= f.submit t("確定並上傳"), class: "btn btn-primary btn-lg", id: "filesubmit" %>
           </div>
         <% end %>
         
@@ -257,13 +140,7 @@
             if($('#tdmfile_igsfile').val()!=""){
               if(($('#picture1file').val()!="") || ($('#picture2file').val()!="") || ($('#picture3file').val()!="")){return true}
             }
-            <% if language=='en' %>
-              alert('The uploaded file is not complete');
-            <% elsif language=='sc' %>
-              alert('上传的档案不完整');
-            <% else %>
-              alert('上傳的檔案不完整');
-            <% end %>
+            alert('<%= t("上傳的檔案不完整") %>');
             return false
           })
           function checkFileSize(file){
@@ -330,13 +207,7 @@
         </script>
       <% else %>
         <div style="padding: 20px 0;">
-          <% if language=='en' %>
-            <h3>Upload Complete</h3>
-          <% elsif language=='sc' %>
-            <h3>上传完成</h3>
-          <% else %>
-            <h3>上傳完成</h3>
-          <% end %>
+          <h3><%= t("上傳完成") %></h3>
           <% tdmfile=@register.tdmfiles.first %>
           <%= tdmfile.igsfile.to_s.rpartition("/").last %>
         </div>

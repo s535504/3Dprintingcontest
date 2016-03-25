@@ -4,6 +4,6 @@ class SessionsController < ApplicationController
 
   def create
     seletedlanguage params[:language]
-    redirect_back_to :back
+    redirect_to :back
   end
 end
