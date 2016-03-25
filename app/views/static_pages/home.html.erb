@@ -19,41 +19,15 @@
         </div>
       </div>
       <div class="introtext">
-        <h1><span style="border-bottom: 1.5px solid;font-family:Helvetica;">LINE DDD</span></h1><h1><span style="border-bottom: 1.5px solid;line-height: 45px;">
-          <% if language=='en' %>
-          <% elsif language=='sc' %>
-            邀请您参加3D列印创新大赛
-          <% else %>
-            邀請您參加3D列印創新大賽
-          <% end %>
-        </span></h1><br><h4>
-          <% if language=='en' %>
-          <% elsif language=='sc' %>
-            发挥想像力，让创意不再只局限于脑海
-          <% else %>
-            發揮想像力，讓創意不再只侷限於腦海
-          <% end %>
+        <h1><span style="border-bottom: 1.5px solid;font-family:Helvetica;">LINE DDD</span></h1><h1><span style="border-bottom: 1.5px solid;line-height: 45px;"><%= t("邀請您參加3D列印創新大賽") %></span></h1>
         <br>
-          <% if language=='en' %>
-          <% elsif language=='sc' %>
-            对自己的设计有信心却苦无门路发挥吗？
-          <% else %>
-            對自己的設計有信心卻苦無門路發揮嗎？
-          <% end %>
+        <h4><%= t("發揮想像力，讓創意不再只侷限於腦海") %>
         <br>
-          <% if language=='en' %>
-          <% elsif language=='sc' %>
-            报名并上传设计图
-          <% else %>
-            報名並上傳設計圖
-          <% end %>
+          <%= t("對自己的設計有信心卻苦無門路發揮嗎？") %>
         <br>
-          <% if language=='en' %>
-          <% elsif language=='sc' %>
-            我们寻找的人就是你！
-          <% else %>
-            我們尋找的人就是你！
-          <% end %>
+          <%= t("報名並上傳設計圖") %>
+        <br>
+          <%= t("我們尋找的人就是你！") %>
         </h4>
       </div>
     </div>
@@ -65,22 +39,8 @@
     <div class="process_Holder thinking">
       <div class="process_gray">
         <div class="process_text">
-          <h1>
-            <% if language=='en' %>
-              IDEA 
-            <% elsif language=='sc' %>
-              想法 
-            <% else %>
-              想法 
-            <% end %>
-          <span class="glyphicon glyphicon-hand-up"></span></h1>
-          <h3>
-            <% if language=='en' %>
-            <% elsif language=='sc' %>
-              脑力激荡，将创意汇整
-            <% else %>
-              腦力激盪，將創意彙整
-            <% end %>
+          <h1><%= t("想法") %> <span class="glyphicon glyphicon-hand-up"></span></h1>
+          <h3><%= t("腦力激盪，將創意彙整") %>
           </h3>
         </div>
       </div>
@@ -88,69 +48,24 @@
     <div class="process_Holder register">
       <div class="process_gray">
         <div class="process_text">
-          <h1>
-            <% if language=='en' %>
-              DESIGN 
-            <% elsif language=='sc' %>
-              设计 
-            <% else %>
-              設計 
-            <% end %>
-          <i class="fa fa-laptop"></i></h1>
-          <h3>
-            <% if language=='en' %>
-            <% elsif language=='sc' %>
-              制作设计图，想法具现化
-            <% else %>
-              製作設計圖，想法具現化
-            <% end %>
-          </h3>
+          <h1><%= t("設計") %> <i class="fa fa-laptop"></i></h1>
+          <h3><%= t("製作設計圖，想法具現化") %></h3>
         </div>
       </div>
     </div>
     <div class="process_Holder upload">
       <div class="process_gray">
         <div class="process_text">
-          <h1>
-            <% if language=='en' %>
-              UPLOAD 
-            <% elsif language=='sc' %>
-              上載 
-            <% else %>
-              上傳 
-            <% end %>
-          <span class="glyphicon glyphicon-upload"></span></h1>
-          <h3>
-            <% if language=='en' %>
-            <% elsif language=='sc' %>
-              将你的设计上传至LINE DDD
-            <% else %>
-              將你的設計上傳至LINE DDD
-            <% end %>
-          </h3>
+          <h1><%= t("上傳") %> <span class="glyphicon glyphicon-upload"></span></h1>
+          <h3 style="text-transform:uppercase;"><%= t("將你的設計上傳至LINE DDD") %></h3>
         </div>
       </div>
     </div>
     <div class="process_Holder actualize">
       <div class="process_gray">
         <div class="process_text">
-          <h1>
-            <% if language=='en' %>
-              REALIZE 
-            <% elsif language=='sc' %>
-              实现 
-            <% else %>
-              實現 
-            <% end %>
-          <span class="glyphicon glyphicon-star-empty"></span></h1>
-          <h3>
-            <% if language=='en' %>
-            <% elsif language=='sc' %>
-              让更多人看见你的才华！
-            <% else %>
-              讓更多人看見你的才華！
-            <% end %>
-          </h3>
+          <h1><%= t("實現") %> <span class="glyphicon glyphicon-star-empty"></span></h1>
+          <h3><%= t("讓更多人看見你的才華！") %></h3>
         </div>
       </div>
     </div>

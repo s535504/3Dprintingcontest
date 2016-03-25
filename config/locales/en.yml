@@ -1,23 +1,14 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  邀請您參加3D列印創新大賽: jhslfr
+  發揮想像力，讓創意不再只侷限於腦海: erfe
+  對自己的設計有信心卻苦無門路發揮嗎？: wef
+  報名並上傳設計圖: wef
+  我們尋找的人就是你！: ewf
+  想法: IDEA 
+  腦力激盪，將創意彙整: wefwe
+  設計: DESIGN 
+  製作設計圖，想法具現化: erverv
+  上傳: UPLOAD 
+  將你的設計上傳至LINE DDD: wefwef
+  實現: REALIZE 
+  讓更多人看見你的才華！: erever
