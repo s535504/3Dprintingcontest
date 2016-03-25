@@ -282,7 +282,7 @@ html{
     opacity:.9;
   }
   .intro_holder{
-    height:150vh;
+    height:900px;
     position: relative;
     overflow:hidden;
   }
@@ -315,6 +315,10 @@ html{
     top:400px;
     -webkit-transform: translate3d(1500px,0,0);
     transform: translate3d(1500px,0,0);
+    @media(min-width:1500px){
+      -webkit-transform: translate3d(2000px,0,0);
+      transform: translate3d(2000px,0,0);
+    }
   }
   .slideup{
     -webkit-transform: translate3d(0,1500px,0);
@@ -331,6 +335,10 @@ html{
     .slideleft{
       -webkit-transform: translate3d(-1000px,0,0);
       transform: translate3d(-1000px,0,0);
+      @media(min-width:1500px){
+        -webkit-transform: translate3d(-500px,0,0);
+        transform: translate3d(-500px,0,0);
+      }
     }
     .slideup{
       -webkit-transform: translate3d(0,100px,0);
