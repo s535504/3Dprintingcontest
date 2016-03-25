@@ -6,7 +6,11 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale, except: :notify
 
   def set_locale
-    I18n.locale = cookies[:language] || extract_locale_from_accept_language_header
+    if cookies[:language]=='zh-TW' || cookies[:language]=='zh-CN' || cookies[:language]=='en' 
+      I18n.locale = cookies[:language]extract_locale_from_accept_language_header
+    else
+      I18n.locale = extract_locale_from_accept_language_header
+    end
     @lan=I18n.locale
   end
 

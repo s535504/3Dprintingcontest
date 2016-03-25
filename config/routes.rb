@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
 
-  get   'language' => 'sessions#new'
   post  'language' => 'sessions#create'
 
   devise_for :users
