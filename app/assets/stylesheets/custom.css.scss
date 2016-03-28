@@ -566,7 +566,7 @@ html{
   }
   .transform{
     .d1{
-      -webkit-transform:matrix(1.1,0.6,-0.9,0.4,-15,-10);
+      -webkit-transform:matrix(1.1,0.6,-0.9,0.4,-5,0);
       top:150px;
       left:370px;
       @media(max-width:992px){
@@ -574,6 +574,7 @@ html{
         left:276px;
       }
       @media(max-width:768px){
+      -15-webkit-transform:matrix(1.1,0.6,-0.9,0.4,-15,-10);
         top:35vw;
         left:37vw;
       }
