@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  post 'contactus' => 'static_pages#contactus'
+
   post  'language' => 'sessions#create'
 
   devise_for :users

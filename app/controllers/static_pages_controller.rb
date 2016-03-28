@@ -35,6 +35,12 @@ class StaticPagesController < ApplicationController
     end
   end
 
+  def contactus
+    if params[:email]!="" && params[:subject]!="" && params[:name]!="" && params[:message]!=""
+      Mail.deliver(from:params[:email],to:"s5355049@gmail.com",subject:params[:subject],body:params[:name]+params[:message])
+    end
+  end
+
   def check_email
     @register = Register.find_by_email(params[:email])
 

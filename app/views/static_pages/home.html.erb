@@ -72,6 +72,22 @@
   </div>
 </div>
 
+<div class="purpose center">
+  <div id="container" class="standby fadein">
+    <div class="d1_holder hiddenleft">
+      <div class="d1">D</div>
+    </div>
+    <div class="d2_holder hiddenleft">
+      <div class="d2">D</div>
+    </div>
+    <div class="d3_holder hiddenleft">
+      <div class="d3">D</div>
+    </div>
+  </div>
+  <div style="color:black;font-size: 30px;font-weight: 400;">活動目的</div>
+  <!-- <a>wefwe</a> -->
+</div>
+
 <div class="works center">
   <div class="container-fluid">
     <div class="workbg1">
@@ -220,8 +236,11 @@
   <div class="container-fluid">
     <div class="bg-overlay pattern"></div>
     <div data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" role="tab" id="headingOne">
-      <div class="default-text">
+      <div class="default-text" id="default-text">
         <h1 class="center"><%= t("有任何疑問嗎？") %></h1>
+      </div>
+      <div class="complete-text" id="complete-text">
+        <h1 class="center"><%= t("我們將會盡快回覆您") %></h1>
       </div>
       <div class="hover-text" id="hover-text-trigger">
         <h1 class="center"><%= t("聯絡我們") %> <span class="glyphicon glyphicon-envelope"></span></h1>
@@ -230,7 +249,7 @@
     <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body">
         <div class="container-fluid">
-          <%= form_tag declare_path, class: "emailform", method: :post do %>
+          <%= form_tag contactus_path, class: "emailform", remote: true, method: :post do %>
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
@@ -240,23 +259,31 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <%= label :name, "E-mail", class: "control-label sr-only" %>
-                  <%= text_field_tag :name, params[:name], placeholder:"E-mail", class: "form-control input-lg" %>
+                  <%= label :email, "E-mail", class: "control-label sr-only" %>
+                  <%= text_field_tag :email, params[:email], placeholder:"E-mail", class: "form-control input-lg" %>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-12" style="text-align: center;">
                 <div class="form-group">
-                  <%= label :name, "主旨", class: "control-label sr-only" %>
-                  <%= text_field_tag :name, params[:name], placeholder: t("主旨"), class: "form-control input-lg" %>
+                  <%= label :subject, "主旨", class: "control-label sr-only" %>
+                  <%= text_field_tag :subject, params[:subject], placeholder: t("主旨"), class: "form-control input-lg" %>
                 </div>
                  <div class="form-group">
-                  <%= label :name, "訊息", class: "control-label sr-only" %>
-                  <%= text_area_tag :name, params[:name], placeholder: t("訊息"), class: "form-control input-lg", rows:7 %>
+                  <%= label :message, "訊息", class: "control-label sr-only" %>
+                  <%= text_area_tag :message, params[:message], placeholder: t("訊息"), class: "form-control input-lg", rows:7 %>
                 </div>
                 <div class="form-group">
-                  <%= button_tag t("送出"), class: "btn btn-lg btn-default", id: "emailsubmit", style:"" %>
+                  <%= button_tag t("送出"), class: "btn btn-lg btn-default", id: "emailsubmit" %>
+                </div>
+                <div style="color:red;font-weight: 600;font-size: 17px;">
+                  <div id="unfinished" style="display:none;">
+                    <%= t("請填寫所有欄位") %>
+                  </div>
+                  <div id="emailformat" style="display:none;">
+                    <%= t("請輸入一個有效的E-mail") %>
+                  </div>
                 </div>
               </div>
             </div>
@@ -272,6 +299,10 @@
     var navheight=$(window).height()-70;
     var introtop=$(window).height()-200;
     var introbottom=$(window).height()+600;
+    var purposetop=$(window).height()+2000;
+    var purposebottom=$(window).height()+2300;
+    var purposetopmin=$(window).height()+2100;
+    var purposebottommin=$(window).height()+2200;
     if ($(window).scrollTop()>navheight){
       $('.navbar-default').addClass('on');
     }
@@ -284,6 +315,23 @@
     else{
       $('.intro_holder').removeClass('active');
     }
+    if ($(window).scrollTop()>purposetopmin && $(window).scrollTop()<purposebottommin){
+      $('#container').removeClass('fadein');
+      setTimeout(function(){$('.d1_holder').removeClass('hiddenleft');},1200)
+      setTimeout(function(){$('.d2_holder').removeClass('hiddenleft');},1400)
+      setTimeout(function(){$('.d3_holder').removeClass('hiddenleft');},1600)
+      setTimeout(function(){$('.d1_holder').addClass('hiddenright');},4200)
+      setTimeout(function(){$('.d2_holder').addClass('hiddenright');},4400)
+      setTimeout(function(){$('.d3_holder').addClass('hiddenright');},4600)
+      setTimeout(function(){$('#container').removeClass('standby');},5300)
+      setTimeout(function(){$('#container').addClass('cantransform').addClass('transform');},6000)
+    }
+    if($('#container').hasClass('cantransform') && $(window).scrollTop()>purposetop && $(window).scrollTop()<purposebottom){
+      $('#container').addClass('transform')
+    }
+    else{
+      $('#container').removeClass('transform');
+    }
   })
   $('.contactTrigger').click(function(){
     $('.contactus').css({
@@ -295,5 +343,29 @@
     if ($('#collapseOne').hasClass("in")){
       $('#collapseOne').removeAttr("id");
     }
+  })
+  $('#emailsubmit').click(function(){
+    if($('#name').val()=="" || $('#email').val()=="" || $('#subject').val()=="" || $('#message').val()==""){
+      $('#unfinished').css('display','inline');
+      $('#emailformat').css('display','none');
+      return false;
+    }
+    else if(validEmail($('#email').val())==false){
+      $('#unfinished').css('display','none');
+      $('#emailformat').css('display','inline');
+      return false;
+    }
+    else{
+      $('#unfinished').css('display','none');
+      $('#emailformat').css('display','none');
+    }
+    function validEmail(value){
+      var rule = new RegExp(/^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{1,10}$/i)
+      return rule.test(value)
+    }
+    $('.panel-collapse').collapse("hide");
+    $('#headingOne').attr("href","");
+    $('#complete-text').css('opacity',1);
+    $('#default-text').css('opacity',0);
   })
 </script>
