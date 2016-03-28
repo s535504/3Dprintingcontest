@@ -440,15 +440,19 @@ html{
 /* purpose */
 
 .purpose{
-  height:1100px;
   position: relative;
   color:#FF2D2D;
   overflow:hidden;
   font-weight: 900;
   font-family:Helvetica;
   font-size:350px;
+  height:1100px;
   @media(max-width:992px){
     font-size:300px;
+  }
+  @media(max-width:768px){
+    font-size:35vw;
+    height:150vw;
   }
   #container{
     position:relative;
@@ -457,6 +461,9 @@ html{
     width:992px;
     @media(max-width:992px){
       width:768px;
+    }
+    @media(max-width:768px){
+      width:100vw;
     }
   }
   .d1,.d2,.d3{
@@ -469,10 +476,17 @@ html{
     @media(max-width:992px){
       left:276px;
     }
+    @media(max-width:768px){
+      top:10vw;
+      left:37vw;
+    }
   }
   .d2{
     top:500px;
     left:0px;
+    @media(max-width:768px){
+      top:80vw;
+    }
   }
   .d3{
     top:500px;
@@ -480,15 +494,10 @@ html{
     @media(max-width:992px){
       left:552px;
     }
-  }
-  a{
-    position: absolute;
-    display: inline-block;
-    outline: none;
-    text-decoration: none;
-    color: #000;
-    font-size: 32px;
-    padding: 5px 10px;
+    @media(max-width:768px){
+      top:80vw;
+      left:70vw;
+    }
   }
   .fadein{
     opacity:0;
@@ -498,13 +507,22 @@ html{
     .d1{
       top:0px;
       left:0px;
+      @media(max-width:768px){
+        top: 10vw;
+      }
     }
     .d2{
       top:300px;
+      @media(max-width:768px){
+        top: 50vw;
+      }
     }
     .d3{
       top:600px;
       left:0px;
+      @media(max-width:768px){
+        top: 90vw;
+      }
     }
   }
   .d1::after,.d2::after,.d3::after{
@@ -518,6 +536,11 @@ html{
       font-size:170px;
       top:130px;
       left: 220px;
+    }
+    @media(max-width:768px){
+      font-size:20vw;
+      top: 15vw;
+      left: 25vw;
     }
   }
   .d1::after{
@@ -547,8 +570,12 @@ html{
       top:150px;
       left:370px;
       @media(max-width:992px){
-        top:150px;
+        top:250px;
         left:276px;
+      }
+      @media(max-width:768px){
+        top:35vw;
+        left:37vw;
       }
     }
     .d2{
@@ -556,8 +583,18 @@ html{
       top:360px;
       left:280px;
       @media(max-width:992px){
-        top:340px;
+        top:440px;
         left:200px;
+      }
+      @media(max-width:768px){
+        top:60vw;
+        left:28vw;
+      }
+      @media(max-width:512px){
+        top:63vw;
+      }
+      @media(max-width:256px){
+        top:66vw;
       }
     }
     .d3{
@@ -565,10 +602,23 @@ html{
       top:350px;
       left:470px;
       @media(max-width:992px){
-        top:330px;
+        top:430px;
         left:360px;
       }
+      @media(max-width:768px){
+        top:56vw;
+        left:47vw;
+      }
     }
+  }
+  a{
+    position: absolute;
+    display: inline-block;
+    outline: none;
+    text-decoration: none;
+    color: #000;
+    font-size: 32px;
+    padding: 5px 10px;
   }
   a:before { position: absolute;content: "\5B";opacity:0;left:0; transition: .5s;}
   a:after { position: absolute;content: "\5D";opacity:0;right:0; transition: .5s;}

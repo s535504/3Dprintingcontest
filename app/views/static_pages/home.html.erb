@@ -303,6 +303,9 @@
     var purposebottom=$(window).height()+2300;
     var purposetopmin=$(window).height()+2100;
     var purposebottommin=$(window).height()+2200;
+    var purposephonetop=$(window).height()+1700
+    var purposephonebottom=$('.purpose').height()+2000
+    // $('.purpose').html(purposephonebottom)
     if ($(window).scrollTop()>navheight){
       $('.navbar-default').addClass('on');
     }
@@ -315,7 +318,7 @@
     else{
       $('.intro_holder').removeClass('active');
     }
-    if ($(window).scrollTop()>purposetopmin && $(window).scrollTop()<purposebottommin){
+    if (($(window).width()>=768 && $(window).scrollTop()>purposetopmin && $(window).scrollTop()<purposebottommin) || ($(window).width()<768 && $(window).scrollTop()>purposephonetop && $(window).scrollTop()<purposephonebottom)){
       $('#container').removeClass('fadein');
       setTimeout(function(){$('.d1_holder').removeClass('hiddenleft');},1200)
       setTimeout(function(){$('.d2_holder').removeClass('hiddenleft');},1400)
@@ -326,7 +329,7 @@
       setTimeout(function(){$('#container').removeClass('standby');},5200)
       setTimeout(function(){$('#container').addClass('cantransform').addClass('transform');},6000)
     }
-    if($('#container').hasClass('cantransform') && $(window).scrollTop()>purposetop && $(window).scrollTop()<purposebottom){
+    if(($(window).width()>=768 && $('#container').hasClass('cantransform') && $(window).scrollTop()>purposetop && $(window).scrollTop()<purposebottom) || ($(window).width()<768 && $('#container').hasClass('cantransform') && $(window).scrollTop()>purposephonetop && $(window).scrollTop()<purposephonebottom)){
       $('#container').addClass('transform')
     }
     else{
