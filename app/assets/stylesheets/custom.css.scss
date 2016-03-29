@@ -460,6 +460,9 @@ html{
     font-size:35vw;
     height:150vw;
   }
+  @media(max-width:400px){
+    height:600px;
+  }
   #container{
     position:relative;
     margin: 0 auto;
