@@ -21,7 +21,8 @@
       <div class="introtext">
         <h1><span style="border-bottom: 1.5px solid;font-family:Helvetica;">LINE DDD</span></h1><h1><span style="border-bottom: 1.5px solid;line-height: 45px;"><%= t("邀請您參加3D列印創新大賽") %></span></h1>
         <br>
-        <h4><%= t("發揮想像力，讓創意不再只侷限於腦海") %>
+        <h4>
+          <%= t("發揮想像力，讓創意不再只侷限於腦海") %>
         <br>
           <%= t("對自己的設計有信心卻苦無門路發揮嗎？") %>
         <br>
@@ -72,7 +73,7 @@
   </div>
 </div>
 
-<div class="purpose center">
+<div class="purpose center clearfix">
   <div id="container" class="standby fadein">
     <div class="d1_holder hiddenleft">
       <div class="d1">D</div>
@@ -84,7 +85,31 @@
       <div class="d3">D</div>
     </div>
   </div>
-  <div style="color:black;font-size: 30px;font-weight: 400;">報名資格</div>
+  <div class="purposetext clearfix" id="purposetext" style="">
+    <div class="fadeinup" id="purposetitle">
+      <h1><span class="purposetitle">活動目的</span></h1>
+    </div>
+    <div class="col-md-3 fadeinup" id="text_holder1">
+      <p class="number_holder">01</p>
+      <h1><%= t("推廣3Ｄ列印") %></h1>
+      <p class="purpose_holder">目前3D列印技術已在歐美地區蔚為風潮，但在亞洲地區扔未普及，希望藉此活動帶領亞洲地區3D列印技術成長並推廣至民間</p>
+    </div>
+    <div class="col-md-3 fadeinup" id="text_holder2">
+      <p class="number_holder">02</p>
+      <h1><%= t("促進技術交流") %></h1>
+      <p class="purpose_holder">活動將邀請兩岸之大學學生參加，激發學生創作能力與學習動機，藉此交流並促進技術發展，並希望3D列印在校園中形成新潮流</p>
+    </div>
+    <div class="col-md-3 fadeinup" id="text_holder3">
+      <p class="number_holder">03</p>
+      <h1><%= t("發掘潛在設計師") %></h1>
+      <p class="purpose_holder">高手就隱藏在民間，我們希望每個人的潛藏才能都能被發揮，活動將祭出高額獎金希望吸引3D設計好手參加</p>
+    </div>
+    <div class="col-md-3 fadeinup" id="text_holder4">
+      <p class="number_holder">04</p>
+      <h1 style="text-transform: uppercase;"><%= t("宣傳LINE DDD") %></h1>
+      <p class="purpose_holder">LINE DDD為一新創事業，成立於2016年，提供線上3D列印設計圖付費下載服務，目標為全球知名3D列印創作平台</p>
+    </div>
+  </div>
   <!-- <a>wefwe</a> -->
 </div>
 
@@ -305,7 +330,6 @@
     var purposebottommin=$(window).height()+2200;
     var purposephonetop=$(window).height()+1700
     var purposephonebottom=$('.purpose').height()+2000
-    // $('.purpose').html(purposephonebottom)
     if ($(window).scrollTop()>navheight){
       $('.navbar-default').addClass('on');
     }
@@ -328,6 +352,12 @@
       setTimeout(function(){$('.d3_holder').addClass('hiddenright');},4600)
       setTimeout(function(){$('#container').removeClass('standby');},5200)
       setTimeout(function(){$('#container').addClass('cantransform').addClass('transform');},6000)
+      setTimeout(function(){$('#purposetitle').removeClass('fadeinup');},6500)
+      setTimeout(function(){$('#purposetitle').addClass('active');},7000)
+      setTimeout(function(){$('#text_holder1').removeClass('fadeinup');},7500)
+      setTimeout(function(){$('#text_holder2').removeClass('fadeinup');},7700)
+      setTimeout(function(){$('#text_holder3').removeClass('fadeinup');},7900)
+      setTimeout(function(){$('#text_holder4').removeClass('fadeinup');},8100)
     }
     if(($(window).width()>=768 && $('#container').hasClass('cantransform') && $(window).scrollTop()>purposetop && $(window).scrollTop()<purposebottom) || ($(window).width()<768 && $('#container').hasClass('cantransform') && $(window).scrollTop()>purposephonetop && $(window).scrollTop()<purposephonebottom)){
       $('#container').addClass('transform')
